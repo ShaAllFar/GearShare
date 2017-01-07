@@ -15,5 +15,5 @@ env:
 sudo: required
 before_script: npm i
 scripts:
-  - run start travis
+  - npm run snowfall
 after_scripts: 'cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js'
