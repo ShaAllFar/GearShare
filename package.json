@@ -9,7 +9,7 @@
   "scripts": {
     "test": "DEBUG='gear-share*' mocha",
     "start": "DEBUG='gear-share*' node server.js",
-    "snowfall": "DEBUG:'gear-share:*' ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*"
+    "snowfall": "DEBUG='gear-share*' ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*"
   },
   "repository": {
     "type": "git",
