@@ -7,7 +7,6 @@ const mongoose = require('mongoose');
 
 describe('Server Test', function(){
   it('should return is running', done => {
-    console.log(server);
     expect(server.isRunning).to.equal(true);
     done();
   })
