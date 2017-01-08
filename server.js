@@ -10,8 +10,7 @@ const debug = require('debug')('gear-share:server.js');
 const errors = require('./lib/err-middleware.js');
 
 dotenv.load();
-//something funny happening with process.env.PORT
-//hard coded to get project going
+
 const PORT = process.env.PORT;
 const app = express();
 
@@ -20,7 +19,7 @@ mongoose.connect(process.env.MONGODB_URI);
 
 app.use(cors());
 app.use(morgan('dev'));
-app.use(errors)
+app.use(errors);
 
 const server = module.exports = app.listen(PORT, () => {
   debug(`Server up: ${PORT}`);
