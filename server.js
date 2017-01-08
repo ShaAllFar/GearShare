@@ -12,7 +12,7 @@ const errors = require('./lib/err-middleware.js');
 dotenv.load();
 //something funny happening with process.env.PORT
 //hard coded to get project going
-const PORT = 3000;
+const PORT = process.env.PORT;
 const app = express();
 
 
