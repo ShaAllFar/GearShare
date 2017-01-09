@@ -15,6 +15,8 @@ const url = `http://localhost:${process.env.PORT}`;
 
 const testData = require('./lib/test-data.js');
 
+const exampleUser = testData.exampleUser;
+
 describe('Auth Routes', function() {
   before(done => {
     serverToggle.serverOn(server, done);
@@ -34,7 +36,7 @@ describe('Auth Routes', function() {
 
       it('should return a token', done => {
         request.post(`${url}/api/signup`)
-        .send(testData.exampleUser)
+        .send(exampleUser)
         .end((err, res) => {
           if (err) return done(err);
           expect(res.status).to.equal(200);
@@ -58,7 +60,7 @@ describe('Auth Routes', function() {
     describe('with an unregistered route', () => {
       it('should return a 404 error', done => {
         request.post(`${url}/api/unregistered-route`)
-        .send(testData.exampleUser)
+        .send(exampleUser)
         .end(res => {
           expect(res.status).to.equal(404);
           done();
