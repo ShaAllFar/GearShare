@@ -16,4 +16,4 @@ sudo: required
 before_script: npm i
 scripts:
   - npm run travis-test
-after_scripts: 'cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js'
+after_script: 'cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js'
