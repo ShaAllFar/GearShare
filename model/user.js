@@ -14,5 +14,18 @@ const userSchema = Schema({
   username: {type: String, require: true, unique: true},
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
+  profileImageURI: {type: String, required: true},
   findHash: {type: String, unique: true}
 });
+
+userSchema.methods.generatePasswordHash = function(password) {
+  debug('generatePasswordHash');
+
+  return new Promise((resolve, reject) => {
+    bcrypt.hash(password, 10, (err, hash) => {
+      if (err) return reject(err);
+      this.password = hash;
+      resolve(this);
+    });
+  });
+};
