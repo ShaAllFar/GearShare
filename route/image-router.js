@@ -7,9 +7,9 @@ const AWS = require('aws-sdk');
 const multer = require('multer');
 const Router = require('express').Router;
 const createError = require('http-errors');
-const debug = require('debug')('gear-share:post-obj-router');
+const debug = require('debug')('gear-share:image-router');
 
-const PostObj = require('../model/post-obj.js');
+const Image = require('../model/image.js');
 const Gallery = require('../model/gallery.js');
 const bearerAuth = require('../lib/bearer-auth-middleware.js');
 
@@ -19,7 +19,7 @@ const s3 = new AWS.S3();
 const dataDir = `${__dirname}/../data`;
 const upload = multer({ dest: dataDir});
 
-const postObjRouter = module.exports = Router();
+const imageRouter = module.exports = Router();
 
 function s3uploadProm(params) {
   return new Promise((resolve, reject) => {
@@ -31,8 +31,8 @@ function s3uploadProm(params) {
   });
 }
 
-postObjRouter.post('/api/gallery/:galleryID/postObj', bearerAuth, function(req, res, next) { //TODO upload.single('image') required?
-  debug('POST: /api/gallery/galleryID/postObj');
+imageRouter.post('/api/gallery/:galleryID/image', bearerAuth, upload.single('image'), function(req, res, next) {
+  debug('POST: /api/gallery/galleryID/image'); //TODO double check path
 
   if(!req.file) {
     return next(createError(400, 'file not found'));
@@ -55,19 +55,37 @@ postObjRouter.post('/api/gallery/:galleryID/postObj', bearerAuth, function(req, 
   .then( () => s3uploadProm(params))
   .then( s3data => {
     del([`${dataDir}/*`]);
-    let postObjData = {
+    let imageData = {
       name: req.body.name,
       desc: req.body.desc,
-      price: req.body.price,
-      location: req.body.location,
       objectKey: s3data.Key,
       imageURI: s3data.Location,
       userID: req.user._id,
       galleryID: req.params.galleryID
     };
-    return new PostObj(postObjData).save();
+    return new Image(imageData).save();
   })
-  .then( postObj => res.json(postObj)) //TODO double check this should be postObj
+  .then( image => res.json(image))
   .catch( err => next(err));
 
+});
+
+imageRouter.delete('api/image/:imageID', bearerAuth, function(req, res, next) {
+  debug('DELETE: /api/image/:imageID');
+
+  Image.findById(req.params.imageID)
+  .then(image => {
+    let params = {
+      Bucket: process.env.AWS_BUCKET,
+      Key: image.objectKey
+    };
+    s3.deleteObject(params, (err) => {
+      if (err) return next(err);
+    });
+  })
+  .catch(err => next(err));
+
+  Image.findByIdAndRemove(req.parms.imageID)
+  .then(() => res.status(204).send())
+  .catch(next);
 });
