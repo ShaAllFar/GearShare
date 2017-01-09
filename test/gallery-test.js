@@ -1,7 +1,7 @@
 'use strict';
 
 const expect = require('chai').expect;
-const request = require('supragent');
+const request = require('superagent');
 const mongoose = require('mongoose');
 const Promise = require('bluebird');
 mongoose.Promise = Promise;
