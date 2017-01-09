@@ -14,7 +14,7 @@ describe('Server Test', function(){
 
 describe('Database Test', function(){
   it('should return connection', done => {
-    expect(mongoose.connection.port).to.equal(57278);
+    expect(mongoose.connection.port).to.be.a('number');
     expect(mongoose.connection.name).to.equal('gear-share');
     done();
   });
