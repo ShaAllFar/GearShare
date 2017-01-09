@@ -41,3 +41,24 @@ userSchema.methods.comparePasswordHash = function(password) {
     });
   });
 };
+
+userSchema.methods.generateFindHash = function() {
+  debug('generateFindHash');
+
+  return new Promise((resolve, reject) => {
+    let attempts = 0;
+
+    _generateFindHash.call(this);
+
+    function _generateFindHash() {
+      this.findHash = crypto.randomBytes(32).toString('hex');
+      this.save()
+      .then(() => resolve(this.findHash))
+      .catch(err => {
+        if (attempts > 3) return reject(err);
+        attempts++;
+        _generateFindHash.call(this);
+      });
+    }
+  });
+};
