@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/ShaAllFar/gear-share#readme",
   "dependencies": {
+    "bcrypt": "^1.0.2",
+    "bluebird": "^3.4.7",
     "cors": "^2.8.1",
     "debug": "^2.6.0",
     "dotenv": "^2.0.0",
