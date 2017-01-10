@@ -6,16 +6,16 @@ const createError = require('http-errors');
 const debug = require('debug')('gear-share:gallery-router')
 
 const Gallery = require('../model/gallery.js');
-// const bearerAuth = require()
+const bearerAuth = require('../lib/bearer-auth-middleware.js');
 
 const galleryRouter = module.exports = {};
 
 galleryRouter.post('/api/gallery', bearerAuth, jsonParser, function(req ,res, next){
   debug('POST: /api/gallery');
 
-  req.body.userID = req.body._id;
+  req.body.userID = req.user._id;
   new Gallery(req.body).save()
-  .then(gallery => ={
+  .then(gallery => {
     if(!req.body.name) return next(createError(400, 'body required'));
     res.json(gallery);
   })
