@@ -13,6 +13,10 @@ const server = require('../server.js');
 
 const url = `http://localhost:${process.env.PORT}`;
 
+//something to change
+// const url = 'https://gear-share-staging.herokuapp.com';
+
+
 mongoose.Promise = Promise;
 
 const exampleUser = testData.exampleUser;
@@ -49,7 +53,9 @@ describe('Gallery Routes', function(){
         })
         .catch(done);
       });
+
       it('should return a gallery', done => {
+
         request.post(`${url}/api/gallery`)
         .send(exampleGallery)
         .set({

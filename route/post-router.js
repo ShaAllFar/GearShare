@@ -6,10 +6,15 @@ const createError = require('http-errors');
 const debug = require('debug')('gear-share:post-router');
 
 const Post = require('../model/post.js');
+
 const Gallery = require('../model/gallery.js');
+
+// const Gallery = require('../model/gallery.js');
+
 const bearerAuth = require('../lib/bearer-auth-middleware.js');
 
 const postRouter = module.exports = Router();
+
 
 postRouter.post('/api/gallery/:galleryID/post', bearerAuth, jsonParser, function(req ,res, next){
   debug('POST: /api/gallery/:galleryID/post');
@@ -23,7 +28,9 @@ postRouter.post('/api/gallery/:galleryID/post', bearerAuth, jsonParser, function
   .catch(next);
 });
 
+
 postRouter.get('/api/gallery/:galleyID/post/:postID', bearerAuth, function(req, res, next){
+
   debug('GET: /api/gallery/:postID');
 
   Post.findById(req.params.id)
@@ -38,6 +45,7 @@ postRouter.get('/api/gallery/:galleyID/post/:postID', bearerAuth, function(req, 
 });
 
 postRouter.put('/api/gallery/:galleryID/post/:postID', bearerAuth, jsonParser, function(req,res,next){
+
   debug('PUT: /ap/gallery/:postID');
 
   if(!req.body.name) return next(createError(400, 'body required'));
@@ -50,7 +58,9 @@ postRouter.put('/api/gallery/:galleryID/post/:postID', bearerAuth, jsonParser, f
   .catch(err => next(createError(404, err.message)));
 });
 
+
 postRouter.delete('/api/galley/:galleyID/post/:postID',bearerAuth, function(req, res, next){
+
   debug('DELETE: /api/post/:id');
 
   Post.findByIdAndRemove(req.params.id)

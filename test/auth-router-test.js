@@ -50,7 +50,9 @@ describe('Auth Routes', function() {
       it('should return a 400 error', done => {
         request.post(`${url}/api/signup`)
         .send({username: 'invalid user'})
-        .end(res => {
+        .end((err, res) => {
+          expect(err).to.be.an('error');
+
           expect(res.status).to.equal(400);
           done();
         });
@@ -61,7 +63,8 @@ describe('Auth Routes', function() {
       it('should return a 404 error', done => {
         request.post(`${url}/api/unregistered-route`)
         .send(exampleUser)
-        .end(res => {
+        .end((err, res) => {
+          expect(err).to.be.an('error');
           expect(res.status).to.equal(404);
           done();
         });
@@ -94,6 +97,7 @@ describe('Auth Routes', function() {
         .end((err, res) => {
           if (err) return done(err);
           expect(res.status).to.equal(200);
+          expect(res.text).to.be.a('string');
           done();
         });
       });
@@ -103,7 +107,8 @@ describe('Auth Routes', function() {
       it('should return a 401 error', done => {
         request.get(`${url}/api/signin`)
         .auth('example name', '37654')
-        .end(res => {
+        .end((err, res) => {
+          expect(err).to.be.an('error');
           expect(res.status).to.equal(401);
           done();
         });
@@ -114,7 +119,8 @@ describe('Auth Routes', function() {
       it('should return a 404 error', done => {
         request.get(`${url}/api/unregistered-route`)
         .auth('example name', '1234')
-        .end(res => {
+        .end((err, res) => {
+          expect(err).to.be.an('error');
           expect(res.status).to.equal(404);
           done();
         });

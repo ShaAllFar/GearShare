@@ -8,7 +8,9 @@ const postSchema = Schema({
   desc: { type: String, required: true},
   created: { type: Date, required: true, default: Date.now},
   userID: { type: Schema.Types.ObjectId, required: true},
+
   galleryID: { type: String, required: true},
+
   price: { type: Number, required: true}
 });
 
