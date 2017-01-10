@@ -5,7 +5,8 @@ module.exports = exports = {};
 exports.exampleUser = {
   username: 'example name',
   email: 'example@test.com',
-  password: '1234'
+  password: '1234',
+  profileImageURI: `${__dirname}/data/tester.png`
 };
 
 exports.exampleGallery = {
