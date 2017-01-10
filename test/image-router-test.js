@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const request = require('superagent');
 
 const Image = require('../model/image.js');
-// const Post = require('../model/post.js');
+const Post = require('../model/post.js');
 const User = require('../model/user.js');
 const Gallery = require('../model/gallery.js');
 
@@ -27,7 +27,7 @@ describe('Image Routes', function() {
   afterEach( done => {
     Promise.all([
       Image.remove({}),
-      // Post.remove({}),
+      Post.remove({}),
       User.remove({}),
       Gallery.remove({})
     ])
@@ -67,7 +67,7 @@ describe('Image Routes', function() {
         done();
       });
 
-      it('should return an image', done => {
+      it.only('should return an image', done => {
         request.post(`${url}/api/gallery/${this.tempPost._id}/image`)
         .set({
           Authorization: `Bearer ${this.tempToken}`
