@@ -1,16 +1,15 @@
 'use strict';
 
 const debug = require('debug')('gear-share:server-toggle');
-const PORT = process.env.PORT;
 
 module.exports = exports = {};
 
 exports.serverOn = function(server,done){
   if(!server.isRunning){
-    server.listen(PORT, err => {
+    server.listen(process.env.PORT, err => {
       if(err) return done(err);
       server.isRunning = true;
-      debug(`SERVER UP: ${PORT}`);
+      debug(`SERVER UP: ${process.env.PORT}`);
       done();
     });
     return;
