@@ -11,7 +11,8 @@ const testData = require('./lib/test-data.js');
 const serverToggle = require('./lib/toggle-server.js');
 const server = require('../server.js');
 
-const url = `http://localhost:${process.env.PORT}`;
+// const url = `http://localhost:${process.env.PORT}`;
+const url = 'https://gear-share-staging.herokuapp.com';
 
 mongoose.Promise = Promise;
 
@@ -49,7 +50,7 @@ describe('Gallery Routes', function(){
         })
         .catch(done);
       });
-      it('should return a gallery', done => {
+      it.only('should return a gallery', done => {
         request.post(`${url}/api/gallery`)
         .send(exampleGallery)
         .set({
