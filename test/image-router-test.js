@@ -70,7 +70,7 @@ describe('Image Routes', function() {
         done();
       });
 
-      it.only('should return an image', done => {
+      it('should return an image', done => {
         request.post(`${url}/api/gallery/${this.tempGallery._id}/image`)
         .set({
           Authorization: `Bearer ${this.tempToken}`

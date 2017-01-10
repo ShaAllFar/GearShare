@@ -8,7 +8,7 @@ const gallerySchema = Schema({
   desc: {type: String, required: true},
   createdOn: {type: Date, default: Date.now},
   userID: {type: Schema.Types.ObjectId, required: true},
-  postIDs: [{type: Schema.Types.ObectId}]
+  postIDs: [{type: Schema.Types.ObjectId}]
 });
 
 module.exports = mongoose.model('gallery', gallerySchema);
