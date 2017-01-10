@@ -49,7 +49,7 @@ describe('Gallery Routes', function(){
         })
         .catch(done);
       });
-      it('should return a gallery', done => {
+      it.only('should return a gallery', done => {
         request.post(`${url}/api/gallery`)
         .send(exampleGallery)
         .set({
