@@ -12,7 +12,6 @@ const serverToggle = require('./lib/toggle-server.js');
 const server = require('../server.js');
 
 const url = `http://localhost:${process.env.PORT}`;
-//something to change
 // const url = 'https://gear-share-staging.herokuapp.com';
 
 mongoose.Promise = Promise;
@@ -26,7 +25,7 @@ describe('Gallery Routes', function(){
   });
   after(done => {
     serverToggle.serverOff(server,done);
-  })
+  });
   afterEach(done => {
     Promise.all([
       User.remove({}),
@@ -51,7 +50,7 @@ describe('Gallery Routes', function(){
         })
         .catch(done);
       });
-      it.only('should return a gallery', done => {
+      it('should return a gallery', done => {
         request.post(`${url}/api/gallery`)
         .send(exampleGallery)
         .set({
@@ -63,6 +62,7 @@ describe('Gallery Routes', function(){
           expect(res.status).to.equal(200);
           expect(res.body.name).to.equal('example gallery');
           expect(res.body.desc).to.equal('example gallery description');
+          expect(date).to.not.equal('Invalid Date');
           done();
         });
       });
