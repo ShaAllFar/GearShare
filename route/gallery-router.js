@@ -8,7 +8,7 @@ const debug = require('debug')('gear-share:gallery-router')
 const Gallery = require('../model/gallery.js');
 const bearerAuth = require('../lib/bearer-auth-middleware.js');
 
-const galleryRouter = module.exports = {};
+const galleryRouter = module.exports = Router();
 
 galleryRouter.post('/api/gallery', bearerAuth, jsonParser, function(req ,res, next){
   debug('POST: /api/gallery');
@@ -29,7 +29,7 @@ galleryRouter.get('/api/gallery/:id', bearerAuth, function(req, res, next){
   .then(gallery => {
     if(req.body.name === null) return next(createError(404, 'gallery not found'));
     if(gallery.userID.toString() !== req.user._id.toString()){
-      return next(createError(401 'invalid user'));
+      return next(createError(401, 'invalid user'));
     }
     res.json(gallery);
   })
