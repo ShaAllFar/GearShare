@@ -13,6 +13,7 @@ describe('Server Test', function(){
   after(done => {
     serverToggle.serverOff(server,done);
   })
+
   it('should return is running', done => {
     expect(server.isRunning).to.equal(true);
     done();
