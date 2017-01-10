@@ -3,7 +3,7 @@
 const Router = require('express').Router;
 const jsonParser = require('body-parser').json();
 const createError = require('http-errors');
-const debug = require('debug')('gear-share:gallery-router')
+const debug = require('debug')('gear-share:gallery-router');
 
 const Gallery = require('../model/gallery.js');
 const bearerAuth = require('../lib/bearer-auth-middleware.js');
