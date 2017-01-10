@@ -49,7 +49,7 @@ describe('Gallery Routes', function(){
         })
         .catch(done);
       });
-      it.only('should return a gallery', done => {
+      it('should return a gallery', done => {
         request.post(`${url}/api/gallery`)
         .send(exampleGallery)
         .set({
@@ -80,7 +80,7 @@ describe('Gallery Routes', function(){
         })
         .catch(done);
       });
-      it.only('should return a bad request', done => {
+      it('should return a bad request', done => {
         request.post(`${url}/api/gallery`)
         .send({some: 'data', other: 'stuff'})
         .set({
@@ -131,7 +131,7 @@ describe('Gallery Routes', function(){
         })
         .catch(done);
       });
-      it.only('should return unauthorized', done => {
+      it('should return unauthorized', done => {
         request.post(`${url}/api/gallery`)
         .send(exampleUser)
         .set({
