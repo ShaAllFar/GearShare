@@ -31,8 +31,8 @@ function s3uploadProm(params) {
   });
 }
 
-imageRouter.post('/api/gallery/:galleryID/image', bearerAuth, upload.single('image'), function(req, res, next) {
-  debug('POST: /api/gallery/galleryID/image'); //TODO double check path
+imageRouter.post('/api/gallery/:postID/image', bearerAuth, upload.single('image'), function(req, res, next) {
+  debug('POST: /api/gallery/postID/image'); //TODO double check path
 
   if(!req.file) {
     return next(createError(400, 'file not found'));
