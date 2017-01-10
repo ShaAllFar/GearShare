@@ -49,7 +49,7 @@ describe('Gallery Routes', function(){
         })
         .catch(done);
       });
-      it.only('should return a gallery', done => {
+      it('should return a gallery', done => {
         request.post(`${url}/api/gallery`)
         .send(exampleGallery)
         .set({
@@ -59,9 +59,89 @@ describe('Gallery Routes', function(){
           if(err) return done(err);
           let date = new Date(res.body.createdOn).toString();
           expect(res.status).to.equal(200);
+          expect(res.body.name).to.equal('example gallery');
+          expect(res.body.desc).to.equal('example gallery description');
           done();
         });
       });
     });
+    describe('with an invalid body', () => {
+      before(done => {
+        new User(exampleUser)
+        .generatePasswordHash(exampleUser.password)
+        .then(user => user.save())
+        .then(user => {
+          this.tempUser = user;
+          return user.generateToken();
+        })
+        .then(token => {
+          this.tempToken = token;
+          done();
+        })
+        .catch(done);
+      });
+      it('should return a bad request', done => {
+        request.post(`${url}/api/gallery`)
+        .send({some: 'data', other: 'stuff'})
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .end(res => {
+          expect(res.status).to.equal(400);
+          expect(res.body).to.equal(undefined);
+          done();
+        })
+      });
+    });
+    describe('with an invalid route', () => {
+      before(done => {
+        new User(exampleUser)
+        .generatePasswordHash(exampleUser.password)
+        .then(user => user.save())
+        .then(user => {
+          this.tempUser = user;
+          return user.generateToken();
+        })
+        .then(token => {
+          this.tempToken = token;
+          done();
+        })
+        .catch(done)
+      });
+      it('should return not found', done => {
+        request.post(`${url}/api/route`)
+        .send(exampleUser)
+        .set({
+          Authorization: `Bearer `
+        })
+        .end(res => {
+          expect(res.status).to.equal(404);
+          done();
+        })
+      })
+    });
+    describe('with no token provided', () => {
+      before(done => {
+        new User(exampleUser)
+        .generatePasswordHash(exampleUser.password)
+        .then(user => user.save())
+        .then(user => {
+          this.tempUser = user;
+          done();
+        })
+        .catch(done);
+      });
+      it('should return unauthorized', done => {
+        request.post(`${url}/api/gallery`)
+        .send(exampleUser)
+        .set({
+          Authorization: 'Bearer '
+        })
+        .end(res => {
+          expect(res.status).to.equal(401);
+          done();
+        })
+      })
+    })
   });
 });
