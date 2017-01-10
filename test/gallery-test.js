@@ -12,8 +12,6 @@ const serverToggle = require('./lib/toggle-server.js');
 const server = require('../server.js');
 
 const url = `http://localhost:${process.env.PORT}`;
-
-//something to change
 // const url = 'https://gear-share-staging.herokuapp.com';
 
 
@@ -28,7 +26,7 @@ describe('Gallery Routes', function(){
   });
   after(done => {
     serverToggle.serverOff(server,done);
-  })
+  });
   afterEach(done => {
     Promise.all([
       User.remove({}),
@@ -67,6 +65,7 @@ describe('Gallery Routes', function(){
           expect(res.status).to.equal(200);
           expect(res.body.name).to.equal('example gallery');
           expect(res.body.desc).to.equal('example gallery description');
+          expect(date).to.not.equal('Invalid Date');
           done();
         });
       });
@@ -96,7 +95,7 @@ describe('Gallery Routes', function(){
           expect(res.status).to.equal(400);
           expect(res.body).to.equal(undefined);
           done();
-        })
+        });
       });
     });
     describe('with an invalid route', () => {
@@ -112,7 +111,7 @@ describe('Gallery Routes', function(){
           this.tempToken = token;
           done();
         })
-        .catch(done)
+        .catch(done);
       });
       it('should return not found', done => {
         request.post(`${url}/api/route`)
@@ -123,8 +122,8 @@ describe('Gallery Routes', function(){
         .end(res => {
           expect(res.status).to.equal(404);
           done();
-        })
-      })
+        });
+      });
     });
     describe('with no token provided', () => {
       before(done => {
@@ -146,9 +145,9 @@ describe('Gallery Routes', function(){
         .end(res => {
           expect(res.status).to.equal(401);
           done();
-        })
-      })
-    })
+        });
+      });
+    });
   });
 
   describe('GET: /api/gallery/:id', () => {
@@ -233,9 +232,9 @@ describe('Gallery Routes', function(){
           expect(res.status).to.equal(404);
           expect(res.response.text).to.equal('NotFoundError');
           done();
-        })
-      })
-    })
+        });
+      });
+    });
     describe('with no token', () => {
       before(done => {
         new User(exampleUser)
@@ -267,9 +266,9 @@ describe('Gallery Routes', function(){
         .end(res => {
           expect(res.status).to.equal(401);
           done();
-        })
-      })
-    })
+        });
+      });
+    });
   });
 
   describe('PUT: /api/gallery/:id', () => {
@@ -314,9 +313,9 @@ describe('Gallery Routes', function(){
           expect(res.body.name).to.equal('updated name');
           expect(res.body.desc).to.equal('updated description');
           done();
-        })
-      })
-    })
+        });
+      });
+    });
     describe('with an invalid body', () => {
       before(done => {
         new User(exampleUser)
@@ -345,7 +344,7 @@ describe('Gallery Routes', function(){
         delete exampleGallery.userID;
       });
       it('should return bad request', done => {
-        let updated = {test: 'test', test2: 'test2'}
+        let updated = {test: 'test', test2: 'test2'};
 
         request.put(`${url}/api/gallery/${this.tempGallery._id}`)
         .send(updated)
@@ -355,9 +354,9 @@ describe('Gallery Routes', function(){
         .end(res => {
           expect(res.status).to.equal(400);
           done();
-        })
-      })
-    })
+        });
+      });
+    });
     describe('with an invalid id', () => {
       before(done => {
         new User(exampleUser)
@@ -396,8 +395,8 @@ describe('Gallery Routes', function(){
         .end(res => {
           expect(res.status).to.equal(404);
           done();
-        })
-      })
+        });
+      });
     });
     describe('with no token provided', () => {
       before(done => {
@@ -423,19 +422,19 @@ describe('Gallery Routes', function(){
         delete exampleGallery.userID;
       });
       it('should return unauthorized', done => {
-        let updated = {name: 'new name', desc: 'new description'}
+        let updated = {name: 'new name', desc: 'new description'};
 
         request.put(`${url}/api/gallery/${this.tempGallery._id}`)
         .send(updated)
         .set({
-          Authorization: `Bearer `
+          Authorization: 'Bearer '
         })
         .end(res => {
           expect(res.status).to.equal(401);
           done();
-        })
-      })
-    })
+        });
+      });
+    });
   });
 
   describe('DELETE: /api/gallery/:id', () => {
@@ -475,8 +474,8 @@ describe('Gallery Routes', function(){
           if(err) return done(err);
           expect(res.status).to.equal(204);
           done();
-        })
-      })
+        });
+      });
     });
     describe('with an invalid id', () => {
       before(done => {
@@ -513,9 +512,9 @@ describe('Gallery Routes', function(){
         .end(res => {
           expect(res.status).to.equal(404);
           done();
-        })
-      })
-    })
+        });
+      });
+    });
     describe('with no token provided', () => {
       before(done => {
         new User(exampleUser)
@@ -547,8 +546,8 @@ describe('Gallery Routes', function(){
         .end(res => {
           expect(res.status).to.equal(401);
           done();
-        })
-      })
-    })
+        });
+      });
+    });
   });
 });
