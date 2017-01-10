@@ -8,6 +8,7 @@ exports.exampleUser = {
   password: '1234',
   profileImageURI: `${__dirname}/data/tester.png`,
   location: 'example location'
+
 };
 
 exports.exampleGallery = {
@@ -18,8 +19,9 @@ exports.exampleGallery = {
 exports.examplePic = {
   name: 'example pic',
   desc: 'example pic description',
-  image: `${__dirname}/data/tester.png`
-};
+  image: `${__dirname}/../data/tester.png`
+}
+
 
 exports.examplePost = {
   name: 'post name',

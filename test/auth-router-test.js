@@ -52,6 +52,7 @@ describe('Auth Routes', function() {
         .send({username: 'invalid user'})
         .end((err, res) => {
           expect(err).to.be.an('error');
+
           expect(res.status).to.equal(400);
           done();
         });
