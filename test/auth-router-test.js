@@ -69,5 +69,56 @@ describe('Auth Routes', function() {
     });
   });
 
+  describe('GET: /api/signin', function() {
+    before(done => {
+      let user = new User(exampleUser);
+      user.generatePasswordHash(exampleUser.password)
+      .then(user => user.save())
+      .then(user => {
+        this.tempUser = user;
+        done();
+      })
+      .catch(done);
+    });
 
+    after(done => {
+      User.remove({})
+      .then(() => done())
+      .catch(done);
+    });
+
+    describe('with a valid/authenticated user', () => {
+      it('should return a token', done => {
+        request.get(`${url}/api/signin`)
+        .auth('example name', '1234')
+        .end((err, res) => {
+          if (err) return done(err);
+          expect(res.status).to.equal(200);
+          done();
+        });
+      });
+    });
+
+    describe('with an invalid password/unauthenticated user', () => {
+      it('should return a 401 error', done => {
+        request.get(`${url}/api/signin`)
+        .auth('example name', '37654')
+        .end(res => {
+          expect(res.status).to.equal(401);
+          done();
+        });
+      });
+    });
+
+    describe('with an unregistered route', () => {
+      it('should return a 404 error', done => {
+        request.get(`${url}/api/unregistered-route`)
+        .auth('example name', '1234')
+        .end(res => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+      });
+    });
+  });
 });
