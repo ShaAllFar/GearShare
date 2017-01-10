@@ -17,7 +17,7 @@ exports.exampleGallery = {
 exports.examplePic = {
   name: 'example pic',
   desc: 'example pic description',
-  image: `${__dirname}/data/tester.png`
+  image: `${__dirname}/../data/tester.png`
 }
 
 exports.examplePost = {
