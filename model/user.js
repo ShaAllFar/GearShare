@@ -15,6 +15,7 @@ const userSchema = Schema({
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
   profileImageURI: {type: String, required: true},
+  location: {type: String, required: true},
   findHash: {type: String, unique: true}
 });
 
