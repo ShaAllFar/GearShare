@@ -34,7 +34,7 @@ describe('Post Routes', function(){
     .then(() => done())
     .catch(done);
   });
-  before(done => {
+  beforeEach(done => {
     new User(exampleUser)
     .generatePasswordHash(exampleUser.password)
     .then(user  => user.save())
@@ -48,7 +48,7 @@ describe('Post Routes', function(){
     })
     .catch(done);
   });
-  before(done => {
+  beforeEach(done => {
     exampleGallery.userID = this.tempUser._id.toString();
     new Gallery(exampleGallery).save()
     .then(gallery => {
@@ -57,7 +57,17 @@ describe('Post Routes', function(){
     })
     .catch(done);
   });
-  after(() => {
+  beforeEach(done => {
+    examplePost.galleryID = this.tempGallery._id;
+    examplePost.userID = this.tempUser._id;
+    new Post(examplePost).save()
+    .then(post => {
+      this.tempPost = post;
+      done();
+    })
+    .catch(done);
+  });
+  afterEach(() => {
     delete exampleGallery.userID;
     //in question
     delete examplePost.galleryID;
@@ -85,7 +95,7 @@ describe('Post Routes', function(){
     describe('with an invalid body', () => {
       it('should return bad request', done => {
         request.post(`${url}/api/gallery/${this.tempGallery._id}/post`)
-        .send()
+        .send('body')
         .set({
           Authorization: `Bearer ${this.tempToken}`
         })
@@ -126,16 +136,6 @@ describe('Post Routes', function(){
     });
   });
 
-  before(done => {
-    examplePost.galleryID = this.tempGallery._id;
-    examplePost.userID = this.tempUser._id;
-    new Post(examplePost).save()
-    .then(post => {
-      this.tempPost = post;
-      done();
-    })
-    .catch(done);
-  });
   describe('GET: /api/gallery/:galleryID/post/:postID', () => {
     describe('with a valid body', () => {
       it('should return a post', done => {
@@ -204,19 +204,17 @@ describe('Post Routes', function(){
     });
     describe('with an invalid body', () => {
       it('should return bad request', done => {
-        it('should return updated post', done => {
-          let updated = {title: 'new name', description: 'new description', cost: '100'};
+        let updated = {title: 'new name', description: 'new description', cost: '100'};
 
-          request.put(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}`)
-          .send(updated)
-          .set({
-            Authorization: `Bearer ${this.tempToken}`
-          })
-          .end(res => {
-            expect(res.status).to.equal(400);
-            expect(res.body).to.equal(undefined);
-            done();
-          });
+        request.put(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}`)
+        .send(updated)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .end(res => {
+          expect(res.status).to.equal(400);
+          expect(res.body).to.equal(undefined);
+          done();
         });
       })
     })
