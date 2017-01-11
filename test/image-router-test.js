@@ -89,7 +89,7 @@ describe('Image Routes', function() {
     });
     describe('with a valid token and valid data', () => {
 
-      it.only('should return an image', done => {
+      it('should return an image', done => {
         request.post(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image`)
         .set({
           Authorization: `Bearer ${this.tempToken}`
@@ -169,7 +169,7 @@ describe('Image Routes', function() {
     });
 
     describe('with a valid image id', () => {
-      it.only('should delete and return a 204', done => {
+      it('should delete and return a 204', done => {
         console.log(this.tempPic);
         request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image/${this.tempPic._id}`)
         .set({
