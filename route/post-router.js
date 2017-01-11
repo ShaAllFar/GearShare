@@ -7,10 +7,6 @@ const debug = require('debug')('gear-share:post-router');
 
 const Post = require('../model/post.js');
 
-const Gallery = require('../model/gallery.js');
-
-// const Gallery = require('../model/gallery.js');
-
 const bearerAuth = require('../lib/bearer-auth-middleware.js');
 
 const postRouter = module.exports = Router();
@@ -19,7 +15,7 @@ const postRouter = module.exports = Router();
 postRouter.post('/api/gallery/:galleryID/post', bearerAuth, jsonParser, function(req ,res, next){
   debug('POST: /api/gallery/:galleryID/post');
 
-  req.body.userID = req.user._id;
+  req.body.galleryID = req.gallery._id;
   new Post(req.body).save()
   .then(post => {
     if(!req.body.name) return next(createError(400, 'body required'));
@@ -29,9 +25,8 @@ postRouter.post('/api/gallery/:galleryID/post', bearerAuth, jsonParser, function
 });
 
 
-postRouter.get('/api/gallery/:galleyID/post/:postID', bearerAuth, function(req, res, next){
-
-  debug('GET: /api/gallery/:postID');
+postRouter.get('/api/gallery/:galleyID/post/:postID', bearerAuth, function(req, res, next) {
+  debug('GET: /api/gallery/:galleyID/post/:postID');
 
   Post.findById(req.params.id)
   .then(post => {
@@ -44,9 +39,8 @@ postRouter.get('/api/gallery/:galleyID/post/:postID', bearerAuth, function(req, 
   .catch(next);
 });
 
-postRouter.put('/api/gallery/:galleryID/post/:postID', bearerAuth, jsonParser, function(req,res,next){
-
-  debug('PUT: /ap/gallery/:postID');
+postRouter.put('/api/gallery/:galleryID/post/:postID', bearerAuth, jsonParser, function(req,res,next) {
+  debug('PUT: /api/gallery/:galleryID/post/:postID');
 
   if(!req.body.name) return next(createError(400, 'body required'));
 
@@ -60,8 +54,7 @@ postRouter.put('/api/gallery/:galleryID/post/:postID', bearerAuth, jsonParser, f
 
 
 postRouter.delete('/api/galley/:galleyID/post/:postID',bearerAuth, function(req, res, next){
-
-  debug('DELETE: /api/post/:id');
+  debug('DELETE: /api/galley/:galleyID/post/:postID');
 
   Post.findByIdAndRemove(req.params.id)
   .then(() => res.status(204).send())

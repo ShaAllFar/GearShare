@@ -20,11 +20,11 @@ exports.examplePic = {
   name: 'example pic',
   desc: 'example pic description',
   image: `${__dirname}/../data/tester.png`
-}
+};
 
 
 exports.examplePost = {
   name: 'post name',
-  description: 'post description',
-  price: 'some number'
+  desc: 'post description',
+  price: 200
 };
