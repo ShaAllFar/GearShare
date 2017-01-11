@@ -52,7 +52,6 @@ describe('Auth Routes', function() {
         .send({username: 'invalid user'})
         .end((err, res) => {
           expect(err).to.be.an('error');
-
           expect(res.status).to.equal(400);
           done();
         });
@@ -66,6 +65,88 @@ describe('Auth Routes', function() {
         .end((err, res) => {
           expect(err).to.be.an('error');
           expect(res.status).to.equal(404);
+          done();
+        });
+      });
+    });
+
+    describe('with invalid username', function() {
+      it('should throw a 400 error', done => {
+        request.post(`${url}/api/signup`)
+        .send({
+          password: exampleUser.password,
+          email: exampleUser.email,
+          profileImageURI: exampleUser.profileImageURI,
+          location:  exampleUser.location
+        })
+        .end( (err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
+
+    describe('with an invalid email', function() {
+      it('should throw a 400 error', done => {
+        request.post(`${url}/api/signup`)
+        .send({
+          username: exampleUser.username,
+          password: exampleUser.password,
+          profileImageURI: exampleUser.profileImageURI,
+          location:  exampleUser.location
+        })
+        .end( (err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
+    describe('with an invalid password', function() {
+      it('should throw a 400 error', done => {
+        request.post(`${url}/api/signup`)
+        .send({
+          username: exampleUser.username,
+          email: exampleUser.email,
+          profileImageURI: exampleUser.profileImageURI,
+          location:  exampleUser.location
+        })
+        .end( (err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
+    describe('with an invalid profileImageURI', function() {
+      it('should throw a 400 error', done => {
+        request.post(`${url}/api/signup`)
+        .send({
+          username: exampleUser.username,
+          email: exampleUser.email,
+          password: exampleUser.password,
+          location:  exampleUser.location
+        })
+        .end( (err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
+    describe('with an ivalid location', function() {
+      it('should throw a 400 error', done => {
+        request.post(`${url}/api/signup`)
+        .send({
+          username: exampleUser.username,
+          email: exampleUser.email,
+          password: exampleUser.password,
+          profileImageURI: exampleUser.profileImageURI,
+        })
+        .end( (err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(400);
           done();
         });
       });
@@ -107,6 +188,18 @@ describe('Auth Routes', function() {
       it('should return a 401 error', done => {
         request.get(`${url}/api/signin`)
         .auth('example name', '37654')
+        .end((err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(401);
+          done();
+        });
+      });
+    });
+
+    describe('with an invalid username/unauthenticated user', () => {
+      it('should return a 401 error', done => {
+        request.get(`${url}/api/signin`)
+        .auth('', '1234')
         .end((err, res) => {
           expect(err).to.be.an('error');
           expect(res.status).to.equal(401);
