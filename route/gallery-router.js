@@ -53,7 +53,7 @@ galleryRouter.delete('/api/gallery/:id',bearerAuth, function(req, res, next){
   debug('DELETE: /api/gallery/:id');
 
   Gallery.findByIdAndRemove(req.params.id)
-  .then(galley => {
+  .then(gallery => {
     if(gallery === null) return next(createError(404, 'id not found'));
     res.status(204).send();
   })
