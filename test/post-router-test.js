@@ -204,7 +204,7 @@ describe('Post Routes', function(){
     });
     describe('with an invalid body', () => {
       it('should return bad request', done => {
-        it.only('should return updated post', done => {
+        it('should return updated post', done => {
           let updated = {title: 'new name', description: 'new description', cost: '100'};
 
           request.put(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}`)
@@ -256,7 +256,7 @@ describe('Post Routes', function(){
 
   describe('DELETE: /api/gallery/:galleryID/post/:postID', () => {
     describe('with a valid body', () => {
-      it.only('should delete post', done => {
+      it('should delete post', done => {
         request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}`)
         .set({
           Authorization: `Bearer ${this.tempToken}`
@@ -270,7 +270,7 @@ describe('Post Routes', function(){
       });
     });
     describe('with an invalid id', () => {
-      it.only('should return not found', done => {
+      it('should return not found', done => {
         request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/5875d21ed422466a4b802475`)
         .set({
           Authorization: `Bearer ${this.tempToken}`
@@ -282,7 +282,7 @@ describe('Post Routes', function(){
       });
     });
     describe('with no token provided', () => {
-      it.only('should return unauthorized', done => {
+      it('should return unauthorized', done => {
         request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}`)
         .set({
           Authorization: `Bearer `
