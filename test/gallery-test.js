@@ -97,6 +97,8 @@ describe('Gallery Routes', function(){
           done();
         });
       });
+      //TODO with an ivalid gallery name
+      //TODO with an ivalid gallery desc
     });
     describe('with an invalid route', () => {
       before(done => {

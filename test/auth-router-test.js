@@ -52,7 +52,6 @@ describe('Auth Routes', function() {
         .send({username: 'invalid user'})
         .end((err, res) => {
           expect(err).to.be.an('error');
-
           expect(res.status).to.equal(400);
           done();
         });
@@ -81,6 +80,7 @@ describe('Auth Routes', function() {
           location:  exampleUser.location
         })
         .end( (err, res) => {
+          expect(err).to.be.an('error');
           expect(res.status).to.equal(400);
           done();
         });
@@ -97,6 +97,7 @@ describe('Auth Routes', function() {
           location:  exampleUser.location
         })
         .end( (err, res) => {
+          expect(err).to.be.an('error');
           expect(res.status).to.equal(400);
           done();
         });
@@ -112,6 +113,7 @@ describe('Auth Routes', function() {
           location:  exampleUser.location
         })
         .end( (err, res) => {
+          expect(err).to.be.an('error');
           expect(res.status).to.equal(400);
           done();
         });
@@ -127,6 +129,7 @@ describe('Auth Routes', function() {
           location:  exampleUser.location
         })
         .end( (err, res) => {
+          expect(err).to.be.an('error');
           expect(res.status).to.equal(400);
           done();
         });
@@ -142,6 +145,7 @@ describe('Auth Routes', function() {
           profileImageURI: exampleUser.profileImageURI,
         })
         .end( (err, res) => {
+          expect(err).to.be.an('error');
           expect(res.status).to.equal(400);
           done();
         });
@@ -184,6 +188,18 @@ describe('Auth Routes', function() {
       it('should return a 401 error', done => {
         request.get(`${url}/api/signin`)
         .auth('example name', '37654')
+        .end((err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(401);
+          done();
+        });
+      });
+    });
+
+    describe('with an invalid username/unauthenticated user', () => {
+      it('should return a 401 error', done => {
+        request.get(`${url}/api/signin`)
+        .auth('', '1234')
         .end((err, res) => {
           expect(err).to.be.an('error');
           expect(res.status).to.equal(401);
