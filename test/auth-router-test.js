@@ -70,6 +70,83 @@ describe('Auth Routes', function() {
         });
       });
     });
+
+    describe('with invalid username', function() {
+      it('should throw a 400 error', done => {
+        request.post(`${url}/api/signup`)
+        .send({
+          password: exampleUser.password,
+          email: exampleUser.email,
+          profileImageURI: exampleUser.profileImageURI,
+          location:  exampleUser.location
+        })
+        .end( (err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
+
+    describe('with an invalid email', function() {
+      it('should throw a 400 error', done => {
+        request.post(`${url}/api/signup`)
+        .send({
+          username: exampleUser.username,
+          password: exampleUser.password,
+          profileImageURI: exampleUser.profileImageURI,
+          location:  exampleUser.location
+        })
+        .end( (err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
+    describe('with an invalid password', function() {
+      it('should throw a 400 error', done => {
+        request.post(`${url}/api/signup`)
+        .send({
+          username: exampleUser.username,
+          email: exampleUser.email,
+          profileImageURI: exampleUser.profileImageURI,
+          location:  exampleUser.location
+        })
+        .end( (err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
+    describe('with an invalid profileImageURI', function() {
+      it('should throw a 400 error', done => {
+        request.post(`${url}/api/signup`)
+        .send({
+          username: exampleUser.username,
+          email: exampleUser.email,
+          password: exampleUser.password,
+          location:  exampleUser.location
+        })
+        .end( (err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
+    describe('with an ivalid location', function() {
+      it('should throw a 400 error', done => {
+        request.post(`${url}/api/signup`)
+        .send({
+          username: exampleUser.username,
+          email: exampleUser.email,
+          password: exampleUser.password,
+          profileImageURI: exampleUser.profileImageURI,
+        })
+        .end( (err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
   });
 
   describe('GET: /api/signin', function() {
