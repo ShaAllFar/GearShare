@@ -30,7 +30,7 @@ describe('Gallery Routes', function(){
   afterEach(done => {
     Promise.all([
       User.remove({}),
-      Gallery.remove({})
+      Gallery.remove({}),
     ])
     .then(() => done())
     .catch(done);
@@ -506,12 +506,13 @@ describe('Gallery Routes', function(){
       after(() => {
         delete exampleGallery.userID;
       });
-      it('should return not found', done => {
+      it.only('should return not found', done => {
         request.delete(`${url}/api/gallery/58746edd70b5ae307c23935g`)
         .set({
           Authorization: `Bearer ${this.tempToken}`
         })
         .end(res => {
+          console.log('acaadasaasdsa',res.message);
           expect(res.status).to.equal(404);
           done();
         });

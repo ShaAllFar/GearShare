@@ -50,9 +50,12 @@ galleryRouter.put('/api/gallery/:id', bearerAuth, jsonParser, function(req,res,n
 });
 
 galleryRouter.delete('/api/gallery/:id',bearerAuth, function(req, res, next){
-  debug('DELETE: /api/library/:id');
+  debug('DELETE: /api/gallery/:id');
 
   Gallery.findByIdAndRemove(req.params.id)
-  .then(() => res.status(204).send())
+  .then(galley => {
+    if(gallery === null) return next(createError(404, 'id not found'));
+    res.status(204).send();
+  })
   .catch(err => next(createError(404, err.message)));
 });
