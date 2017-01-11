@@ -9,6 +9,7 @@ const Gallery = require('../model/gallery.js');
 const testData = require('./lib/test-data.js');
 
 const serverToggle = require('./lib/toggle-server.js');
+const clearDB = require('./lib/clearDB.js');
 const server = require('../server.js');
 
 const url = `http://localhost:${process.env.PORT}`;
@@ -27,14 +28,9 @@ describe('Gallery Routes', function(){
   after(done => {
     serverToggle.serverOff(server,done);
   });
-  afterEach(done => {
-    Promise.all([
-      User.remove({}),
-      Gallery.remove({}),
-    ])
-    .then(() => done())
-    .catch(done);
-  });
+  
+  afterEach(done => clearDB(done));
+
   describe('POST: /api/gallery', () => {
     describe('with a valid body', () => {
       before(done => {
