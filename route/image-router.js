@@ -10,7 +10,7 @@ const createError = require('http-errors');
 const debug = require('debug')('gear-share:image-router');
 
 const Image = require('../model/image.js');
-const Gallery = require('../model/gallery.js');
+const Post = require('../model/post.js');
 const bearerAuth = require('../lib/bearer-auth-middleware.js');
 
 AWS.config.setPromisesDependency(require('bluebird'));
@@ -51,7 +51,7 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
     Body: fs.createReadStream(req.file.path)
   };
 
-  Gallery.findById(req.params.galleryID)
+  Post.findById(req.params.postID)
   .then( () => s3uploadProm(params))
   .then( s3data => {
     del([`${dataDir}/*`]);
@@ -61,7 +61,8 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
       objectKey: s3data.Key,
       imageURI: s3data.Location,
       userID: req.user._id,
-      galleryID: req.params.galleryID
+      galleryID: req.params.galleryID,
+      postID: req.params.postID
     };
     return new Image(imageData).save();
   })
@@ -70,22 +71,27 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
 
 });
 
-imageRouter.delete('api/image/:imageID', bearerAuth, function(req, res, next) {
-  debug('DELETE: /api/image/:imageID');
+imageRouter.delete('/api/gallery/:galleryID/post/:postID/image/:imageID', bearerAuth, function(req, res, next) {
+  debug('DELETE: api/gallery/:galleryID/post/:postID/image/:imageID');
 
+  // console.log(req.params);
   Image.findById(req.params.imageID)
   .then(image => {
+    console.log(image);
     let params = {
       Bucket: process.env.AWS_BUCKET,
       Key: image.objectKey
     };
+
+    // console.log(params);
     s3.deleteObject(params, (err) => {
+      // console.log('shit turtle', err);
       if (err) return next(err);
+      Image.findByIdAndRemove(req.params.imageID)
+      .then(() => res.status(204).send())
+      .catch(next);
     });
   })
   .catch(err => next(err));
 
-  Image.findByIdAndRemove(req.parms.imageID)
-  .then(() => res.status(204).send())
-  .catch(next);
 });
