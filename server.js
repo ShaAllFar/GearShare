@@ -11,6 +11,7 @@ const debug = require('debug')('gear-share:server.js');
 const imageRouter = require('./route/image-router.js');
 const authRouter = require('./route/auth-router.js');
 const galleryRouter = require('./route/gallery-router');
+const postRouter = require('./route/post-router.js');
 const errors = require('./lib/err-middleware.js');
 
 dotenv.load();
@@ -26,6 +27,7 @@ app.use(morgan('dev'));
 app.use(imageRouter);
 app.use(authRouter);
 app.use(galleryRouter);
+app.use(postRouter);
 app.use(errors);
 
 const server = module.exports = app.listen(PORT, () => {

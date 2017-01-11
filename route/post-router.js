@@ -15,7 +15,8 @@ const postRouter = module.exports = Router();
 postRouter.post('/api/gallery/:galleryID/post', bearerAuth, jsonParser, function(req ,res, next){
   debug('POST: /api/gallery/:galleryID/post');
 
-  req.body.galleryID = req.gallery._id;
+  req.body.galleryID = req.params.galleryID;
+  req.body.userID = req.user._id;
   new Post(req.body).save()
   .then(post => {
     if(!req.body.name) return next(createError(400, 'body required'));
@@ -28,9 +29,9 @@ postRouter.post('/api/gallery/:galleryID/post', bearerAuth, jsonParser, function
 postRouter.get('/api/gallery/:galleyID/post/:postID', bearerAuth, function(req, res, next) {
   debug('GET: /api/gallery/:galleyID/post/:postID');
 
-  Post.findById(req.params.id)
+  Post.findById(req.params.postID)
   .then(post => {
-    if(req.body.name === null) return next(createError(404, 'post not found'));
+    if(post === null) return next(createError(404, 'post not found'));
     if(post.userID.toString() !== req.user._id.toString()){
       return next(createError(401, 'invalid user'));
     }
@@ -44,7 +45,7 @@ postRouter.put('/api/gallery/:galleryID/post/:postID', bearerAuth, jsonParser, f
 
   if(!req.body.name) return next(createError(400, 'body required'));
 
-  Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
+  Post.findByIdAndUpdate(req.params.postID, req.body, {new: true})
   .then(post => {
     if(post === null) return next(createError(404,'post not found'));
     res.json(post);
@@ -53,10 +54,13 @@ postRouter.put('/api/gallery/:galleryID/post/:postID', bearerAuth, jsonParser, f
 });
 
 
-postRouter.delete('/api/galley/:galleyID/post/:postID',bearerAuth, function(req, res, next){
-  debug('DELETE: /api/galley/:galleyID/post/:postID');
+postRouter.delete('/api/gallery/:galleryID/post/:postID', bearerAuth, function(req, res, next){
+  debug('DELETE: /api/gallery/:galleryID/post/:postID');
 
-  Post.findByIdAndRemove(req.params.id)
-  .then(() => res.status(204).send())
+  Post.findByIdAndRemove(req.params.postID)
+  .then(post => {
+    if(post === null) return next(createError(404,'id not found'));
+    res.status(204).send();
+  })
   .catch(err => next(createError(404, err.message)));
 });

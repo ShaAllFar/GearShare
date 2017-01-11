@@ -25,7 +25,13 @@ describe('Auth Routes', function() {
   after(done => {
     serverToggle.serverOff(server, done);
   });
-
+  afterEach(done => {
+    Promise.all([
+      User.remove({})
+    ])
+    .then(() => done())
+    .catch(done);
+  });
   describe('POST: /api/signup', function() {
     describe('with a valid body', function() {
       after(done => {
