@@ -16,9 +16,9 @@ exports.exampleGallery = {
   desc: 'example gallery description'
 };
 
-exports.examplePic = {
-  name: 'example pic',
-  desc: 'example pic description',
+exports.exampleImage = {
+  name: 'example image',
+  desc: 'example image description',
   image: `${__dirname}/../data/tester.png`
 };
 

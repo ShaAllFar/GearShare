@@ -17,7 +17,7 @@ const url = `http://localhost:${process.env.PORT}`;
 
 const exampleUser = testData.exampleUser;
 const exampleGallery = testData.exampleGallery;
-const examplePic = testData.examplePic;
+const exampleImage = testData.exampleImage;
 const examplePost = testData.examplePost;
 
 let imageData = {};
@@ -89,18 +89,18 @@ describe('Image Routes', function() {
     });
     describe('with a valid token and valid data', () => {
 
-      it.only('should return an image', done => {
+      it('should return an image', done => {
         request.post(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image`)
         .set({
           Authorization: `Bearer ${this.tempToken}`
         })
-        .field('name', examplePic.name)
-        .field('desc', examplePic.desc)
-        .attach('image', examplePic.image)
+        .field('name', exampleImage.name)
+        .field('desc', exampleImage.desc)
+        .attach('image', exampleImage.image)
         .end((err, res) => {
           if (err) return done(err);
-          expect(res.body.name).to.equal(examplePic.name);
-          expect(res.body.desc).to.equal(examplePic.desc);
+          expect(res.body.name).to.equal(exampleImage.name);
+          expect(res.body.desc).to.equal(exampleImage.desc);
           expect(res.body.galleryID).to.equal(this.tempGallery._id.toString());
           imageData = res.body;
           done();
@@ -154,24 +154,24 @@ describe('Image Routes', function() {
 
     before(done => {
       // console.log(imageData);
-      examplePic.userID = this.tempUser._id.toString();
-      examplePic.galleryID = this.tempGallery._id.toString();
-      examplePic.postID = this.tempPost._id.toString();
-      examplePic.imageURI = imageData.imageURI;
-      examplePic.objectKey = imageData.objectKey;
-      new Image(examplePic).save()
-      .then(pic => {
-        this.tempPic = pic;
-        // console.log(this.tempPic);
+      exampleImage.userID = this.tempUser._id.toString();
+      exampleImage.galleryID = this.tempGallery._id.toString();
+      exampleImage.postID = this.tempPost._id.toString();
+      exampleImage.imageURI = imageData.imageURI;
+      exampleImage.objectKey = imageData.objectKey;
+      new Image(exampleImage).save()
+      .then(image => {
+        this.tempImage = image;
+        // console.log(this.tempImage);
         done();
       })
       .catch(done);
     });
 
     describe('with a valid image id', () => {
-      it.only('should delete and return a 204', done => {
-        console.log(this.tempPic);
-        request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image/${this.tempPic._id}`)
+      it('should delete and return a 204', done => {
+        console.log(this.tempImage);
+        request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image/${this.tempImage._id}`)
         .set({
           Authorization: `Bearer ${this.tempToken}`
         })
