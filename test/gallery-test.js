@@ -506,7 +506,7 @@ describe('Gallery Routes', function(){
       after(() => {
         delete exampleGallery.userID;
       });
-      it.only('should return not found', done => {
+      it('should return not found', done => {
         request.delete(`${url}/api/gallery/58746edd70b5ae307c23935g`)
         .set({
           Authorization: `Bearer ${this.tempToken}`
