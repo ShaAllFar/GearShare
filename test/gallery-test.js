@@ -230,7 +230,6 @@ describe('Gallery Routes', function(){
           Authorization: `Bearer ${this.tempToken}`
         })
         .end(res => {
-          console.log(res.response.text);
           expect(res.status).to.equal(404);
           expect(res.response.text).to.equal('NotFoundError');
           done();
@@ -512,7 +511,6 @@ describe('Gallery Routes', function(){
           Authorization: `Bearer ${this.tempToken}`
         })
         .end(res => {
-          console.log('acaadasaasdsa',res.message);
           expect(res.status).to.equal(404);
           done();
         });
