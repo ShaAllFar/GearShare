@@ -4,7 +4,6 @@ const expect = require('chai').expect;
 const request = require('superagent');
 
 const Image = require('../model/image.js');
-// const Post = require('../model/post.js');
 const User = require('../model/user.js');
 const Gallery = require('../model/gallery.js');
 const Post = require('../model/post.js');
@@ -153,7 +152,6 @@ describe('Image Routes', function() {
     });
 
     before(done => {
-      // console.log(imageData);
       exampleImage.userID = this.tempUser._id.toString();
       exampleImage.galleryID = this.tempGallery._id.toString();
       exampleImage.postID = this.tempPost._id.toString();
@@ -162,7 +160,6 @@ describe('Image Routes', function() {
       new Image(exampleImage).save()
       .then(image => {
         this.tempImage = image;
-        // console.log(this.tempImage);
         done();
       })
       .catch(done);
@@ -170,13 +167,7 @@ describe('Image Routes', function() {
 
     describe('with a valid image id', () => {
       it('should delete and return a 204', done => {
-<<<<<<< HEAD
-        console.log(this.tempImage);
         request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image/${this.tempImage._id}`)
-=======
-        console.log(this.tempPic);
-        request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image/${this.tempPic._id}`)
->>>>>>> staging
         .set({
           Authorization: `Bearer ${this.tempToken}`
         })
