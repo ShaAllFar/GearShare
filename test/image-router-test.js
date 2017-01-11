@@ -170,8 +170,13 @@ describe('Image Routes', function() {
 
     describe('with a valid image id', () => {
       it('should delete and return a 204', done => {
+<<<<<<< HEAD
         console.log(this.tempImage);
         request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image/${this.tempImage._id}`)
+=======
+        console.log(this.tempPic);
+        request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image/${this.tempPic._id}`)
+>>>>>>> staging
         .set({
           Authorization: `Bearer ${this.tempToken}`
         })
