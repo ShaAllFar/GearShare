@@ -74,18 +74,14 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
 imageRouter.delete('/api/gallery/:galleryID/post/:postID/image/:imageID', bearerAuth, function(req, res, next) {
   debug('DELETE: api/gallery/:galleryID/post/:postID/image/:imageID');
 
-  // console.log(req.params);
   Image.findById(req.params.imageID)
   .then(image => {
-    console.log(image);
     let params = {
       Bucket: process.env.AWS_BUCKET,
       Key: image.objectKey
     };
 
-    // console.log(params);
     s3.deleteObject(params, (err) => {
-      // console.log('shit turtle', err);
       if (err) return next(err);
       Image.findByIdAndRemove(req.params.imageID)
       .then(() => res.status(204).send())
