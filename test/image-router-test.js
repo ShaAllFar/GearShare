@@ -33,7 +33,7 @@ describe('Image Routes', function() {
   afterEach(done => clearDB(done));
 
   describe('POST: /api/gallery/:postID/image', () => {
-    before( done => {
+    beforeEach( done => {
       new User(exampleUser)
       .generatePasswordHash(exampleUser.password)
       .then( user => user.save())
@@ -48,7 +48,7 @@ describe('Image Routes', function() {
       .catch(done);
     });
 
-    before( done => {
+    beforeEach( done => {
       exampleGallery.userID = this.tempUser._id.toString();
       new Gallery(exampleGallery).save()
       .then( gallery => {
@@ -58,7 +58,7 @@ describe('Image Routes', function() {
       .catch(done);
     });
 
-    before( done => {
+    beforeEach( done => {
       examplePost.userID = this.tempUser._id.toString();
       examplePost.galleryID = this.tempGallery._id.toString();
       new Post(examplePost).save()
@@ -69,7 +69,7 @@ describe('Image Routes', function() {
       .catch(done);
     });
 
-    after( done => {
+    afterEach( done => {
       delete exampleGallery.userID;
       delete examplePost.galleryID;
       delete examplePost.userID;
@@ -186,10 +186,26 @@ describe('Image Routes', function() {
         });
       });
     });
+
+    describe('with an invalid id cast', () => {
+      it('should respond with 404 error', done => {
+        request.post(`${url}/api/gallery/${this.tempGallery._id}/post/1234/image`)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .field('name', exampleImage.name)
+        .field('desc', exampleImage.desc)
+        .attach('image', exampleImage.image)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+      });
+    });
   });
 
   describe('DELETE: api/image/:imageID', () => {
-    before( done => {
+    beforeEach( done => {
       new User(exampleUser)
       .generatePasswordHash(exampleUser.password)
       .then( user => user.save())
@@ -204,7 +220,7 @@ describe('Image Routes', function() {
       .catch(done);
     });
 
-    before( done => {
+    beforeEach( done => {
       exampleGallery.userID = this.tempUser._id.toString();
       new Gallery(exampleGallery).save()
       .then( gallery => {
@@ -214,7 +230,7 @@ describe('Image Routes', function() {
       .catch(done);
     });
 
-    before( done => {
+    beforeEach( done => {
       examplePost.userID = this.tempUser._id.toString();
       examplePost.galleryID = this.tempGallery._id.toString();
       new Post(examplePost).save()
@@ -225,14 +241,14 @@ describe('Image Routes', function() {
       .catch(done);
     });
 
-    after( done => {
+    afterEach( done => {
       delete exampleGallery.userID;
       delete examplePost.galleryID;
       delete examplePost.userID;
       done();
     });
 
-    before(done => {
+    beforeEach(done => {
       exampleImage.userID = this.tempUser._id.toString();
       exampleImage.galleryID = this.tempGallery._id.toString();
       exampleImage.postID = this.tempPost._id.toString();
@@ -264,6 +280,19 @@ describe('Image Routes', function() {
     describe('with an unregistered route', () => {
       it('should respond with 404 error', done => {
         request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image/${this.tempImage._id}/unregistered-image-route`)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+      });
+    });
+
+    describe('with an invalid id cast', () => {
+      it('should respond with 404 error', done => {
+        request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image/someId`)
         .set({
           Authorization: `Bearer ${this.tempToken}`
         })
