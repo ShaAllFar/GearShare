@@ -8,6 +8,7 @@ const User = require('../model/user.js');
 const Gallery = require('../model/gallery.js');
 const testData = require('./lib/test-data.js');
 
+const newUser = require('./lib/new-user.js');
 const serverToggle = require('./lib/toggle-server.js');
 const clearDB = require('./lib/clearDB.js');
 const server = require('../server.js');
@@ -28,28 +29,20 @@ describe('Gallery Routes', function(){
   after(done => {
     serverToggle.serverOff(server,done);
   });
-  
-  afterEach(done => clearDB(done));
+  afterEach(done => {
+    clearDB(done);
+  });
 
   describe('POST: /api/gallery', () => {
     describe('with a valid body', () => {
       before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user => user.save())
-        .then(user => {
-          this.tempUser = user;
-          return user.generateToken();
-        })
-        .then(token => {
+        newUser().then( (token) => {
           this.tempToken = token;
           done();
-        })
-        .catch(done);
+        }).catch(done);
       });
 
       it('should return a gallery', done => {
-
         request.post(`${url}/api/gallery`)
         .send(exampleGallery)
         .set({
@@ -68,18 +61,10 @@ describe('Gallery Routes', function(){
     });
     describe('with an invalid body', () => {
       before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user => user.save())
-        .then(user => {
-          this.tempUser = user;
-          return user.generateToken();
-        })
-        .then(token => {
+        newUser().then( (token) => {
           this.tempToken = token;
           done();
-        })
-        .catch(done);
+        }).catch(done);
       });
       it('should return a bad request', done => {
         request.post(`${url}/api/gallery`)
@@ -93,23 +78,61 @@ describe('Gallery Routes', function(){
           done();
         });
       });
-      //TODO with an ivalid gallery name
-      //TODO with an ivalid gallery desc
+    });
+
+    describe('with an invalid gallery name', () => {
+      before(done => {
+        newUser().then( (token) => {
+          this.tempToken = token;
+          done();
+        }).catch(done);
+      });
+      it('should return a bad request', done => {
+        request.post(`${url}/api/gallery`)
+        .send({
+          name: exampleUser.name,
+          desc: exampleGallery.desc,
+        })
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .end(res => {
+          expect(res.status).to.equal(400);
+          expect(res.body).to.equal(undefined);
+          done();
+        });
+      });
+    });
+
+    describe('with an invalid gallery desc', () => {
+      before(done => {
+        newUser().then( (token) => {
+          this.tempToken = token;
+          done();
+        }).catch(done);
+      });
+      it('should return a bad request', done => {
+        request.post(`${url}/api/gallery`)
+        .send({
+          name: exampleGallery.name,
+          desc: Gallery.desc,
+        })
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .end(res => {
+          expect(res.status).to.equal(400);
+          expect(res.body).to.equal(undefined);
+          done();
+        });
+      });
     });
     describe('with an invalid route', () => {
       before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user => user.save())
-        .then(user => {
-          this.tempUser = user;
-          return user.generateToken();
-        })
-        .then(token => {
+        newUser().then( (token) => {
           this.tempToken = token;
           done();
-        })
-        .catch(done);
+        }).catch(done);
       });
       it('should return not found', done => {
         request.post(`${url}/api/route`)
@@ -125,14 +148,10 @@ describe('Gallery Routes', function(){
     });
     describe('with no token provided', () => {
       before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user => user.save())
-        .then(user => {
-          this.tempUser = user;
+        newUser().then( (token) => {
+          this.tempToken = token;
           done();
-        })
-        .catch(done);
+        }).catch(done);
       });
       it('should return unauthorized', done => {
         request.post(`${url}/api/gallery`)
