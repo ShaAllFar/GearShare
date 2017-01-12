@@ -7,7 +7,7 @@ const gallerySchema = Schema({
   name: {type: String, required: true},
   desc: {type: String, required: true},
   createdOn: {type: Date, default: Date.now},
-  userID: {type: Schema.Types.ObjectId, required: true},
+  userID: {type: Schema.Types.ObjectId},
   postIDs: [{type: Schema.Types.ObjectId}]
 });
 
