@@ -26,9 +26,7 @@ describe('Post Routes', function(){
   after(done => {
     serverToggle.serverOff(server, done);
   });
-
   afterEach(done => clearDB(done));
-
   beforeEach(done => {
     new User(exampleUser)
     .generatePasswordHash(exampleUser.password)
@@ -155,9 +153,11 @@ describe('Post Routes', function(){
           .set({
             Authorization: `Bearer ${this.tempToken}`
           })
-          .end(res => {
+          .end((err,res) => {
+            console.log(err.name);
+            expect(err.name).to.equal('Error');
             expect(res.status).to.equal(404);
-            expect(res.body).to.equal(undefined);
+            expect(res.body).to.be.empty;
             done();
           })
       });
