@@ -8,6 +8,9 @@ const Gallery = require('../model/gallery.js');
 const Post = require('../model/post.js');
 
 const testData = require('./lib/test-data.js');
+const testData2 = require('./lib/test-data-2.js');
+
+
 const serverToggle = require('./lib/toggle-server.js');
 const clearDB = require('./lib/clearDB.js');
 const server = require('../server.js');
@@ -18,25 +21,10 @@ const exampleUser = testData.exampleUser;
 const exampleGallery = testData.exampleGallery;
 const examplePost = testData.examplePost;
 
-const exampleUser2 = {
-  username: 'example name2',
-  email: 'example@test.com2',
-  password: '1234',
-  profileImageURI: `${__dirname}/data/tester.png`,
-  location: 'example location'
+const exampleUser2 = testData2.exampleUser2;
+const exampleGallery2 = testData2.exampleGallery2;
+const examplePost2 = testData2.examplePost2;
 
-};
-
-const exampleGallery2 = {
-  name: 'example gallery2',
-  desc: 'example gallery description2'
-};
-
-const examplePost2 = {
-  name: 'post name2',
-  desc: 'post description2',
-  price: 2002
-};
 
 
 describe('Post Routes', function(){
@@ -174,7 +162,6 @@ describe('Post Routes', function(){
             Authorization: `Bearer ${this.tempToken}`
           })
           .end((err,res) => {
-            console.log(err.name);
             expect(err.name).to.equal('Error');
             expect(res.status).to.equal(404);
             expect(res.body).to.be.empty;
@@ -228,6 +215,10 @@ describe('Post Routes', function(){
           done();
         })
         .catch(done);
+      });
+      after(() => {
+        delete exampleGallery2.userID;
+        delete examplePost2.galleryID;
       });
       it('should return unauthorized', done => {
           request.get(`${url}/api/gallery/${this.tempGallery2._id}/post/${this.tempPost2._id}`)

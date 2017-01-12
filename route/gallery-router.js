@@ -37,7 +37,7 @@ galleryRouter.get('/api/gallery/:id', bearerAuth, function(req, res, next){
 });
 
 galleryRouter.put('/api/gallery/:id', bearerAuth, jsonParser, function(req,res,next){
-  debug('PUT: /ap/gallery/:id');
+  debug('PUT: /api/gallery/:id');
 
   if(!req.body.name) return next(createError(400, 'body required'));
 
@@ -46,7 +46,9 @@ galleryRouter.put('/api/gallery/:id', bearerAuth, jsonParser, function(req,res,n
     if(gallery === null) return next(createError(404,'gallery not found'));
     res.json(gallery);
   })
-  .catch(err => next(createError(404, err.message)));
+  .catch(err => {
+    next(createError(404, err.message));
+  });
 });
 
 galleryRouter.delete('/api/gallery/:id',bearerAuth, function(req, res, next){
