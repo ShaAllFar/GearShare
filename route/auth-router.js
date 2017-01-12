@@ -7,7 +7,7 @@ const basicAuth = require('../lib/basic-auth-middleware.js');
 
 const createError = require('http-errors');
 const User = require('../model/user.js');
-const image = require('../test/data/tester.png');
+const image = '../test/data/tester.png';
 
 const authRouter = module.exports = Router();
 
@@ -32,7 +32,7 @@ authRouter.post('/api/signup', jsonParser, function(req, res, next) {
 });
 authRouter.get('/', function(req,res,next){
   debug('GET: /');
-  res.sendFile(image);
+  res.send(image);
 });
 
 authRouter.get('/api/signin', basicAuth, function(req, res, next) {
