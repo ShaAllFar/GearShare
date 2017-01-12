@@ -324,18 +324,17 @@ describe('Auth Routes', function() {
       });
     });
 
-    // describe('with no auth header'), () => {
-    //   it('should return authorization header required', done => {
-    //     request.get(`${url}/api/signin`)
-    //     .auth()
-    //     .end((err, res) => {
-    //       expect(err).to.be.an('error');
-    //       expect(res.status).to.equal(401);
-    //       expect(res.text).to.equal('authorization header required');
-    //       done();
-    //     });
-    //   });
-    // };
+    describe('with no auth header', () => {
+      it('should return authorization header required', done => {
+        request.get(`${url}/api/signin`)
+        .end((err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(401);
+          expect(res.text).to.equal('UnauthorizedError');
+          done();
+        });
+      });
+    });
 
     describe('with no username', () => {
       it('should return a 400 error', done => {
