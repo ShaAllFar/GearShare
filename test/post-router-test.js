@@ -70,7 +70,7 @@ describe('Post Routes', function(){
   describe('POST: /api/gallery/:galleryID/post', () => {
     describe('with a valid body', () => {
       it('should return a post', done => {
-        request.post(`${url}/api/gallery/${this.tempGallery._id}/post/`)
+        request.post(`${url}/api/gallery/${this.tempGallery._id}/post`)
         .send(examplePost)
         .set({
           Authorization: `Bearer ${this.tempToken}`
@@ -257,7 +257,7 @@ describe('Post Routes', function(){
         .end((err,res) => {
           if(err) return done(err);
           expect(res.status).to.equal(204);
-          expect(res.body).to.be.empty
+          expect(res.body).to.be.empty;
           done();
         });
       });
@@ -287,5 +287,33 @@ describe('Post Routes', function(){
         });
       });
     });
+    describe('with a valid body', () => {
+      it('should delete id from gallery', done => {
+        request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}`)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .end((err,res) => {
+          if(err) return done(err);
+          expect(res.status).to.equal(204);
+          expect(this.tempGallery.postIDs).to.be.empty;
+          done();
+        })
+      });
+    });
+    describe('with no gallery id', () => {
+      it('should return not found', done => {
+        request.delete(`${url}/api/gallery/post/${this.tempPost._id}`)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .end((err,res) => {
+          expect(res.status).to.equal(404);
+          expect(err.response.notFound).to.equal(true);
+          done();
+        });
+      });
+    });
+
   });
 });
