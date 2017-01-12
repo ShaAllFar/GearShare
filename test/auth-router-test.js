@@ -321,6 +321,29 @@ describe('Auth Routes', function() {
       });
     });
 
+    describe('with no username', () => {
+      it('should return a 400 error', done => {
+        request.get(`${url}/api/signin`)
+        .auth('1234')
+        .end((err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
+    describe('with no password', () => {
+      it('should return a 400 error', done => {
+        request.get(`${url}/api/signin`)
+        .auth('example name')
+        .end((err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
+
     describe('with an unregistered route', () => {
       it('should return a 404 error', done => {
         request.get(`${url}/api/unregistered-route`)
