@@ -72,7 +72,10 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
     return new Image(imageData).save();
   })
   .then( image => res.json(image))
-  .catch( err => next(err));
+  .catch( err => {
+    del([`${dataDir}/*`]);
+    next(createError(404,err.message));
+  })
 
 });
 
@@ -93,6 +96,6 @@ imageRouter.delete('/api/gallery/:galleryID/post/:postID/image/:imageID', bearer
       .catch(next);
     });
   })
-  .catch(err => next(err));
+  .catch(err => next(createError(404,err.message)));
 
 });
