@@ -31,7 +31,7 @@ authRouter.post('/api/signup', jsonParser, function(req, res, next) {
 });
 authRouter.get('/', function(req,res,next){
   debug('GET: /');
-  res.sendFile('../test/data/tester.png');
+  res.sendFile(`${__dirname}../test/data/tester.png`);
 });
 
 authRouter.get('/api/signin', basicAuth, function(req, res, next) {
