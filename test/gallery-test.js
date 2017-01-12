@@ -6,7 +6,9 @@ const mongoose = require('mongoose');
 const Promise = require('bluebird');
 const User = require('../model/user.js');
 const Gallery = require('../model/gallery.js');
+
 const testData = require('./lib/test-data.js');
+const testData2 = require('./lib/test-data-2.js');
 
 const newUser = require('./lib/new-user.js');
 const serverToggle = require('./lib/toggle-server.js');
@@ -22,6 +24,9 @@ mongoose.Promise = Promise;
 const exampleUser = testData.exampleUser;
 const exampleGallery = testData.exampleGallery;
 
+const exampleUser2 = testData2.exampleUser2;
+const exampleGallery2 = testData2.exampleGallery2;
+
 describe('Gallery Routes', function(){
   before(done => {
     serverToggle.serverOn(server,done);
@@ -33,15 +38,15 @@ describe('Gallery Routes', function(){
     clearDB(done);
   });
 
-  describe('POST: /api/gallery', () => {
-    describe('with a valid body', () => {
-      before(done => {
-        newUser().then( (token) => {
-          this.tempToken = token;
-          done();
-        }).catch(done);
-      });
 
+  describe('POST: /api/gallery', () => {
+    beforeEach(done => {
+      newUser().then( (token) => {
+        this.tempToken = token;
+        done();
+      }).catch(done);
+    });
+    describe('with a valid body', () => {
       it('should return a gallery', done => {
         request.post(`${url}/api/gallery`)
         .send(exampleGallery)
@@ -60,12 +65,6 @@ describe('Gallery Routes', function(){
       });
     });
     describe('with an invalid body', () => {
-      before(done => {
-        newUser().then( (token) => {
-          this.tempToken = token;
-          done();
-        }).catch(done);
-      });
       it('should return a bad request', done => {
         request.post(`${url}/api/gallery`)
         .send({some: 'data', other: 'stuff'})
@@ -81,12 +80,6 @@ describe('Gallery Routes', function(){
     });
 
     describe('with an invalid gallery name', () => {
-      before(done => {
-        newUser().then( (token) => {
-          this.tempToken = token;
-          done();
-        }).catch(done);
-      });
       it('should return a bad request', done => {
         request.post(`${url}/api/gallery`)
         .send({
@@ -105,12 +98,6 @@ describe('Gallery Routes', function(){
     });
 
     describe('with an invalid gallery desc', () => {
-      before(done => {
-        newUser().then( (token) => {
-          this.tempToken = token;
-          done();
-        }).catch(done);
-      });
       it('should return a bad request', done => {
         request.post(`${url}/api/gallery`)
         .send({
@@ -128,12 +115,6 @@ describe('Gallery Routes', function(){
       });
     });
     describe('with an invalid route', () => {
-      before(done => {
-        newUser().then( (token) => {
-          this.tempToken = token;
-          done();
-        }).catch(done);
-      });
       it('should return not found', done => {
         request.post(`${url}/api/route`)
         .send(exampleUser)
@@ -147,12 +128,6 @@ describe('Gallery Routes', function(){
       });
     });
     describe('with no token provided', () => {
-      before(done => {
-        newUser().then( (token) => {
-          this.tempToken = token;
-          done();
-        }).catch(done);
-      });
       it('should return unauthorized', done => {
         request.post(`${url}/api/gallery`)
         .send(exampleUser)
@@ -168,33 +143,33 @@ describe('Gallery Routes', function(){
   });
 
   describe('GET: /api/gallery/:id', () => {
+    beforeEach(done => {
+      new User(exampleUser)
+      .generatePasswordHash(exampleUser.password)
+      .then(user  => user.save())
+      .then(user => {
+        this.tempUser = user;
+        return user.generateToken();
+      })
+      .then(token => {
+        this.tempToken = token;
+        done();
+      })
+      .catch(done);
+    });
+    beforeEach(done => {
+      exampleGallery.userID = this.tempUser._id.toString();
+      new Gallery(exampleGallery).save()
+      .then(gallery => {
+        this.tempGallery = gallery;
+        done();
+      })
+      .catch(done);
+    });
+    afterEach(() => {
+      delete exampleGallery.userID;
+    });
     describe('with a valid body', () => {
-      before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user  => user.save())
-        .then(user => {
-          this.tempUser = user;
-          return user.generateToken();
-        })
-        .then(token => {
-          this.tempToken = token;
-          done();
-        })
-        .catch(done);
-      });
-      before(done => {
-        exampleGallery.userID = this.tempUser._id.toString();
-        new Gallery(exampleGallery).save()
-        .then(gallery => {
-          this.tempGallery = gallery;
-          done();
-        })
-        .catch(done);
-      });
-      after(() => {
-        delete exampleGallery.userID;
-      });
       it('should return a gallery', done => {
         request.get(`${url}/api/gallery/${this.tempGallery._id}`)
         .set({
@@ -213,32 +188,6 @@ describe('Gallery Routes', function(){
       });
     });
     describe('with an invalid id', () => {
-      before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user  => user.save())
-        .then(user => {
-          this.tempUser = user;
-          return user.generateToken();
-        })
-        .then(token => {
-          this.tempToken = token;
-          done();
-        })
-        .catch(done);
-      });
-      before(done => {
-        exampleGallery.userID = this.tempUser._id.toString();
-        new Gallery(exampleGallery).save()
-        .then(gallery => {
-          this.tempGallery = gallery;
-          done();
-        })
-        .catch(done);
-      });
-      after(() => {
-        delete exampleGallery.userID;
-      });
       it('should return not found', done => {
         request.get(`${url}/api/gallery/58746492f2d22219c580af0e`)
         .set({
@@ -252,28 +201,6 @@ describe('Gallery Routes', function(){
       });
     });
     describe('with no token', () => {
-      before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user  => user.save())
-        .then(user => {
-          this.tempUser = user;
-          done();
-        })
-        .catch(done);
-      });
-      before(done => {
-        exampleGallery.userID = this.tempUser._id.toString();
-        new Gallery(exampleGallery).save()
-        .then(gallery => {
-          this.tempGallery = gallery;
-          done();
-        })
-        .catch(done);
-      });
-      after(() => {
-        delete exampleGallery.userID;
-      });
       it('should return unauthorized', done => {
         request.get(`${url}/api/gallery/${this.tempGallery._id}`)
         .set({
@@ -285,36 +212,75 @@ describe('Gallery Routes', function(){
         });
       });
     });
-  });
-
-  describe('PUT: /api/gallery/:id', () => {
-    describe('with a valid body', () => {
+    describe('with wrong user provided', () => {
+      //second user
       before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
+        new User(exampleUser2)
+        .generatePasswordHash(exampleUser2.password)
         .then(user  => user.save())
         .then(user => {
-          this.tempUser = user;
+          this.tempUser2 = user;
           return user.generateToken();
         })
         .then(token => {
-          this.tempToken = token;
+          this.tempToken2 = token;
           done();
         })
         .catch(done);
       });
       before(done => {
-        exampleGallery.userID = this.tempUser._id.toString();
-        new Gallery(exampleGallery).save()
+        exampleGallery2.userID = this.tempUser2._id.toString();
+        new Gallery(exampleGallery2).save()
         .then(gallery => {
-          this.tempGallery = gallery;
+          this.tempGallery2 = gallery;
           done();
         })
         .catch(done);
       });
       after(() => {
-        delete exampleGallery.userID;
+        delete exampleGallery2.userID;
       });
+      it('should return unauthorized', done => {
+        request.get(`${url}/api/gallery/${this.tempGallery2._id}`)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .end(res => {
+          expect(res.status).to.equal(401);
+          done();
+        });
+      });
+    });
+  });
+
+  describe('PUT: /api/gallery/:id', () => {
+    beforeEach(done => {
+      new User(exampleUser)
+      .generatePasswordHash(exampleUser.password)
+      .then(user  => user.save())
+      .then(user => {
+        this.tempUser = user;
+        return user.generateToken();
+      })
+      .then(token => {
+        this.tempToken = token;
+        done();
+      })
+      .catch(done);
+    });
+    beforeEach(done => {
+      exampleGallery.userID = this.tempUser._id.toString();
+      new Gallery(exampleGallery).save()
+      .then(gallery => {
+        this.tempGallery = gallery;
+        done();
+      })
+      .catch(done);
+    });
+    afterEach(() => {
+      delete exampleGallery.userID;
+    });
+    describe('with a valid body', () => {
       it('should return updated gallery', done => {
         let updated = {name: 'updated name', desc: 'updated description'};
 
@@ -333,32 +299,6 @@ describe('Gallery Routes', function(){
       });
     });
     describe('with an invalid body', () => {
-      before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user  => user.save())
-        .then(user => {
-          this.tempUser = user;
-          return user.generateToken();
-        })
-        .then(token => {
-          this.tempToken = token;
-          done();
-        })
-        .catch(done);
-      });
-      before(done => {
-        exampleGallery.userID = this.tempUser._id.toString();
-        new Gallery(exampleGallery).save()
-        .then(gallery => {
-          this.tempGallery = gallery;
-          done();
-        })
-        .catch(done);
-      });
-      after(() => {
-        delete exampleGallery.userID;
-      });
       it('should return bad request', done => {
         let updated = {test: 'test', test2: 'test2'};
 
@@ -374,32 +314,6 @@ describe('Gallery Routes', function(){
       });
     });
     describe('with an invalid id', () => {
-      before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user  => user.save())
-        .then(user => {
-          this.tempUser = user;
-          return user.generateToken();
-        })
-        .then(token => {
-          this.tempToken = token;
-          done();
-        })
-        .catch(done);
-      });
-      before(done => {
-        exampleGallery.userID = this.tempUser._id.toString();
-        new Gallery(exampleGallery).save()
-        .then(gallery => {
-          this.tempGallery = gallery;
-          done();
-        })
-        .catch(done);
-      });
-      after(() => {
-        delete exampleGallery.userID;
-      });
       it('should return not found', done => {
         let updated = {name: 'new name', desc: 'new description'};
 
@@ -415,28 +329,6 @@ describe('Gallery Routes', function(){
       });
     });
     describe('with no token provided', () => {
-      before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user  => user.save())
-        .then(user => {
-          this.tempUser = user;
-          done();
-        })
-        .catch(done);
-      });
-      before(done => {
-        exampleGallery.userID = this.tempUser._id.toString();
-        new Gallery(exampleGallery).save()
-        .then(gallery => {
-          this.tempGallery = gallery;
-          done();
-        })
-        .catch(done);
-      });
-      after(() => {
-        delete exampleGallery.userID;
-      });
       it('should return unauthorized', done => {
         let updated = {name: 'new name', desc: 'new description'};
 
@@ -451,36 +343,51 @@ describe('Gallery Routes', function(){
         });
       });
     });
+    describe('with invalid id cast', () => {
+      it('should return not found', done => {
+        let updated = {name: 'new name', desc: 'new description'};
+
+        request.put(`${url}/api/gallery/someid`)
+        .send(updated)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .end(res => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+      })
+    })
   });
 
   describe('DELETE: /api/gallery/:id', () => {
+    beforeEach(done => {
+      new User(exampleUser)
+      .generatePasswordHash(exampleUser.password)
+      .then(user  => user.save())
+      .then(user => {
+        this.tempUser = user;
+        return user.generateToken();
+      })
+      .then(token => {
+        this.tempToken = token;
+        done();
+      })
+      .catch(done);
+    });
+    beforeEach(done => {
+      exampleGallery.userID = this.tempUser._id.toString();
+      new Gallery(exampleGallery).save()
+      .then(gallery => {
+        this.tempGallery = gallery;
+        done();
+      })
+      .catch(done);
+    });
+    afterEach(() => {
+      delete exampleGallery.userID;
+    });
     describe('with a valid body', () => {
-      before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user  => user.save())
-        .then(user => {
-          this.tempUser = user;
-          return user.generateToken();
-        })
-        .then(token => {
-          this.tempToken = token;
-          done();
-        })
-        .catch(done);
-      });
-      before(done => {
-        exampleGallery.userID = this.tempUser._id.toString();
-        new Gallery(exampleGallery).save()
-        .then(gallery => {
-          this.tempGallery = gallery;
-          done();
-        })
-        .catch(done);
-      });
-      after(() => {
-        delete exampleGallery.userID;
-      });
       it('should remove the gallery', done => {
         request.delete(`${url}/api/gallery/${this.tempGallery._id}`)
         .set({
@@ -494,32 +401,6 @@ describe('Gallery Routes', function(){
       });
     });
     describe('with an invalid id', () => {
-      before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user  => user.save())
-        .then(user => {
-          this.tempUser = user;
-          return user.generateToken();
-        })
-        .then(token => {
-          this.tempToken = token;
-          done();
-        })
-        .catch(done);
-      });
-      before(done => {
-        exampleGallery.userID = this.tempUser._id.toString();
-        new Gallery(exampleGallery).save()
-        .then(gallery => {
-          this.tempGallery = gallery;
-          done();
-        })
-        .catch(done);
-      });
-      after(() => {
-        delete exampleGallery.userID;
-      });
       it('should return not found', done => {
         request.delete(`${url}/api/gallery/58746edd70b5ae307c23935g`)
         .set({
@@ -532,28 +413,6 @@ describe('Gallery Routes', function(){
       });
     });
     describe('with no token provided', () => {
-      before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user  => user.save())
-        .then(user => {
-          this.tempUser = user;
-          done();
-        })
-        .catch(done);
-      });
-      before(done => {
-        exampleGallery.userID = this.tempUser._id.toString();
-        new Gallery(exampleGallery).save()
-        .then(gallery => {
-          this.tempGallery = gallery;
-          done();
-        })
-        .catch(done);
-      });
-      after(() => {
-        delete exampleGallery.userID;
-      });
       it('should return unauthorized', done => {
         request.delete(`${url}/api/gallery/${this.tempGallery._id}`)
         .set({
