@@ -29,23 +29,20 @@ describe('Gallery Routes', function(){
   after(done => {
     serverToggle.serverOff(server,done);
   });
-
   afterEach(done => {
     clearDB(done);
   });
-  describe.only('POST: /api/gallery', () => {
+
+  describe('POST: /api/gallery', () => {
     describe('with a valid body', () => {
       before(done => {
         newUser().then( (token) => {
-
           this.tempToken = token;
           done();
-
         }).catch(done);
       });
 
       it('should return a gallery', done => {
-
         request.post(`${url}/api/gallery`)
         .send(exampleGallery)
         .set({
@@ -64,18 +61,10 @@ describe('Gallery Routes', function(){
     });
     describe('with an invalid body', () => {
       before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user => user.save())
-        .then(user => {
-          this.tempUser = user;
-          return user.generateToken();
-        })
-        .then(token => {
+        newUser().then( (token) => {
           this.tempToken = token;
           done();
-        })
-        .catch(done);
+        }).catch(done);
       });
       it('should return a bad request', done => {
         request.post(`${url}/api/gallery`)
@@ -93,18 +82,10 @@ describe('Gallery Routes', function(){
 
     describe('with an invalid gallery name', () => {
       before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user => user.save())
-        .then(user => {
-          this.tempUser = user;
-          return user.generateToken();
-        })
-        .then(token => {
+        newUser().then( (token) => {
           this.tempToken = token;
           done();
-        })
-        .catch(done);
+        }).catch(done);
       });
       it('should return a bad request', done => {
         request.post(`${url}/api/gallery`)
@@ -125,18 +106,10 @@ describe('Gallery Routes', function(){
 
     describe('with an invalid gallery desc', () => {
       before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user => user.save())
-        .then(user => {
-          this.tempUser = user;
-          return user.generateToken();
-        })
-        .then(token => {
+        newUser().then( (token) => {
           this.tempToken = token;
           done();
-        })
-        .catch(done);
+        }).catch(done);
       });
       it('should return a bad request', done => {
         request.post(`${url}/api/gallery`)
@@ -156,18 +129,10 @@ describe('Gallery Routes', function(){
     });
     describe('with an invalid route', () => {
       before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user => user.save())
-        .then(user => {
-          this.tempUser = user;
-          return user.generateToken();
-        })
-        .then(token => {
+        newUser().then( (token) => {
           this.tempToken = token;
           done();
-        })
-        .catch(done);
+        }).catch(done);
       });
       it('should return not found', done => {
         request.post(`${url}/api/route`)
@@ -183,14 +148,10 @@ describe('Gallery Routes', function(){
     });
     describe('with no token provided', () => {
       before(done => {
-        new User(exampleUser)
-        .generatePasswordHash(exampleUser.password)
-        .then(user => user.save())
-        .then(user => {
-          this.tempUser = user;
+        newUser().then( (token) => {
+          this.tempToken = token;
           done();
-        })
-        .catch(done);
+        }).catch(done);
       });
       it('should return unauthorized', done => {
         request.post(`${url}/api/gallery`)
