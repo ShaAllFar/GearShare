@@ -297,6 +297,8 @@ describe('Auth Routes', function() {
       });
     });
 
+    //TODO with an invalid token 'token required'
+
     describe('with an invalid password/unauthenticated user', () => {
       it('should return a 401 error', done => {
         request.get(`${url}/api/signin`)
@@ -310,16 +312,30 @@ describe('Auth Routes', function() {
     });
 
     describe('with an invalid username/unauthenticated user', () => {
-      it('should return a 400 error', done => {
+      it('should return a 401 unauthorized error', done => {
         request.get(`${url}/api/signin`)
-        .auth('', '1234')
+        .auth('invaid username', '1234')
         .end((err, res) => {
           expect(err).to.be.an('error');
-          expect(res.status).to.equal(400);
+          expect(res.status).to.equal(401);
+          expect(res.text).to.equal('UnauthorizedError');
           done();
         });
       });
     });
+
+    // describe('with no auth header'), () => {
+    //   it('should return authorization header required', done => {
+    //     request.get(`${url}/api/signin`)
+    //     .auth()
+    //     .end((err, res) => {
+    //       expect(err).to.be.an('error');
+    //       expect(res.status).to.equal(401);
+    //       expect(res.text).to.equal('authorization header required');
+    //       done();
+    //     });
+    //   });
+    // };
 
     describe('with no username', () => {
       it('should return a 400 error', done => {
