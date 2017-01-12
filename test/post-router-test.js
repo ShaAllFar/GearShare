@@ -9,6 +9,7 @@ const Post = require('../model/post.js');
 
 const testData = require('./lib/test-data.js');
 const serverToggle = require('./lib/toggle-server.js');
+const clearDB = require('./lib/clearDB.js');
 const server = require('../server.js');
 
 const url = `http://localhost:${process.env.PORT}`;
@@ -25,15 +26,7 @@ describe('Post Routes', function(){
   after(done => {
     serverToggle.serverOff(server, done);
   });
-  afterEach(done => {
-    Promise.all([
-      User.remove({}),
-      Gallery.remove({}),
-      Post.remove({})
-    ])
-    .then(() => done())
-    .catch(done);
-  });
+  afterEach(done => clearDB(done));
   beforeEach(done => {
     new User(exampleUser)
     .generatePasswordHash(exampleUser.password)
