@@ -95,7 +95,99 @@ describe('Image Routes', function() {
         });
       });
     });
+
+    describe('with no image attached/invalid body', () => {
+      it('should respond with a 400 error', done => {
+        request.post(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image`)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .field('name', exampleImage.name)
+        .field('desc', exampleImage.desc)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body).to.be.empty;
+          done();
+        });
+      });
+    });
+
+    describe('with no name/invalid body', () => {
+      it('should respond with a 400 error', done => {
+        request.post(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image`)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .field('desc', exampleImage.desc)
+        .attach('image', exampleImage.image)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
+
+    describe('with no description/invalid body', () => {
+      it('should respond with a 400 error', done => {
+        request.post(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image`)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .field('name', exampleImage.name)
+        .attach('image', exampleImage.image)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
+
+    describe('with an invalid token', () => {
+      it('should respond with a 401 error', done => {
+        request.post(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image`)
+        .set({Authorization: 'Bearer '})
+        .field('name', exampleImage.name)
+        .field('desc', exampleImage.desc)
+        .attach('image', exampleImage.image)
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body).to.be.empty;
+          done();
+        });
+      });
+    });
+
+    describe('with no token', () => {
+      it('should respond with a 401 error', done => {
+        request.post(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image`)
+        .field('name', exampleImage.name)
+        .field('desc', exampleImage.desc)
+        .attach('image', exampleImage.image)
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body).to.be.empty;
+          done();
+        });
+      });
+    });
+
+    describe('with an unregistered route', () => {
+      it('should respond with 404 error', done => {
+        request.post(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/unregistered-image-route`)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .field('name', exampleImage.name)
+        .field('desc', exampleImage.desc)
+        .attach('image', exampleImage.image)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+      });
+    });
   });
+
   describe('DELETE: api/image/:imageID', () => {
     before( done => {
       new User(exampleUser)
@@ -164,6 +256,19 @@ describe('Image Routes', function() {
           if(err) return done(err);
           expect(res.status).to.equal(204);
           expect(res.body).to.be.empty;
+          done();
+        });
+      });
+    });
+
+    describe('with an unregistered route', () => {
+      it('should respond with 404 error', done => {
+        request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image/${this.tempImage._id}/unregistered-image-route`)
+        .set({
+          Authorization: `Bearer ${this.tempToken}`
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
           done();
         });
       });
