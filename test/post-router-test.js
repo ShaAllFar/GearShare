@@ -18,6 +18,26 @@ const exampleUser = testData.exampleUser;
 const exampleGallery = testData.exampleGallery;
 const examplePost = testData.examplePost;
 
+const exampleUser2 = {
+  username: 'example name2',
+  email: 'example@test.com2',
+  password: '1234',
+  profileImageURI: `${__dirname}/data/tester.png`,
+  location: 'example location'
+
+};
+
+const exampleGallery2 = {
+  name: 'example gallery2',
+  desc: 'example gallery description2'
+};
+
+const examplePost2 = {
+  name: 'post name2',
+  desc: 'post description2',
+  price: 2002
+};
+
 
 describe('Post Routes', function(){
   before(done => {
@@ -174,6 +194,52 @@ describe('Post Routes', function(){
             done();
           })
       });
+    });
+    describe('with wrong user provided', () => {
+      before(done => {
+        new User(exampleUser2)
+        .generatePasswordHash(exampleUser2.password)
+        .then(user  => user.save())
+        .then(user => {
+          this.tempUser2 = user;
+          return user.generateToken();
+        })
+        .then(token => {
+          this.tempToken2 = token;
+          done();
+        })
+        .catch(done);
+      });
+      before(done => {
+        exampleGallery2.userID = this.tempUser2._id.toString();
+        new Gallery(exampleGallery2).save()
+        .then(gallery => {
+          this.tempGallery2 = gallery;
+          done();
+        })
+        .catch(done);
+      });
+      before(done => {
+        examplePost2.galleryID = this.tempGallery2._id;
+        examplePost2.userID = this.tempUser2._id;
+        new Post(examplePost2).save()
+        .then(post => {
+          this.tempPost2 = post;
+          done();
+        })
+        .catch(done);
+      });
+      it('should return unauthorized', done => {
+          request.get(`${url}/api/gallery/${this.tempGallery2._id}/post/${this.tempPost2._id}`)
+          .set({
+            Authorization: `Bearer ${this.tempToken}`
+          })
+          .end(res => {
+            expect(res.status).to.equal(401);
+            expect(res.body).to.equal(undefined);
+            done();
+          })
+      });
     })
   });
 
@@ -301,15 +367,14 @@ describe('Post Routes', function(){
         })
       });
     });
-    describe('with no gallery id', () => {
+    describe('with invalid gallery id', () => {
       it('should return not found', done => {
-        request.delete(`${url}/api/gallery/post/${this.tempPost._id}`)
+        request.delete(`${url}/api/gallery/${this.tempPost._id}/post/${this.tempPost._id}`)
         .set({
           Authorization: `Bearer ${this.tempToken}`
         })
-        .end((err,res) => {
+        .end(res => {
           expect(res.status).to.equal(404);
-          expect(err.response.notFound).to.equal(true);
           done();
         });
       });
