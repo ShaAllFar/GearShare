@@ -45,6 +45,7 @@ postRouter.get('/api/gallery/:galleyID/post/:postID', bearerAuth, function(req, 
   .then(post => {
     if(post === null) return next(createError(404, 'post not found'));
     if(post.userID.toString() !== req.user._id.toString()){
+      console.log('eat shit');
       return next(createError(401, 'invalid user'));
     }
     res.json(post);
@@ -79,7 +80,6 @@ postRouter.delete('/api/gallery/:galleryID/post/:postID', bearerAuth, function(r
     res.status(204).send();
   })
   .catch(err => {
-    console.error('eat shit');
     next(createError(404, err.message));
   })
 });
