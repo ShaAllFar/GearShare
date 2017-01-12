@@ -18,6 +18,19 @@ const testData = require('./lib/test-data.js');
 
 const exampleUser = testData.exampleUser;
 
+describe('at root', () => {
+  it('should return app title', done => {
+    request.get(`${url}/`)
+    .end((err,res) => {
+      if(err) return done(err);
+      expect(res.status).to.equal(200);
+      expect(res.text).to.equal('Gear Share');
+      expect(res.body).to.be.empty;
+      done();
+    });
+  });
+});
+
 describe('Auth Routes', function() {
   before(done => {
     serverToggle.serverOn(server, done);
