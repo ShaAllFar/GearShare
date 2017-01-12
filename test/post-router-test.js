@@ -9,7 +9,6 @@ const Post = require('../model/post.js');
 
 const testData = require('./lib/test-data.js');
 const serverToggle = require('./lib/toggle-server.js');
-const clearDB = require('./lib/clearDB.js');
 const server = require('../server.js');
 
 const url = `http://localhost:${process.env.PORT}`;
@@ -26,9 +25,15 @@ describe('Post Routes', function(){
   after(done => {
     serverToggle.serverOff(server, done);
   });
-
-  afterEach(done => clearDB(done));
-
+  afterEach(done => {
+    Promise.all([
+      User.remove({}),
+      Gallery.remove({}),
+      Post.remove({})
+    ])
+    .then(() => done())
+    .catch(done);
+  });
   beforeEach(done => {
     new User(exampleUser)
     .generatePasswordHash(exampleUser.password)
@@ -155,9 +160,11 @@ describe('Post Routes', function(){
           .set({
             Authorization: `Bearer ${this.tempToken}`
           })
-          .end(res => {
+          .end((err,res) => {
+            console.log(err.name);
+            expect(err.name).to.equal('Error');
             expect(res.status).to.equal(404);
-            expect(res.body).to.equal(undefined);
+            expect(res.body).to.be.empty;
             done();
           })
       });
