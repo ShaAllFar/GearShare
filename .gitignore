@@ -1,7 +1,7 @@
 Created by https://www.gitignore.io/api/macos,node,vim,windows,linux
 
 .coveralls.yml
-env
+.env
 node_modules
 
 out.bmp
