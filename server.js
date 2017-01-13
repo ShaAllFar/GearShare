@@ -24,9 +24,8 @@ mongoose.connect(process.env.MONGODB_URI);
 app.use(cors());
 app.use(morgan('dev'));
 
-app.get("/", function (req, res) {
-  console.log('aaaaaaaaaaaaa',__dirname);
-    res.sendFile(__dirname + "/img/gear-share-logo.png");
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/img/gear-share-logo.png');
 });
 
 app.use(imageRouter);
