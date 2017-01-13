@@ -75,7 +75,7 @@ describe('Image Routes', function() {
       delete examplePost.userID;
       done();
     });
-    describe('with a valid token and valid data', function() {
+    describe('with a valid token and valid data', () => {
 
       it('should return an image', done => {
         request.post(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}/image`)
