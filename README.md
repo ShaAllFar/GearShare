@@ -58,7 +58,7 @@ You will need to have 3 terminal shells open to use this application.
 ### Gallery Model
 
 # Create Gallery
-  * POST
+  POST
   ```
   http POST :8000/api/gallery Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjYyNGQxOGIzYWNiYmUwMGEwNjg2ZmQzODExOWJkMGI1ZGNiYmM3Mzg4ZmNlMGZjOWRmMDRkZjFhMmUzNzExNzYiLCJpYXQiOjE0ODQyNDc3MTR9.mTuf2mgKfh8pJ4DeAd1ZiFPqdhgH1KFKQf32J1LybOg' name='gallery1' desc='description'
   ```
