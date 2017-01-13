@@ -2,20 +2,48 @@
 [![Build Status](https://travis-ci.org/ShaAllFar/gear-share.svg?branch=master)](https://travis-ci.org/ShaAllFar/gear-share)
 [![Coverage Status](https://coveralls.io/repos/github/ShaAllFar/gear-share/badge.svg?branch=master)](https://coveralls.io/github/ShaAllFar/gear-share?branch=master)
 
+[![CodeFellows](https://img.shields.io/badge/Code%20Fellows-Approved-brightgreen.svg)
 
- GearShare is a marketplace for outdoor winter gear available for rent.
 
- The purpose of this application is to connect travelers, beginners, and adventurers with local gear junkies. Providing them with the gear they need, and saving them money. This application also helps the local gear junkies make some extra cash by lending out their extra gear.
+ GearShare is a marketplace for outdoor winter gear available for rent
 
- ### How it works
+ The purpose of this application is to connect travelers, beginners, and adventurers with local gear enthusiasts. Providing them with the gear they need, and saving them money. This application also helps local gear enthusiasts make some extra cash by lending out their extra gear.
 
+### How it works
+
+As a gear seeker
  * Browse local listings
- * Chat instantly with the gear junkie
+ * Chat instantly with a gear enthusiast
  * Rent your gear!
 
+As a gear enthusiasts
+ * Create a profile
+ * Add posts of your gear to your gallery
+ * Respond to a gear seeker
+ * Rent out your gear!
+
 ### User Model
-This application contains a multiple resource API that uses MongoDB to serve as a database, and Express.js to handle routing. It uses basic and bearer authentication to give access to new and returning users. The user is able to run CRUD operations, allowing them to create and edit a gallery, create and update a post to their g
-alley, and post or delete an image to their post. The models are being used through mongoose that connect with a MongoDB collection. In order to grant a user access, they must receive a valid JSON web token by entering a username, password, email, and location.
+
+This application contains a multiple resource API that uses MongoDB to serve as a database, and Express.js to handle routing. It uses basic and bearer authentication to give access to new and returning users. The user is able to run CRUD operations, allowing them to create and edit a gallery, create and update a post to their galley, and add or delete an image from their post. All images are housed using Amazon Web Services S3 storage. The models are being used through mongoose that connect with a MongoDB collection. In order to grant a user access, they must receive a valid JSON web token by entering a username, password, email, and location.
+
+# Set Up
+
+In your Terminal
+
+```sh
+$ git clone https://github.com/ShaAllFar/gear-share.git
+$ cd gear-share
+$ npm i
+```
+This will install the proper dependencies from the package.json file.
+
+### Use
+
+You will need to have 3 terminal shells open to use this application.
+
+* In one shell, run `mongod` to start the database.
+* In another shell, run `npm run start`. You will receive a response of 'server live on PORT: `<PORT>`'
+* The last shell will be used to make GET, PUT, POST, and DELETE requests
 
 # Sign Up
 
@@ -59,3 +87,11 @@ alley, and post or delete an image to their post. The models are being used thro
 
 # Delete Post
   * DELETE
+
+
+
+## Team
+
+Erick Mock - https://github.com/kcirekcom
+Shawn Farrow - https://github.com/ShaAllFar
+Daniel Becker - https://github.com/dbecker4130
