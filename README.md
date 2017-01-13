@@ -1,4 +1,4 @@
-![GearShare Logo] (img/gear-share-small.png) GearShare
+# ![GearShare Logo] (img/gear-share-small.png) GearShare
 [![Build Status](https://travis-ci.org/ShaAllFar/gear-share.svg?branch=master)](https://travis-ci.org/ShaAllFar/gear-share)
 [![Coverage Status](https://coveralls.io/repos/github/ShaAllFar/gear-share/badge.svg?branch=master)](https://coveralls.io/github/ShaAllFar/gear-share?branch=master)
 
@@ -102,8 +102,8 @@ You will need to have 3 terminal shells open to use this application.
   ```
 
 # Delete Post
-  * DELETE
-    * ```
+  DELETE
+  ```sh
   http DELETE :8000/api/gallery/5877dca488fb0638e2438767/post/5877dfef88fb0638e2438768 Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjYyNGQxOGIzYWNiYmUwMGEwNjg2ZmQzODExOWJkMGI1ZGNiYmM3Mzg4ZmNlMGZjOWRmMDRkZjFhMmUzNzExNzYiLCJpYXQiOjE0ODQyNDc3MTR9.mTuf2mgKfh8pJ4DeAd1ZiFPqdhgH1KFKQf32J1LybOg' name='new post'
   ```
 
