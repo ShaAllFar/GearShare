@@ -1,4 +1,4 @@
-# ![GearShare Logo] (img/gear-share-logo.png) GearShare
+# ![GearShare Logo] (img/gear-share-small.png) GearShare
 [![Build Status](https://travis-ci.org/ShaAllFar/gear-share.svg?branch=master)](https://travis-ci.org/ShaAllFar/gear-share)
 [![Coverage Status](https://coveralls.io/repos/github/ShaAllFar/gear-share/badge.svg?branch=master)](https://coveralls.io/github/ShaAllFar/gear-share?branch=master)
 
@@ -59,45 +59,45 @@ You will need to have 3 terminal shells open to use this application.
 
 # Create Gallery
   POST
-  ```
+  ```sh
   http POST :8000/api/gallery Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjYyNGQxOGIzYWNiYmUwMGEwNjg2ZmQzODExOWJkMGI1ZGNiYmM3Mzg4ZmNlMGZjOWRmMDRkZjFhMmUzNzExNzYiLCJpYXQiOjE0ODQyNDc3MTR9.mTuf2mgKfh8pJ4DeAd1ZiFPqdhgH1KFKQf32J1LybOg' name='gallery1' desc='description'
   ```
 
 # Retrieve Gallery
-  * GET
-    * ```sh
+  GET
+  ```sh
   http GET :8000/api/gallery/5877d8a588fb0638e2438766 Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjYyNGQxOGIzYWNiYmUwMGEwNjg2ZmQzODExOWJkMGI1ZGNiYmM3Mzg4ZmNlMGZjOWRmMDRkZjFhMmUzNzExNzYiLCJpYXQiOjE0ODQyNDc3MTR9.mTuf2mgKfh8pJ4DeAd1ZiFPqdhgH1KFKQf32J1LybOg'
   ```
 
 # Update Gallery
-  * PUT
-    * ```sh
+  PUT
+  ```sh
   http PUT :8000/api/gallery/5877d8a588fb0638e2438766 Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjYyNGQxOGIzYWNiYmUwMGEwNjg2ZmQzODExOWJkMGI1ZGNiYmM3Mzg4ZmNlMGZjOWRmMDRkZjFhMmUzNzExNzYiLCJpYXQiOjE0ODQyNDc3MTR9.mTuf2mgKfh8pJ4DeAd1ZiFPqdhgH1KFKQf32J1LybOg' name='new gallery'
   ```
 
 # Delete Gallery
-  * DELETE
-    * ```sh
+  DELETE
+  ```sh
   http DELETE :8000/api/gallery/5877d8a588fb0638e2438766 Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjYyNGQxOGIzYWNiYmUwMGEwNjg2ZmQzODExOWJkMGI1ZGNiYmM3Mzg4ZmNlMGZjOWRmMDRkZjFhMmUzNzExNzYiLCJpYXQiOjE0ODQyNDc3MTR9.mTuf2mgKfh8pJ4DeAd1ZiFPqdhgH1KFKQf32J1LybOg'
   ```
 
 ### Post Model
 
 # Create Post
-  * POST
-    * ```sh
+  POST
+  ```sh
   http POST :8000/api/gallery/5877dca488fb0638e2438767/post Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjYyNGQxOGIzYWNiYmUwMGEwNjg2ZmQzODExOWJkMGI1ZGNiYmM3Mzg4ZmNlMGZjOWRmMDRkZjFhMmUzNzExNzYiLCJpYXQiOjE0ODQyNDc3MTR9.mTuf2mgKfh8pJ4DeAd1ZiFPqdhgH1KFKQf32J1LybOg' name='post' desc='description' userID='5877d28d88fb0638e2438765' galleryID='5877dca488fb0638e2438767' price='100'
   ```
 
 # Retrieve Post
-  * GET
-    * ```sh
+  GET
+  ```sh
   http GET :8000/api/gallery/5877dca488fb0638e2438767/post/5877dfef88fb0638e2438768 Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjYyNGQxOGIzYWNiYmUwMGEwNjg2ZmQzODExOWJkMGI1ZGNiYmM3Mzg4ZmNlMGZjOWRmMDRkZjFhMmUzNzExNzYiLCJpYXQiOjE0ODQyNDc3MTR9.mTuf2mgKfh8pJ4DeAd1ZiFPqdhgH1KFKQf32J1LybOg'
   ```
 
 # Update Post
-  * PUT
-    * ```sh
+  PUT
+  ```sh
   http PUT :8000/api/gallery/5877dca488fb0638e2438767/post/5877dfef88fb0638e2438768 Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjYyNGQxOGIzYWNiYmUwMGEwNjg2ZmQzODExOWJkMGI1ZGNiYmM3Mzg4ZmNlMGZjOWRmMDRkZjFhMmUzNzExNzYiLCJpYXQiOjE0ODQyNDc3MTR9.mTuf2mgKfh8pJ4DeAd1ZiFPqdhgH1KFKQf32J1LybOg' name='new post'
   ```
 
@@ -110,13 +110,13 @@ You will need to have 3 terminal shells open to use this application.
 ### Image Model
 
 # Upload Image
-  * POST
-    * ```sh
+  POST
+  ```sh
   http --form POST :8000/api/gallery/5877dca488fb0638e2438767/post/5877dfef88fb0638e2438768/image Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjYyNGQxOGIzYWNiYmUwMGEwNjg2ZmQzODExOWJkMGI1ZGNiYmM3Mzg4ZmNlMGZjOWRmMDRkZjFhMmUzNzExNzYiLCJpYXQiOjE0ODQyNDc3MTR9.mTuf2mgKfh8pJ4DeAd1ZiFPqdhgH1KFKQf32J1LybOg' image@./test/data/tester.png
   ```
 # Delete Image
-  * DELETE
-    * ```sh
+  DELETE
+  ```sh
   http --form DELETE :8000/api/gallery/5877dca488fb0638e2438767/post/5877dfef88fb0638e2438768/image/5877dfef88fb0638e243876 Authorization:'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjYyNGQxOGIzYWNiYmUwMGEwNjg2ZmQzODExOWJkMGI1ZGNiYmM3Mzg4ZmNlMGZjOWRmMDRkZjFhMmUzNzExNzYiLCJpYXQiOjE0ODQyNDc3MTR9.mTuf2mgKfh8pJ4DeAd1ZiFPqdhgH1KFKQf32J1LybOg'
   ```
 
