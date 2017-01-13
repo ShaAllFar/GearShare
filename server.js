@@ -25,7 +25,7 @@ app.use(cors());
 app.use(morgan('dev'));
 //aqdadw
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/img/gear-share-logo.png');
+  res.sendFile(__dirname + '/img/gear-share-crest.png');
 });
 
 app.use(imageRouter);
