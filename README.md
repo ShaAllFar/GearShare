@@ -52,7 +52,9 @@ You will need to have 3 terminal shells open to use this application.
 
 ### Sign In
 
-  `http GET localhost:8000/api/signin --auth user1:1234`
+  ```sh
+  http GET localhost:8000/api/signin --auth user1:1234
+  ```
 
 # Gallery Model
 
