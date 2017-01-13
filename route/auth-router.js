@@ -29,10 +29,11 @@ authRouter.post('/api/signup', jsonParser, function(req, res, next) {
   .then(token => res.send(token))
   .catch(next);
 });
-authRouter.get('/', function(req,res,next){
-  debug('GET: /');
-  res.sendFile(`${__dirname}../test/data/tester.png`);
-});
+// authRouter.get('/', function(req,res,next){
+//   debug('GET: /');
+//
+//   res.sendFile(`${__dirname}/../test/data/tester.png`);
+// });
 
 authRouter.get('/api/signin', basicAuth, function(req, res, next) {
   debug('GET: /api/signin');
