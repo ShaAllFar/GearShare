@@ -72,7 +72,7 @@ postRouter.delete('/api/gallery/:galleryID/post/:postID', bearerAuth, function(r
   Gallery.findById(req.params.galleryID)
   .then(gallery => {
     gallery.postIDs.remove(req.params.postID);
-    return Post.findByIdAndRemove(req.params.postID)
+    return Post.findByIdAndRemove(req.params.postID);
   })
   .then(post => {
     if(post === null) return next(createError(404,'id not found'));
@@ -80,5 +80,5 @@ postRouter.delete('/api/gallery/:galleryID/post/:postID', bearerAuth, function(r
   })
   .catch(err => {
     next(createError(404, err.message));
-  })
+  });
 });

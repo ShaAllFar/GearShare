@@ -356,8 +356,8 @@ describe('Gallery Routes', function(){
           expect(res.status).to.equal(404);
           done();
         });
-      })
-    })
+      });
+    });
   });
 
   describe('DELETE: /api/gallery/:id', () => {
