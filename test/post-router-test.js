@@ -45,24 +45,16 @@ describe('Post Routes', function(){
     })
     .then(token => {
       this.tempToken = token;
-      done();
+      exampleGallery.userID = this.tempUser._id.toString();
+      return new Gallery(exampleGallery).save()
     })
-    .catch(done);
-  });
-  beforeEach(done => {
-    exampleGallery.userID = this.tempUser._id.toString();
-    new Gallery(exampleGallery).save()
     .then(gallery => {
       this.tempGallery = gallery;
-      done();
+      examplePost.userID = this.tempUser._id.toString();
+      examplePost.galleryID = this.tempGallery._id.toString();
+      return new Post(examplePost).save();
     })
-    .catch(done);
-  });
-  beforeEach(done => {
-    examplePost.galleryID = this.tempGallery._id;
-    examplePost.userID = this.tempUser._id;
-    new Post(examplePost).save()
-    .then(post => {
+    .then( post => {
       this.tempPost = post;
       done();
     })
@@ -193,24 +185,16 @@ describe('Post Routes', function(){
         })
         .then(token => {
           this.tempToken2 = token;
-          done();
+          exampleGallery2.userID = this.tempUser2._id.toString();
+          return new Gallery(exampleGallery2).save()
         })
-        .catch(done);
-      });
-      before(done => {
-        exampleGallery2.userID = this.tempUser2._id.toString();
-        new Gallery(exampleGallery2).save()
         .then(gallery => {
           this.tempGallery2 = gallery;
-          done();
+          examplePost2.userID = this.tempUser2._id.toString();
+          examplePost2.galleryID = this.tempGallery2._id.toString();
+          return new Post(examplePost2).save();
         })
-        .catch(done);
-      });
-      before(done => {
-        examplePost2.galleryID = this.tempGallery2._id;
-        examplePost2.userID = this.tempUser2._id;
-        new Post(examplePost2).save()
-        .then(post => {
+        .then( post => {
           this.tempPost2 = post;
           done();
         })
