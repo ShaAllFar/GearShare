@@ -282,8 +282,6 @@ describe('Auth Routes', function() {
       });
     });
 
-    //TODO with an invalid token 'token required'
-
     describe('with an invalid password/unauthenticated user', () => {
       it('should return a 401 error', done => {
         request.get(`${url}/api/signin`)
