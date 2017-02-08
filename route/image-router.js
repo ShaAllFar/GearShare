@@ -75,7 +75,7 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
   .catch( err => {
     del([`${dataDir}/*`]);
     next(createError(404,err.message));
-  })
+  });
 
 });
 

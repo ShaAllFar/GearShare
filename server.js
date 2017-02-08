@@ -5,7 +5,6 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const Promise = require('bluebird');
 const debug = require('debug')('gear-share:server.js');
 
 const imageRouter = require('./route/image-router.js');
