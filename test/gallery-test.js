@@ -144,7 +144,7 @@ describe('Gallery Routes', function(){
 
   describe('GET: /api/gallery/:id', () => {
     beforeEach(done => {
-    new User(exampleUser)
+      new User(exampleUser)
     .generatePasswordHash(exampleUser.password)
     .then(user  => user.save())
     .then(user => {
@@ -154,7 +154,7 @@ describe('Gallery Routes', function(){
     .then(token => {
       this.tempToken = token;
       exampleGallery.userID = this.tempUser._id.toString();
-      return new Gallery(exampleGallery).save()
+      return new Gallery(exampleGallery).save();
     })
     .then(gallery => {
       this.tempGallery = gallery;
@@ -221,7 +221,7 @@ describe('Gallery Routes', function(){
         .then(token => {
           this.tempToken2 = token;
           exampleGallery2.userID = this.tempUser2._id.toString();
-          return new Gallery(exampleGallery2).save()
+          return new Gallery(exampleGallery2).save();
         })
         .then(gallery => {
           this.tempGallery2 = gallery;
@@ -257,7 +257,7 @@ describe('Gallery Routes', function(){
       .then(token => {
         this.tempToken = token;
         exampleGallery.userID = this.tempUser._id.toString();
-        return new Gallery(exampleGallery).save()
+        return new Gallery(exampleGallery).save();
       })
       .then(gallery => {
         this.tempGallery = gallery;
@@ -360,7 +360,7 @@ describe('Gallery Routes', function(){
       .then(token => {
         this.tempToken = token;
         exampleGallery.userID = this.tempUser._id.toString();
-        return new Gallery(exampleGallery).save()
+        return new Gallery(exampleGallery).save();
       })
       .then(gallery => {
         this.tempGallery = gallery;

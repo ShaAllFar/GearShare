@@ -46,7 +46,7 @@ describe('Post Routes', function(){
     .then(token => {
       this.tempToken = token;
       exampleGallery.userID = this.tempUser._id.toString();
-      return new Gallery(exampleGallery).save()
+      return new Gallery(exampleGallery).save();
     })
     .then(gallery => {
       this.tempGallery = gallery;
@@ -186,7 +186,7 @@ describe('Post Routes', function(){
         .then(token => {
           this.tempToken2 = token;
           exampleGallery2.userID = this.tempUser2._id.toString();
-          return new Gallery(exampleGallery2).save()
+          return new Gallery(exampleGallery2).save();
         })
         .then(gallery => {
           this.tempGallery2 = gallery;

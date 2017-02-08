@@ -42,7 +42,7 @@ describe('Image Routes', function() {
     .then(token => {
       this.tempToken = token;
       exampleGallery.userID = this.tempUser._id.toString();
-      return new Gallery(exampleGallery).save()
+      return new Gallery(exampleGallery).save();
     })
     .then(gallery => {
       this.tempGallery = gallery;
@@ -63,7 +63,7 @@ describe('Image Routes', function() {
     done();
   });
   afterEach(done => clearDB(done));
-  
+
   describe('POST: /api/gallery/:postID/image', () => {
     describe('with a valid token and valid data', () => {
 
