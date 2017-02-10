@@ -23,7 +23,9 @@ function authService($q, $log, $http, $window){
   service.getToken = function(){
     $log.debug('authService.getToken()');
 
-    if(token) return $q.resolve(token);
+    if(token){
+    return $q.resolve(token);
+  }
 
     token = $window.localStorage.getItem('token');
     if(token) return $q.resolve(token);
@@ -66,7 +68,7 @@ function authService($q, $log, $http, $window){
     let base64 = $window.btoa(`${user.username}:${user.password}`);
     let config = {
       headers: {
-        Accept: 'application/json';
+        Accept: 'application/json',
         Authorization: `Basic ${base64}`
       }
     };
@@ -81,7 +83,7 @@ function authService($q, $log, $http, $window){
       return $q.reject(err);
     });
 
-    return service;
 
   }
+  return service;
 }

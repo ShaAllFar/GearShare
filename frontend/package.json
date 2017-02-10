@@ -13,6 +13,7 @@
   "dependencies": {
     "angular": "^1.6.2",
     "angular-route": "^1.6.2",
+    "angular-ui-router": "^0.4.2",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.22.0",
@@ -28,13 +29,13 @@
     "node-sass": "^4.5.0",
     "pascalcase": "^0.1.1",
     "resolve-url-loader": "^1.6.1",
-    "sass-loader": "^5.0.1",
+    "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
     "ui-router": "^1.0.0-alpha.3",
     "url-loader": "^0.5.7",
-    "webpack": "^2.2.1"
+    "webpack": "^1.14.0"
   },
   "devDependencies": {
-    "webpack-dev-server": "^2.3.0"
+    "webpack-dev-server": "^1.16.2"
   }
 }
