@@ -14,6 +14,7 @@ authRouter.post('/api/signup', jsonParser, function(req, res, next) {
   debug('POST: /api/signup');
 
   if(!req.body.username || !req.body.email || !req.body.password) {
+    console.log('made it');
     res.status(400).send();
     return;
   }
