@@ -208,40 +208,40 @@ describe('Auth Routes', function() {
       });
     });
 
-    describe('with no profileImageURI', function() {
-      it('should throw a 400 error', done => {
-        request.post(`${url}/api/signup`)
-        .send({
-          username: exampleUser.username,
-          email: exampleUser.email,
-          password: exampleUser.password,
-          location:  exampleUser.location
-        })
-        .end( (err, res) => {
-          expect(err).to.be.an('error');
-          expect(res.status).to.equal(400);
-          done();
-        });
-      });
-    });
-
-    describe('with an invalid profileImageURI', function() {
-      it('should throw a 400 error', done => {
-        request.post(`${url}/api/signup`)
-        .send({
-          username: exampleUser.username,
-          email: exampleUser.email,
-          password: exampleUser.password,
-          profileImageURI: User.profileImageURI,
-          location:  exampleUser.location
-        })
-        .end( (err, res) => {
-          expect(err).to.be.an('error');
-          expect(res.status).to.equal(400);
-          done();
-        });
-      });
-    });
+    // describe('with no profileImageURI', function() {
+    //   it('should throw a 400 error', done => {
+    //     request.post(`${url}/api/signup`)
+    //     .send({
+    //       username: exampleUser.username,
+    //       email: exampleUser.email,
+    //       password: exampleUser.password,
+    //       location:  exampleUser.location
+    //     })
+    //     .end( (err, res) => {
+    //       expect(err).to.be.an('error');
+    //       expect(res.status).to.equal(400);
+    //       done();
+    //     });
+    //   });
+    // });
+    //
+    // describe('with an invalid profileImageURI', function() {
+    //   it('should throw a 400 error', done => {
+    //     request.post(`${url}/api/signup`)
+    //     .send({
+    //       username: exampleUser.username,
+    //       email: exampleUser.email,
+    //       password: exampleUser.password,
+    //       profileImageURI: User.profileImageURI,
+    //       location:  exampleUser.location
+    //     })
+    //     .end( (err, res) => {
+    //       expect(err).to.be.an('error');
+    //       expect(res.status).to.equal(400);
+    //       done();
+    //     });
+    //   });
+    // });
 
     describe('with no location', function() {
       it('should throw a 400 error', done => {
