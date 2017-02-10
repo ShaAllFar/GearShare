@@ -11,8 +11,8 @@ function authService($q, $log, $http, $window){
   function setToken(_token){
     $log.debug('authService.setToken()');
 
-    if(!_token){
-      return $q.reject('no token');
+    if(! _token){
+      return $q.reject(new Error('no token'));
     }
 
     $window.localStorage.setItem('token', _token);
@@ -24,8 +24,8 @@ function authService($q, $log, $http, $window){
     $log.debug('authService.getToken()');
 
     if(token){
-    return $q.resolve(token);
-  }
+      return $q.resolve(token);
+    }
 
     token = $window.localStorage.getItem('token');
     if(token) return $q.resolve(token);
@@ -38,7 +38,7 @@ function authService($q, $log, $http, $window){
     $window.localStorage.removeItem('token');
     token = null;
     return $q.resolve();
-  };
+  }
 
   service.signup = function(user){
     $log.debug('authService.signup()');
@@ -53,12 +53,13 @@ function authService($q, $log, $http, $window){
 
     return $http.post(url, user, config)
     .then(res => {
-      $log.log('signup successful', res.data);
+      $log.log('success', res.data);
       return setToken(res.data);
     })
     .catch(err => {
-      $log.error('signup failed:', err.message);
-    });
+      $log.error('failure', err.message);
+      return $q.reject(err);
+    })
   };
 
   service.login = function(user){
@@ -75,15 +76,15 @@ function authService($q, $log, $http, $window){
 
     return $http.get(url, config)
     .then(res => {
-      $log.log('login successful');
+      $log.log('authService.login()');
       return setToken(res.data);
     })
     .catch(err => {
-      $log.error('login failed:', err.message);
+      $log.error(err.message);
       return $q.reject(err);
-    });
+    })
+  };
 
-
-  }
   return service;
+
 }
