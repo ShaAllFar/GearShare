@@ -7,6 +7,5 @@ module.exports = ['$log', '$location', '$rootScope', 'postService', ProfileContr
 function ProfileController($log, $location, postService) {
   $log.debug('ProfileController');
 
-  let url = $location.url();
-  this.showProfile = url = '/join#profile' || url === 'join';
+  $location.url('/profile');
 }

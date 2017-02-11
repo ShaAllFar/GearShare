@@ -26,7 +26,7 @@ function routerConfig($stateProvider, $urlRouterProvider){
     {
       name: 'profile',
       url: '/profile',
-      template: require('..view/profile/profile.html'),
+      template: require('../view/profile/profile.html'),
       controller: 'ProfileController',
       controllerAs: 'profileCtrl'
     }
