@@ -1,0 +1,20 @@
+// *** colors ***
+
+$black: #000;
+$white: #fff;
+$brand-primary: #a8ccec;
+$brand-secondary: #262262;
+$brand-tertiary: #ba6528;
+$btn-hover-primary: $brand-primary * 2;
+$btn-hover-secondary: $brand-secondary * 2;
+$btn-hover-tertiary: $brand-tertiary * 2;
+
+// *** box-sizes ***
+$box-std: 40%;
+$box-sm: $box-std / 2;
+$box-lg: $box-std * 2;
+
+// *** gutter-sizes
+$gutter-std: 5%;
+$gutter-sm: $gutter-std / 2;
+$gutter-lg: $gutter-std * 2;
