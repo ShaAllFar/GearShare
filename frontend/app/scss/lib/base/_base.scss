@@ -45,6 +45,7 @@ button {
   border-radius: 6px;
   cursor: pointer;
   transition: 350ms all;
+  margin-bottom: $gutter-sm;
 }
 
 .btn-primary {
@@ -81,7 +82,7 @@ input[type="text"] {
   width: 100%;
   padding: 1.5vw 2vw;
   font-size: $font-std;
-  border: solid 0.1vw #4a4a4a;
+  border: solid 0.1vw #95989a;
   box-sizing: border-box;
   margin-bottom: $gutter-sm;
 }
