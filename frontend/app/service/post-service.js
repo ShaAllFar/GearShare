@@ -62,5 +62,66 @@ function postService($q, $log, $http, authService, galleryService) {
       return $q.reject(err);
     });
   };
-  
+
+  service.updatePost = function(galleryID, postID, postData) {
+    $log.debug('postService.updatePost');
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/gallery/${galleryID}/post/${postID}`;
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      };
+
+      return $http.out(url, postData, config);
+    })
+    .then( res => {
+      for (let i = 0; i < service.allPosts.length; i++) {
+        let current = service.allPosts[i];
+        if (current._id === postID) {
+          service.allPosts[i] = res.data;
+          break;
+        }
+      }
+      return res.data;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  service.deletePost = function(galleryID, postID) {
+    $log.debug('postService.deletePost()');
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/gallery/${galleryID}/post/${postID}`;
+      let config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+      return $http.delete(url, config);
+    })
+    .then( res => {
+      for (let i = 0; i < service.allPosts.length; i++) {
+        let current = service.allPosts[i];
+        if (current._id === postID) {
+          service.allPosts.splice(i, 1);
+          break;
+        }
+      }
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  return service;
 }
