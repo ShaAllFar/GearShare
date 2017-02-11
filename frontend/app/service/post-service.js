@@ -77,7 +77,7 @@ function postService($q, $log, $http, authService) {
         }
       };
 
-      return $http.out(url, postData, config);
+      return $http.put(url, postData, config);
     })
     .then( res => {
       for (let i = 0; i < service.allPosts.length; i++) {
