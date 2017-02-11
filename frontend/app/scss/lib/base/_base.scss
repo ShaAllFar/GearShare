@@ -19,6 +19,7 @@ a {
 
 h1 {
   @extend .clear-fix;
+  color: $white;
   font-size: $font-lg;
   margin-bottom: $gutter-sm;
 }
@@ -80,10 +81,14 @@ input[type="text"] {
   width: 100%;
   padding: 1.5vw 2vw;
   font-size: $font-std;
-  border: solid 0.5vw #4a4a4a;
+  border: solid 0.1vw #4a4a4a;
   box-sizing: border-box;
 }
 
 input[type="text"] {
+  @extend input[type="text"]
+}
+
+input[type="password"] {
   @extend input[type="text"]
 }
