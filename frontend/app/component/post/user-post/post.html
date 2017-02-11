@@ -1,5 +1,11 @@
 <section class="user-post">
-  <input name="category">
-  <input naem="price">
-  <input name="location">
-  <input name="description">
+  <p>Create a new post</p>
+  <form name="createPostForm"
+    class="post-form"
+    ng-submit="postCtrl.createPost()">
+    <input name="category" type="text">
+    <input name="price" type="text">
+    <input name="location" type="text">
+    <input name="description" type="text">
+  </form>
+</section>
