@@ -6,7 +6,6 @@ function galleryService($q, $log, $http, authService) {
   $log.debug('galleryService()');
 
   let service = {};
-  // service.gallery = userGallery;
 
   service.createGallery = function(gallery) {
     $log.debug('galleryService.createGallery()');
