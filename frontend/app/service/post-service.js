@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$q', '$log', '$http', 'authService', 'galleryService', postService];
+module.exports = ['$q', '$log', '$http', 'authService', postService];
 
-function postService($q, $log, $http, authService, galleryService) {
+function postService($q, $log, $http, authService) {
   $log.debug('postService()');
 
   let service = {};
@@ -13,7 +13,7 @@ function postService($q, $log, $http, authService, galleryService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/gallery/:galleryID/post`;
+      let url = `${__API_URL__}/api/gallery/:galleryID/post`; // eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',
@@ -42,7 +42,7 @@ function postService($q, $log, $http, authService, galleryService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/gallery/:galleryID/post`;
+      let url = `${__API_URL__}/api/gallery/:galleryID/post`; // eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',
@@ -68,7 +68,7 @@ function postService($q, $log, $http, authService, galleryService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/gallery/${galleryID}/post/${postID}`;
+      let url = `${__API_URL__}/api/gallery/${galleryID}/post/${postID}`; // eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',
@@ -100,7 +100,7 @@ function postService($q, $log, $http, authService, galleryService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/gallery/${galleryID}/post/${postID}`;
+      let url = `${__API_URL__}/api/gallery/${galleryID}/post/${postID}`; // eslint-disable-line
       let config = {
         headers: {
           Authorization: `Bearer ${token}`

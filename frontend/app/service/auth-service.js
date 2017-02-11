@@ -38,12 +38,12 @@ function authService($q, $log, $http, $window){
     $window.localStorage.removeItem('token');
     token = null;
     return $q.resolve();
-  }
+  };
 
   service.signup = function(user){
     $log.debug('authService.signup()');
 
-    let url = `${__API_URL__}/api/signup`;
+    let url = `${__API_URL__}/api/signup`; // eslint-disable-line
     let config = {
       headers: {
         'Content-Type': 'application/json',
@@ -59,13 +59,13 @@ function authService($q, $log, $http, $window){
     .catch(err => {
       $log.error('failure', err.message);
       return $q.reject(err);
-    })
+    });
   };
 
   service.login = function(user){
     $log.debug('authService.login()');
 
-    let url = `${__API_URL__}/api/login`;
+    let url = `${__API_URL__}/api/login`; // eslint-disable-line
     let base64 = $window.btoa(`${user.username}:${user.password}`);
     let config = {
       headers: {
@@ -82,7 +82,7 @@ function authService($q, $log, $http, $window){
     .catch(err => {
       $log.error(err.message);
       return $q.reject(err);
-    })
+    });
   };
 
   return service;
