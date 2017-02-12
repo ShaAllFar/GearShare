@@ -1,8 +1,27 @@
-.login-form {
-  text-align: center;
+.login {
+  padding: 5%;
+  background: rgba(38, 34, 98, 0.85);
 
-  .btn-secondary {
-    box-sizing: border-box;
-    border: solid 0.1vw $white;
+  .login-form {
+    text-align: center;
+
+    .btn-secondary {
+      box-sizing: border-box;
+      border: solid 0.1vw $white;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .login {
+    width: 35%;
+
+    .login-form {
+      input {
+        padding: 1vw;
+        margin-bottom: $gutter-std;
+      }
+    }
   }
 }

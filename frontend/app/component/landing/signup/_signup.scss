@@ -1,8 +1,28 @@
-.signup-form {
-  text-align: center;
-  
-  .btn-tertiary {
-    box-sizing: border-box;
-    border: solid 0.1vw $white;
+.signup {
+  padding: 5%;
+  background: rgba(186, 101, 40, 0.85);
+
+  .signup-form {
+    text-align: center;
+
+    .btn-tertiary {
+      box-sizing: border-box;
+      border: solid 0.1vw $white;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .signup {
+    width: 35%;
+    float: right;
+
+    .signup-form {
+      input {
+        padding: 1vw;
+        margin-bottom: $gutter-std;
+      }
+    }
   }
 }
