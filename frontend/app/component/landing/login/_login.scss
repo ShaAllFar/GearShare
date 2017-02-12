@@ -1,6 +1,6 @@
 .login {
   padding: 5%;
-  background: rgba(38, 34, 98, 0.85);
+  background: rgba(38, 34, 98, 0.75);
 
   .login-form {
     text-align: center;
@@ -20,8 +20,29 @@
 
     .login-form {
       input {
-        padding: 1vw;
+        font-size: $font-sm + 0.5vw;
+        padding: 1vw 2vw;
         margin-bottom: $gutter-std;
+      }
+
+      button {
+        padding: 2% 10%;
+        font-size: $font-sm + 0.5vw;
+      }
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .login {
+    .login-form {
+      input {
+        font-size: $font-sm + 0.25vw;
+        padding: 1vw 1.5vw;
+      }
+
+      button {
+        font-size: $font-sm + 0.25vw;
       }
     }
   }

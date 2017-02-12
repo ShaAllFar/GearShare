@@ -4,3 +4,9 @@ footer {
   margin-top: $gutter-lg;
   opacity: 0.85;
 }
+
+@media (min-width: 900px) {
+  footer {
+    height: 9vw;
+  }
+}
