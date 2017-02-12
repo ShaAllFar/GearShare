@@ -5,6 +5,12 @@ html, body {
   font-size: $font-std;
   background: $white;
   color: $black;
+
+  background-image: url(../../../img/woods.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 a {

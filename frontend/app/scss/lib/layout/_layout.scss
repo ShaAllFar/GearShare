@@ -3,3 +3,9 @@ main {
   width: 90%;
   margin: $gutter-std;
 }
+
+@media (min-width: 600px) {
+  main {
+    clear: both;
+  }
+}
