@@ -1,12 +1,11 @@
 <section class="login">
-  <h2>sign in.</h2>
-  <form class="login-form"name="loginForm" ng-submit="loginCtrl.login()" novalidate>
+  <form class="login-form" name="loginForm" ng-submit="loginCtrl.login()" novalidate>
     <div ng-class="{
       'error': loginForm.username.$invalid,
       'success': loginForm.username.$valid
     }">
 
-    <input class="input-std" type="text" name="username" ng-minlength="6" ng-model="loginCtrl.user.username" required />
+    <input class="input-std" type="text" placeholder="username" ng-minlength="6" ng-model="loginCtrl.user.username" required />
     </div>
 
     <div ng-class="{
@@ -14,8 +13,8 @@
       'success': loginForm.password.valid
     }">
 
-    <input class="input-std" type="password" name="password" ng-minlength="6" ng-model="loginCtrl.user.password" required />
+    <input class="input-std" type="password" placeholder="password" ng-minlength="6" ng-model="loginCtrl.user.password" required />
     </div>
-    <button class="btn-std">sign in</button>
+    <button class="btn-secondary">sign in</button>
   </form>
 </section>

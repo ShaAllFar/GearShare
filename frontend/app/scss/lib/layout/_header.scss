@@ -1,5 +1,48 @@
-header {
-  height: 8vw;
+// header {
+//   height: 8vw;
+//   background: $brand-secondary;
+//   margin-bottom: $gutter-lg;
+// }
+
+.signin-header {
+  height: 9vw;
   background: $brand-secondary;
-  margin-bottom: $gutter-lg;
+  opacity: 0.75;
+  text-align: center;
+  color: $white;
+
+  span {
+    font-size: $font-lg;
+    display: inline-block;
+    margin-top: 1.5%;
+  }
+}
+
+.signup-header {
+  @extend .signin-header;
+  background: $brand-tertiary;
+}
+
+@media (min-width: 600px) {
+  .signin-header {
+    width: 50%;
+    float: left;
+
+    span {
+      font-size: $font-std + 1vw;
+      margin-top: 4%;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .signin-header {
+    height: 7vw;
+
+    span {
+      margin-top: 0.5%;
+      font-size: $font-std + 0.25vw;
+      margin-top: 4%;
+    }
+  }
 }

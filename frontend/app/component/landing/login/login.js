@@ -1,7 +1,5 @@
 'use strict';
 
-require('./_login.scss');
-
 module.exports = {
   template: require('./login.html'),
   controller: ['$log', '$location', 'authService', LoginController],
@@ -23,5 +21,5 @@ function LoginController($log, $location, authService){
     .then(() => {
       $location.url('/home');
     });
-  }
-};
+  };
+}

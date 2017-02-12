@@ -5,6 +5,12 @@ html, body {
   font-size: $font-std;
   background: $white;
   color: $black;
+
+  background-image: url(../../../img/woods.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 a {
@@ -13,8 +19,12 @@ a {
   font-weight: bold;
 }
 
-.clear-fix {
+.clear-fix:after {
   clear: both;
+  content: " ";
+  display: block;
+  height: 0;
+  visibility: hidden;
 }
 
 h1 {
@@ -42,7 +52,7 @@ button {
   color: $white;
   font-size: 2vw;
   border: none;
-  border-radius: 6px;
+  border-radius: 20px;
   cursor: pointer;
   transition: 350ms all;
   margin-bottom: $gutter-sm;
@@ -87,10 +97,6 @@ input[type="text"] {
   margin-bottom: $gutter-sm;
 }
 
-input[type="text"] {
-  @extend input[type="text"]
-}
-
 input[type="password"] {
-  @extend input[type="text"]
+  @extend input[type="text"];
 }
