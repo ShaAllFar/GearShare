@@ -97,10 +97,6 @@ input[type="text"] {
   margin-bottom: $gutter-sm;
 }
 
-input[type="text"] {
-  @extend input[type="text"];
-}
-
 input[type="password"] {
   @extend input[type="text"];
 }
