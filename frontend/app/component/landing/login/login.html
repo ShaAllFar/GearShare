@@ -1,5 +1,4 @@
 <section class="login">
-  <h2>sign in.</h2>
   <form class="login-form"name="loginForm" ng-submit="loginCtrl.login()" novalidate>
     <div ng-class="{
       'error': loginForm.username.$invalid,
@@ -16,6 +15,6 @@
 
     <input class="input-std" type="password" name="password" ng-minlength="6" ng-model="loginCtrl.user.password" required />
     </div>
-    <button class="btn-std">sign in</button>
+    <button class="btn-secondary">sign in</button>
   </form>
 </section>
