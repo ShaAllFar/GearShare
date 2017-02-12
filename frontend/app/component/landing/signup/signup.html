@@ -1,9 +1,9 @@
 <section class="signup">
   <form class="signup-form" ng-submit="signupCtrl.signup(signupCtrl.user)" novalidate>
-    <input class="input-std" type="text" placeholder="name" ng-minlength="6" ng-model="signupCtrl.user.username" required />
+    <input class="input-std" type="text" placeholder="username" ng-minlength="6" ng-model="signupCtrl.user.username" required />
     <input class="input-std" type="text" placeholder="email" ng-minlength="6" ng-model="signupCtrl.user.email" required />
     <input class="input-std" type="password" placeholder="password" ng-minlength="6" ng-model="signupCtrl.user.password" required />
     <input class="input-std" type="text" placeholder="location" ng-minlength="3" ng-model="signupCtrl.user.location" required />
-    <button class="btn-std" value="sign up">sign up</button>
+    <button class="btn-tertiary" value="sign up">sign up</button>
   </form>
 </section>
