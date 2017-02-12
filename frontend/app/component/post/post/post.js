@@ -24,6 +24,8 @@ function PostController($log, postService) {
       this.post.desc = null;
       this.post.price = null;
       this.post.category = null;
+      this.post.userID = null;
+      this.post.galleryID = null;
     });
   };
 
