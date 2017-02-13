@@ -2,7 +2,7 @@
 
 module.exports = ['$q', '$log', '$http', '$window', authService];
 
-function authService($q, $log, $http, $window){
+function authService($q, $log, $http, $window) {
   $log.debug('authService');
 
   let service = {};
@@ -55,6 +55,26 @@ function authService($q, $log, $http, $window){
     .then(res => {
       $log.log('success', res.data);
       return setToken(res.data);
+    })
+    .then( () => {
+      let gallery = {
+        name: 'shit',
+        desc: 'turtle'
+      };
+      let url = `${__API_URL__}/api/gallery`; // eslint-disable-line
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+      return $http.post(url, gallery, config);
+
+    })
+    .then( (gallery) => {
+      console.log('gallery created on signup');
+      console.log(gallery);
     })
     .catch(err => {
       $log.error('failure', err.message);
