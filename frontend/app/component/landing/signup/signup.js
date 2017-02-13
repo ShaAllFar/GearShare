@@ -18,6 +18,7 @@ function SignupController($log, $location, authService){
     $log.log('SignupController.signup()');
 
     authService.signup(user)
+
     .then(() => {
       $location.url('/home');
     });
