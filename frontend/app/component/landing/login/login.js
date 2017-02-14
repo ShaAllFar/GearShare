@@ -12,12 +12,17 @@ function LoginController($log, $location, authService){
   authService.getToken()
   .then(() => {
     $location.url('/home');
+  }).catch(err => {
+    $log.error(err.message);
   });
 
   this.login = function(user){
     $log.log('loginCtrl.login()');
 
     authService.login(this.user)
+    .then(() => {
+      authService.getUserId();
+    })
     .then(() => {
       $location.url('/home');
     });
