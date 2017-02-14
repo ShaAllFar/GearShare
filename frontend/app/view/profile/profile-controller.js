@@ -6,28 +6,30 @@ module.exports = ['$log', '$location', '$rootScope', 'postService', 'galleryServ
 
 function ProfileController($log, $location, $rootScope, postService, galleryService) {
   $log.debug('ProfileController');
+  console.log(postService);
 
   $location.url('/profile');
 
   this.posts = [];
   // this.gallery = [];
 
-  // this.fetchUserGallery = function() {
-  //   galleryService.fetchUserGallery()
-  //   .then( gallery => {
-  //     this.gallery = gallery;
-  //     console.log(gallery);
-  //   });
-  // };
 
   this.fetchUserGallery = function() {
-    postService.fetchUserGallery()
+    postService.fetchUserGallery();
+    // .then( posts => {
+    //   this.posts = posts;
+  };
+
+  this.fetchUserGallery();
+
+  this.fetchUserPosts = function() {
+    postService.fetchUserPosts()
     .then( posts => {
       this.posts = posts;
     });
   };
 
-  this.fetchUserGallery();
+  this.fetchUserPosts();
 
   $rootScope.$on('locationChangeSuccess', () => {
     this.fetchUserGallery();

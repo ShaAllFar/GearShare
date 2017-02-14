@@ -3,9 +3,11 @@
     <div class="post-section">
       <create-post></create-post>
       <edit-post></edit-post>
-      <ul>
-        <post-item></post-item>
-  
+      <ul ng-repeat="postService.allPosts">
+        <post-item>
+
+        </post-item>
+
       </ul>
     </div>
 

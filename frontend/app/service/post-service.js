@@ -17,7 +17,7 @@ function postService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/gallery/58a333206759ad54344342ed/post`; // eslint-disable-line
+      let url = `${__API_URL__}/api/gallery/58a351c262bad25899e6f948/post`; // eslint-disable-line
       // let url = `${__API_URL__}/api/gallery/`;
       let config = {
         headers: {
@@ -37,10 +37,6 @@ function postService($q, $log, $http, authService) {
       // console.log('WHATISTHIS?', service.allPosts);
       // console.log('FUCK THIS', service.allPosts);
 
-      // service.allPosts[0] = post;
-      // service.allPosts[1] = post;
-      // service.allPosts[2] = post;
-
       service.allPosts.push(post);
       console.log(service.allPosts);
       return post;
@@ -57,9 +53,9 @@ function postService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
-      // console.log(authService);
+      console.log(authService);
       // let url = `${__API_URL__}/api/gallery/${authService.galleryID}/post`;
-      let url = `${__API_URL__}/api/gallery/58a333206759ad54344342ed`; // eslint-disable-line
+      let url = `${__API_URL__}/api/gallery/58a351c262bad25899e6f948`; // eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',
@@ -75,6 +71,31 @@ function postService($q, $log, $http, authService) {
       let gallery = res.data;
       // service.allPosts.unshift(post);
       return gallery;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  service.fetchUserPosts = function() {
+    $log.debug('postService.fetchUserPosts');
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/gallery/58a351c262bad25899e6f948/post`;
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+      return $http.get(url, config);
+    })
+    .then( res => {
+      $log.log('user posts retrieved');
+      service.allPosts = res.data;
+      return service.allPosts;
     })
     .catch( err => {
       $log.error(err.message);
