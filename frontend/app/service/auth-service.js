@@ -8,6 +8,7 @@ function authService($q, $log, $http, $window) {
   let service = {};
   let token = null;
   service.currentUserID = null;
+  service.currentGalleryID = null;
 
 
   function setToken(_token){
@@ -77,15 +78,6 @@ function authService($q, $log, $http, $window) {
       return $http.post(url, gallery, config);
 
     })
-    .then( (gallery) => {
-      console.log('gallery created on signup');
-
-
-
-      console.log(gallery);
-      this.galleryID = gallery.data._id;
-
-    })
     .catch(err => {
       $log.error('failure', err.message);
       return $q.reject(err);
@@ -116,6 +108,8 @@ function authService($q, $log, $http, $window) {
     });
   };
   service.getUserId = function(){
+    $log.debug('authService.getUserId');
+
     token = $window.localStorage.getItem('token');
 
     let parseToken = JWT.read(token);
@@ -124,6 +118,28 @@ function authService($q, $log, $http, $window) {
     $log.debug('currentUserID', service.currentUserID);
 
     return service.currentUserID;
+  }
+
+  service.getGalleryId = function(){
+    $log.debug('authService.getGalleryID');
+
+    return service.getToken()
+    .then(token => {
+      let url = `${__API_URL__}/api/user/${service.currentUserID}/gallery`
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+      return $http.get(url, config)
+
+    })
+    .then(res => {
+      $log.log('response', res);
+      this.currentGalleryID = res.data._id;
+    })
   }
 
   return service;

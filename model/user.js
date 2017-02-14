@@ -20,7 +20,7 @@ const userSchema = Schema({
 });
 
 userSchema.methods.generatePasswordHash = function(password) {
-  debug('generatePasswordHash test');
+  debug('generatePasswordHash');
 
   return new Promise((resolve, reject) => {
     bcrypt.hash(password, 10, (err, hash) => {
