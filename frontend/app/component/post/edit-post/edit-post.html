@@ -1,0 +1,32 @@
+<section class="edit">
+  <form class="edit-post"
+    name="editPost"
+    ng-submit="editPostCtrl.updatePost()"
+    no-validate>
+
+    <div class="edit-container">
+      <fieldset>
+        <span class="item-label">category:</span>
+        <input name="desc" class="input-two" ng-model="editPostCtrl.post.category">
+      </fieldset>
+
+      <fieldset>
+        <span class="item-label">price:</span>
+        <input name="desc" class="input-two" ng-model="editPostCtrl.post.price">
+      </fieldset>
+
+      <fieldset>
+        <span class="item-label">name:</span>
+        <input name="name" class="input-std" ng-model="editPostCtrl.post.name">
+      </fieldset>
+
+      <fieldset>
+        <span class="item-label">description:</span>
+        <input name="desc" class="input-two" ng-model="editPostCtrl.post.desc">
+      </fieldset>
+
+    </div>
+
+    <button class="btn-std">update</button>
+  </form>
+</section>

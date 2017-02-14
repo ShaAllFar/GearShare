@@ -61,3 +61,13 @@ galleryRouter.delete('/api/gallery/:id',bearerAuth, function(req, res, next){
   })
   .catch(err => next(createError(404, err.message)));
 });
+
+galleryRouter.get('/api/user/:id/gallery', bearerAuth, function(req,res,next){
+  debug('GET: /api/user/:id/gallery');
+
+  Gallery.findOne({userID: req.params.id})
+  .then(gallery => {
+    res.json(gallery);
+  })
+  .catch(err => next(createError(404, err.message)));
+});
