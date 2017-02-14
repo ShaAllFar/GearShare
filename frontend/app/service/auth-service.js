@@ -1,5 +1,5 @@
 'use strict';
-
+const JWT = require('jwt-client');
 module.exports = ['$q', '$log', '$http', '$window', authService];
 
 function authService($q, $log, $http, $window) {
@@ -7,6 +7,8 @@ function authService($q, $log, $http, $window) {
 
   let service = {};
   let token = null;
+  service.currentUserID = null;
+
 
   function setToken(_token){
     $log.debug('authService.setToken()');
@@ -27,8 +29,10 @@ function authService($q, $log, $http, $window) {
       return $q.resolve(token);
     }
 
-    token = $window.localStorage.getItem('token');
+
     if(token) return $q.resolve(token);
+
+
     return $q.reject(new Error('token not found'));
   };
 
@@ -53,6 +57,7 @@ function authService($q, $log, $http, $window) {
 
     return $http.post(url, user, config)
     .then(res => {
+      service.userData = res;
       $log.log('success', res.data);
       return setToken(res.data);
     })
@@ -74,7 +79,7 @@ function authService($q, $log, $http, $window) {
     })
     .then( (gallery) => {
       console.log('gallery created on signup');
-      console.log(gallery);
+      // console.log(gallery);
     })
     .catch(err => {
       $log.error('failure', err.message);
@@ -97,6 +102,7 @@ function authService($q, $log, $http, $window) {
     return $http.get(url, config)
     .then(res => {
       $log.log('authService.signin()');
+      service.userData = user.username;
       return setToken(res.data);
     })
     .catch(err => {
@@ -104,6 +110,16 @@ function authService($q, $log, $http, $window) {
       return $q.reject(err);
     });
   };
+  service.getUserId = function(){
+    token = $window.localStorage.getItem('token');
+
+    let parseToken = JWT.read(token);
+    service.currentUserID = parseToken.claim.userID;
+
+    $log.debug('currentUserID', service.currentUserID);
+
+    return service.currentUserID;
+  }
 
   return service;
 
