@@ -7,13 +7,17 @@ function postService($q, $log, $http, authService) {
 
   let service = {};
   service.allPosts = [];
+  console.log(service.allPosts);
+  service.allPosts.push('Anything');
+  console.log(service.allPosts);
+  // console.log(service.allPosts.push('Anything'));
 
-  service.createPost = function(post) {
+  service.createPost = (post, galleryID) => {
     $log.debug('postService.createPost()');
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/gallery/58a20b08670e5a5072230e26/post`; // eslint-disable-line
+      let url = `${__API_URL__}/api/gallery/58a266e96759ad54344342c1/post`; // eslint-disable-line
       // let url = `${__API_URL__}/api/gallery/`;
       let config = {
         headers: {
@@ -28,9 +32,17 @@ function postService($q, $log, $http, authService) {
     .then( res => {
       $log.log('post created');
 
+      console.log(res.data);
       let post = res.data;
-      service.allPosts.unshift(post);
-      return post;
+      // console.log('WHATISTHIS?', service.allPosts);
+      // console.log('FUCK THIS', service.allPosts);
+
+      // service.allPosts[0] = post;
+      // service.allPosts[1] = post;
+      // service.allPosts[2] = post;
+
+      return service.allPosts.push(post);
+
     })
     .catch( err => {
       $log.error(err.message);
@@ -38,12 +50,14 @@ function postService($q, $log, $http, authService) {
     });
   };
 
-  service.fetchAllPosts = function() {
-    $log.debug('postService.fetchAllPosts()');
+  service.fetchUserGallery = function() {
+    $log.debug('postService.fetchUserGallery()');
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/gallery/58a20b08670e5a5072230e26/post/${postID}`; // eslint-disable-line
+      console.log(authService);
+      // let url = `${__API_URL__}/api/gallery/${authService.galleryID}/post`;
+      let url = `${__API_URL__}/api/gallery/58a266e96759ad54344342c1`; // eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',
@@ -54,7 +68,8 @@ function postService($q, $log, $http, authService) {
       return $http.get(url, config);
     })
     .then( res => {
-      $log.log('all posts retrieved');
+      $log.log('user gallery (allPosts) retrieved');
+      console.log(res.data);
       service.allPosts = res.data;
       return service.allPosts;
     })
