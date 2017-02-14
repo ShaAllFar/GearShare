@@ -2,25 +2,34 @@
 
 require('./_profile.scss');
 
-module.exports = ['$log', '$location', '$rootScope', 'postService', ProfileController];
+module.exports = ['$log', '$location', '$rootScope', 'postService', 'galleryService',ProfileController];
 
-function ProfileController($log, $location, $rootScope, postService) {
+function ProfileController($log, $location, $rootScope, postService, galleryService) {
   $log.debug('ProfileController');
 
   $location.url('/profile');
 
   this.posts = [];
+  // this.gallery = [];
 
-  this.fetchAllPosts = function() {
-    postService.fetchAllPosts()
+  // this.fetchUserGallery = function() {
+  //   galleryService.fetchUserGallery()
+  //   .then( gallery => {
+  //     this.gallery = gallery;
+  //     console.log(gallery);
+  //   });
+  // };
+
+  this.fetchUserGallery = function() {
+    postService.fetchUserGallery()
     .then( posts => {
-      this.posts = posts.reverse();
+      this.posts = posts;
     });
   };
 
-  this.fetchAllPosts();
+  this.fetchUserGallery();
 
   $rootScope.$on('locationChangeSuccess', () => {
-    this.fetchAllPosts();
+    this.fetchUserGallery();
   });
 }

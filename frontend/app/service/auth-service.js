@@ -79,7 +79,12 @@ function authService($q, $log, $http, $window) {
     })
     .then( (gallery) => {
       console.log('gallery created on signup');
-      // console.log(gallery);
+
+
+
+      console.log(gallery);
+      this.galleryID = gallery.data._id;
+
     })
     .catch(err => {
       $log.error('failure', err.message);
