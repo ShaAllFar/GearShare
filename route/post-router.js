@@ -37,6 +37,20 @@ postRouter.post('/api/gallery/:galleryID/post', bearerAuth, jsonParser, function
   });
 });
 
+postRouter.get('/api/gallery/:galleryID/post', bearerAuth, function(req, res, next) {
+  debug('GET: /api/gallery/:galleyID/post');
+
+  Post.find({galleryID: req.params.galleryID})
+  .then(post => {
+    if(post === null) return next(createError(404, 'post not found'));
+    if(post.userID.toString() !== req.user._id.toString()){
+      return next(createError(401, 'invalid user'));
+    }
+    res.json(post);
+  })
+  .catch(next);
+});
+
 
 postRouter.get('/api/gallery/:galleyID/post/:postID', bearerAuth, function(req, res, next) {
   debug('GET: /api/gallery/:galleyID/post/:postID');

@@ -17,7 +17,11 @@ function postService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
+<<<<<<< HEAD
       let url = `${__API_URL__}/api/gallery/58a351c262bad25899e6f948/post`; // eslint-disable-line
+=======
+      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post`; // eslint-disable-line
+>>>>>>> staging
       // let url = `${__API_URL__}/api/gallery/`;
       let config = {
         headers: {
@@ -55,7 +59,11 @@ function postService($q, $log, $http, authService) {
     .then( token => {
       console.log(authService);
       // let url = `${__API_URL__}/api/gallery/${authService.galleryID}/post`;
+<<<<<<< HEAD
       let url = `${__API_URL__}/api/gallery/58a351c262bad25899e6f948`; // eslint-disable-line
+=======
+      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}`; // eslint-disable-line
+>>>>>>> staging
       let config = {
         headers: {
           Accept: 'application/json',
