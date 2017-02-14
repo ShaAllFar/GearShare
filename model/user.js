@@ -14,13 +14,13 @@ const userSchema = Schema({
   username: {type: String, required: true, unique: true},
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
-  profileImageURI: {type: String, default: './img/ski.png'},
+  profileImageURI: {type: String},
   location: {type: String, required: true},
   findHash: {type: String, unique: true}
 });
 
 userSchema.methods.generatePasswordHash = function(password) {
-  debug('generatePasswordHash');
+  debug('generatePasswordHash test');
 
   return new Promise((resolve, reject) => {
     bcrypt.hash(password, 10, (err, hash) => {
