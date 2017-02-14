@@ -26,5 +26,6 @@ exports.exampleImage = {
 exports.examplePost = {
   name: 'post name',
   desc: 'post description',
-  price: 200
+  price: 200,
+  category: 'snowboard'
 };

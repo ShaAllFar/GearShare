@@ -1,0 +1,12 @@
+footer {
+  height: 10vw;
+  background: $brand-secondary;
+  margin-top: $gutter-lg;
+  opacity: 0.75;
+}
+
+@media (min-width: 900px) {
+  footer {
+    height: 9vw;
+  }
+}

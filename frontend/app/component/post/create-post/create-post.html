@@ -1,0 +1,28 @@
+<section class="user-post">
+  <h2>My Bin</h2>
+
+  <form class="post-form"
+    ng-submit="createPostCtrl.createPost()">
+    <input
+      name="category"
+      placeholder="category"
+      ng-model="createPostCtrl.post.category" required>
+
+    <input
+      name="price"
+      placeholder="price"
+      ng-model="createPostCtrl.post.price" required>
+
+    <input
+      name="name"
+      placeholder="name"
+      ng-model="createPostCtrl.post.name" required>
+
+    <input
+      name="description"
+      placeholder="description"
+      ng-model="createPostCtrl.post.desc" required>
+
+    <button type="submit">submit post</button>
+  </form>
+</section>
