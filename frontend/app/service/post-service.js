@@ -7,9 +7,9 @@ function postService($q, $log, $http, authService) {
 
   let service = {};
   service.allPosts = [];
-  console.log(service.allPosts);
-  service.allPosts.push('Anything');
-  console.log(service.allPosts);
+  // console.log(service.allPosts);
+  // service.allPosts.push('Anything');
+  // console.log(service.allPosts);
   // console.log(service.allPosts.push('Anything'));
 
   service.createPost = (post, galleryID) => {
@@ -17,7 +17,7 @@ function postService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
-      let url = `${__API_URL__}/api/gallery/58a266e96759ad54344342c1/post`; // eslint-disable-line
+      let url = `${__API_URL__}/api/gallery/58a333206759ad54344342ed/post`; // eslint-disable-line
       // let url = `${__API_URL__}/api/gallery/`;
       let config = {
         headers: {
@@ -41,7 +41,9 @@ function postService($q, $log, $http, authService) {
       // service.allPosts[1] = post;
       // service.allPosts[2] = post;
 
-      return service.allPosts.push(post);
+      service.allPosts.push(post);
+      console.log(service.allPosts);
+      return post;
 
     })
     .catch( err => {
@@ -55,9 +57,9 @@ function postService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
-      console.log(authService);
+      // console.log(authService);
       // let url = `${__API_URL__}/api/gallery/${authService.galleryID}/post`;
-      let url = `${__API_URL__}/api/gallery/58a266e96759ad54344342c1`; // eslint-disable-line
+      let url = `${__API_URL__}/api/gallery/58a333206759ad54344342ed`; // eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',
@@ -69,9 +71,10 @@ function postService($q, $log, $http, authService) {
     })
     .then( res => {
       $log.log('user gallery (allPosts) retrieved');
-      console.log(res.data);
-      service.allPosts = res.data;
-      return service.allPosts;
+      // console.log(res.data);
+      let gallery = res.data;
+      // service.allPosts.unshift(post);
+      return gallery;
     })
     .catch( err => {
       $log.error(err.message);
