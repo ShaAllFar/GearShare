@@ -2,26 +2,26 @@
   <h2>My Bin</h2>
 
   <form class="post-form"
-    ng-submit="postCtrl.createPost()">
+    ng-submit="createPostCtrl.createPost()">
     <input
       name="category"
       placeholder="category"
-      ng-model="postCtrl.post.category" required>
+      ng-model="createPostCtrl.post.category" required>
 
     <input
       name="price"
       placeholder="price"
-      ng-model="postCtrl.post.price" required>
+      ng-model="createPostCtrl.post.price" required>
 
     <input
       name="name"
       placeholder="name"
-      ng-model="postCtrl.post.name" required>
+      ng-model="createPostCtrl.post.name" required>
 
     <input
       name="description"
       placeholder="description"
-      ng-model="postCtrl.post.desc" required>
+      ng-model="createPostCtrl.post.desc" required>
 
     <button type="submit">submit post</button>
   </form>

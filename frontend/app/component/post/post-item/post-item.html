@@ -1,0 +1,30 @@
+<li class="post-item">
+  <div class="current-item" ng-if="!postItemCtrl.showEditPost">
+    <div class="name-label">
+      <span class="item-label">name:</span>
+      <span>{{ postItemCtrl.post.name }}</span>
+    </div>
+
+    <div>
+      <span class="item-label">description:</span>
+      <span>{{ postItemCtrl.post.desc }}</span>
+    </div>
+
+    <div>
+      <span class="item-label">category:</span>
+      <span>{{ postItemCtrl.post.category}}</span>
+    </div>
+
+    <div>
+      <span class="item-label">price:</span>
+      <span>{{ postItemCtrl.post.price }}</span>
+    </div>
+  </div>
+
+  <edit-gallery ng-if="postItemCtrl.showEditPost" post="postItemCtrl.post"></edit-gallery>
+
+  <div class="update-container" ng-if="!postItemCtrl.showEditPost">
+    <button class="edit-label" ng-click="postItemCtrl.showEditPost = !postItemCtrl.showEditPost">edit</button>
+    <button class="delete-label" ng-click="postItemCtrl.deletePost()">delete</button>
+  </div>
+</li>
