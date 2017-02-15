@@ -6,7 +6,7 @@ module.exports = {
   controllerAs: 'thumbnailCtrl',
   bindings: {
     image: '<',
-    gallery: '<'
+    post: '<'
   }
 };
 
@@ -16,6 +16,6 @@ function ThumbnailController($log, imageService) {
   this.deletePostImage = function() {
     $log.debug('thumbnailCtrl.deletePostImage()');
 
-    imageService.deletePostImage(this.gallery, this.image);
+    imageService.deletePostImage(this.post, this.image);
   };
 }
