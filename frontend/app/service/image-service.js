@@ -66,7 +66,7 @@ function imageService($q, $log, $http, Upload, authService) {
       }
       $log.log('image deleted');
     })
-    .catch( err => {
+    .catch(err => {
       $log.error(err.message);
       return $q.reject(err);
     });
