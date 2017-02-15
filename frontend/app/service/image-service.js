@@ -7,7 +7,7 @@ function imageService($q, $log, $http, Upload, authService) {
 
   let service = {};
 
-  service.uploadPostImage = function(galleryData, postData, files) {
+  service.uploadPostImage = function(postData, files) {
     $log.debug('uploadPostImage');
     // console.log(postID);
     // console.log(files);
@@ -49,13 +49,13 @@ function imageService($q, $log, $http, Upload, authService) {
     });
   };
 
-  service.deletePostImage = function(galleryID, galleryData, postID, imageData) {
+  service.deletePostImage = function(postData, imageData) {
     $log.debug('imageService.deletePostImage');
     console.log(imageData);
 
     return authService.getToken()
     .then(token => {
-      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postID}/image/${imageData._id}`; //eslint-disable-line
+      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postData._id}/image/${imageData._id}`; //eslint-disable-line
       let config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -64,10 +64,10 @@ function imageService($q, $log, $http, Upload, authService) {
       return $http.delete(url, config);
     })
     .then(() => {
-      for(let i = 0; i < galleryData.images.length; i++) {
-        let current = galleryData.images[i];
+      for(let i = 0; i < postData.images.length; i++) {
+        let current = postData.images[i];
         if(current._id === imageData._id) {
-          galleryData.images.splice(i, 1);
+          postData.images.splice(i, 1);
           break;
         }
       }
