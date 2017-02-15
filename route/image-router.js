@@ -34,10 +34,10 @@ function s3uploadProm(params) {
 imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, upload.single('image'), function(req, res, next) {
   debug('POST: /api/gallery/postID/image'); //TODO double check path
 
-  if(!req.body.name || !req.body.desc) {
-    del([`${dataDir}/*`]);
-    return next(createError(400, 'missing name and/or description'));
-  }
+  // if(!req.body.name || !req.body.desc) {
+  //   del([`${dataDir}/*`]);
+  //   return next(createError(400, 'missing name and/or description'));
+  // }
 
   if(!req.file) {
     return next(createError(400, 'file not found'));

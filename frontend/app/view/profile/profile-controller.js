@@ -28,7 +28,8 @@ function ProfileController($log, $location, $rootScope, postService, galleryServ
   this.fetchUserPosts = function() {
     postService.fetchUserPosts()
     .then( posts => {
-      this.allPosts = posts;
+      this.allPosts = posts.reverse();
+      this.currentPost = posts[0];
     });
   };
 
