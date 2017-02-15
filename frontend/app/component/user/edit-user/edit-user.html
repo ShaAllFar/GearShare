@@ -2,7 +2,7 @@
   <form class="edit-user-form"
     name="editUser"
     ng-submit="editUserCtrl.updateUserInfo()"
-    novalidate>
+    no-validate>
 
     <div class="edit-user-container">
       <fieldset>
@@ -17,6 +17,8 @@
         <span class="item-label">location:</span>
         <input name="location" class="input-std" ng-model="editUserCtrl.user.location" />
       </fieldset>
+      <!-- <button class="btn-std">edit profile pic</button> -->
+      <img ng-src="{{editUserCtrl.user.profileImageURI}}">
     </div>
     <button type="submit" class="btn-std">update</button>
   </form>
