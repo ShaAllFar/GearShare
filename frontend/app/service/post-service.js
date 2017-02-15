@@ -49,6 +49,37 @@ function postService($q, $log, $http, authService) {
       return $q.reject(err);
     });
   };
+  service.updatePost = (postID, postData) => {
+    $log.debug('postService.updatePost');
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postID}`; // eslint-disable-line
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      };
+
+      return $http.put(url, postData, config);
+    })
+    .then( res => {
+      for (let i = 0; i < service.allPosts.length; i++) {
+        let current = service.allPosts[i];
+        if (current._id === postID) {
+          service.allPosts[i] = res.data;
+          break;
+        }
+      }
+      return res.data;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
 
   service.fetchAllPostsFromDB = function() {
     $log.debug('postService.fetchAllPostsFromDB()');
@@ -127,37 +158,6 @@ function postService($q, $log, $http, authService) {
     });
   };
 
-  service.updatePost = function(galleryID, postID, postData) {
-    $log.debug('postService.updatePost');
-
-    return authService.getToken()
-    .then( token => {
-      let url = `${__API_URL__}/api/gallery/${galleryID}/post/${postID}`; // eslint-disable-line
-      let config = {
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      };
-
-      return $http.put(url, postData, config);
-    })
-    .then( res => {
-      for (let i = 0; i < service.allPosts.length; i++) {
-        let current = service.allPosts[i];
-        if (current._id === postID) {
-          service.allPosts[i] = res.data;
-          break;
-        }
-      }
-      return res.data;
-    })
-    .catch( err => {
-      $log.error(err.message);
-      return $q.reject(err);
-    });
-  };
 
   service.deletePost = function(galleryID, postID) {
     $log.debug('postService.deletePost()');
