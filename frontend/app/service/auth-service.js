@@ -30,10 +30,8 @@ function authService($q, $log, $http, $window) {
       return $q.resolve(token);
     }
 
-
-    if(token) return $q.resolve(token);
-
-
+    token = $window.localStorage.getItem('token');
+    if (token) return $q.resolve(token);
     return $q.reject(new Error('token not found'));
   };
 

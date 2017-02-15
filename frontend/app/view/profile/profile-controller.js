@@ -10,28 +10,31 @@ function ProfileController($log, $location, $rootScope, postService, galleryServ
 
   $location.url('/profile');
 
-  this.posts = [];
+  this.allPosts = [];
   // this.gallery = [];
 
 
-  this.fetchUserGallery = function() {
-    postService.fetchUserGallery();
-    // .then( posts => {
-    //   this.posts = posts;
-  };
-
-  this.fetchUserGallery();
+  // this.fetchUserGallery = function() {
+  //   postService.fetchUserGallery()
+  //   .then( posts => {
+  //     console.log('got posts', posts);
+  //     this.allPosts = posts;
+  //   });
+  // };
+  // this.fetchUserGallery();
+  // console.log(postService);
+  // console.log('save');
 
   this.fetchUserPosts = function() {
     postService.fetchUserPosts()
     .then( posts => {
-      this.posts = posts;
+      this.allPosts = posts;
     });
   };
 
   this.fetchUserPosts();
 
-  $rootScope.$on('locationChangeSuccess', () => {
-    this.fetchUserGallery();
-  });
+  // $rootScope.$on('locationChangeSuccess', () => {
+  //   this.fetchUserGallery();
+  // });
 }

@@ -39,7 +39,7 @@ function postService($q, $log, $http, authService) {
       // console.log('WHATISTHIS?', service.allPosts);
       // console.log('FUCK THIS', service.allPosts);
 
-      service.allPosts.push(post);
+      service.allPosts.unshift(post);
       console.log(service.allPosts);
       return post;
 
@@ -48,6 +48,19 @@ function postService($q, $log, $http, authService) {
       $log.error(err.message);
       return $q.reject(err);
     });
+  };
+
+  service.fetchAllPostsFromDB = function() {
+    $log.debug('postService.fetchAllPostsFromDB()');
+
+    let url = `${__API_URL__}/api/post`;
+    let config = {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    };
+    return $http.get(url, config);
   };
 
   service.fetchUserGallery = function() {
@@ -85,9 +98,16 @@ function postService($q, $log, $http, authService) {
   service.fetchUserPosts = function() {
     $log.debug('postService.fetchUserPosts');
 
-    return authService.getToken()
+    authService.getUserId();
+
+    return authService.getGalleryId()
+    .then( () => {
+      return authService.getToken();
+    })
+
+
     .then( token => {
-      let url = `${__API_URL__}/api/gallery/58a351c262bad25899e6f948/post`;
+      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post`;
       let config = {
         headers: {
           Accept: 'application/json',

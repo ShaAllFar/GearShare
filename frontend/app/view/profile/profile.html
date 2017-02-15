@@ -2,9 +2,10 @@
   <h2>Profile</h2>
     <div class="post-section">
       <create-post></create-post>
-      <edit-post></edit-post>
-      <ul ng-repeat="postService.allPosts">
-        <post-item>
+      <ul>
+        <post-item
+          ng-repeat="item in profileCtrl.allPosts"
+          post="item">
 
         </post-item>
 

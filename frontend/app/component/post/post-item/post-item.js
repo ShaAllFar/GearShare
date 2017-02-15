@@ -7,8 +7,8 @@ module.exports = {
   controller: ['$log', 'postService', PostItemController],
   controllerAs: 'postItemCtrl',
   bindings: {
-    gallery: '<',
     post: '<'
+
   }
 };
 
