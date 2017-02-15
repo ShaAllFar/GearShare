@@ -10,7 +10,8 @@ const postSchema = Schema({
   userID: { type: Schema.Types.ObjectId, required: true},
   galleryID: { type: Schema.Types.ObjectId, required: true},
   price: { type: Number, required: true},
-  category: { type: String, required: true}
+  category: { type: String, required: true},
+  images: [{type: Schema.Types.ObjectId, ref: 'image'}],
 });
 
 module.exports = mongoose.model('post', postSchema);

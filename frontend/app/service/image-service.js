@@ -7,30 +7,37 @@ function imageService($q, $log, $http, Upload, authService) {
 
   let service = {};
 
-  service.uploadPostImage = function(galleryID, galleryData, postID, files) {
+  service.uploadPostImage = function(galleryData, postData, files) {
     $log.debug('uploadPostImage');
+    // console.log(postID);
+    // console.log(files);
 
     return authService.getToken()
     .then(token => {
-      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postID}/image`; //eslint-disable-line
+      // console.log(token);
+      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postData._id}/image`; //eslint-disable-line
+      // console.log(url);
       let headers = {
         Authorization: `Bearer ${token}`,
         Accept: 'application/json'
       };
+      // console.log(headers);
 
       if (files && files.length) {
         for (var i = 0; i < files.length; i++) {
-
+          console.log(files);
           Upload.upload({
             url,
             headers,
             method: 'POST',
             data: {
-              file: files[i]
+              image: files[i]
             }
           })
           .then(res => {
-            galleryData.images.unshift(res.data);
+            console.log('DATA',res.data);
+            console.log('POST DATA', postData);
+            postData.images.unshift(res.data);
             return res.data;
           })
           .catch(err => {

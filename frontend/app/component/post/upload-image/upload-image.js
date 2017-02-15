@@ -5,21 +5,25 @@ module.exports = {
   controller: ['$log', 'imageService', UploadImageController],
   controllerAs: 'uploadImageCtrl',
   bindings: {
-    post: '<'
+    post: '<',
+    gallery: '<'
   }
 };
 
 function UploadImageController($log, imageService) {
-  $log.debug('UploadPicController');
+  $log.debug('UploadImageController');
 
   this.image = {};
 
   this.uploadPostImage = function(files) {
-    imageService.uploadPostImage(this.post, files)
+    // console.log(files);
+    imageService.uploadPostImage(this.gallery, this.post, files)
     .then(() => {
+      console.log(this.image);
+      // console.log('POST', this.post._id);
       // this.image.name = null;
       // this.image.desc = null;
-      this.image.file = null;
+      this.image.image = null;
     });
   };
 }
