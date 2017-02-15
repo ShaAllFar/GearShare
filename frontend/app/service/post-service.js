@@ -12,7 +12,7 @@ function postService($q, $log, $http, authService) {
   // console.log(service.allPosts);
   // console.log(service.allPosts.push('Anything'));
 
-  service.createPost = (post, galleryID) => {
+  service.createPost = (post) => {
     $log.debug('postService.createPost()');
 
     return authService.getToken()
