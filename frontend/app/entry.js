@@ -7,8 +7,9 @@ const angular = require('angular');
 const camelcase = require('camelcase');
 const pascalcase = require('pascalcase');
 const uiRouter = require('angular-ui-router');
+const ngFileUpload = require('ng-file-upload');
 
-const gearShare = angular.module('gear-share', [uiRouter]);
+const gearShare = angular.module('gear-share', [uiRouter, ngFileUpload]);
 
 let context = require.context('./config/', true, /\.js$/);
 context.keys().forEach(path => {
