@@ -1,0 +1,23 @@
+<section class="edit-user">
+  <form class="edit-user-form"
+    name="editUser"
+    ng-submit="editUserCtrl.updateUserInfo()"
+    novalidate>
+
+    <div class="edit-user-container">
+      <fieldset>
+        <span class="item-label">name:</span>
+        <input name="name" class="input-std" ng-model="editUserCtrl.user.username" />
+      </fieldset>
+      <fieldset>
+        <span class="item-label">email:</span>
+        <input name="email" class="input-std" ng-model="editUserCtrl.user.email" />
+      </fieldset>
+      <fieldset>
+        <span class="item-label">location:</span>
+        <input name="location" class="input-std" ng-model="editUserCtrl.user.location" />
+      </fieldset>
+    </div>
+    <button type="submit" class="btn-std">update</button>
+  </form>
+</section>
