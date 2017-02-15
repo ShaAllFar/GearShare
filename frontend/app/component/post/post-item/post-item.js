@@ -17,7 +17,7 @@ function PostItemController($log, postService) {
 
   this.showEditPost = false;
 
-  this.removePost = function() {
+  this.deletePost = function() {
     $log.debug('editPostCtrl.removePost()');
     postService.deletePost(this.post._id)
     .then( () => {

@@ -81,6 +81,34 @@ function postService($q, $log, $http, authService) {
     });
   };
 
+  service.deletePost = function(postID) {
+    $log.debug('postService.deletePost()');
+
+    return authService.getToken()
+    .then( token => {
+      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postID}`; // eslint-disable-line
+      let config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+      return $http.delete(url, config);
+    })
+    .then( res => {
+      for (let i = 0; i < service.allPosts.length; i++) {
+        let current = service.allPosts[i];
+        if (current._id === postID) {
+          service.allPosts.splice(i, 1);
+          break;
+        }
+      }
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
   service.fetchAllPostsFromDB = function() {
     $log.debug('postService.fetchAllPostsFromDB()');
 
@@ -159,33 +187,6 @@ function postService($q, $log, $http, authService) {
   };
 
 
-  service.deletePost = function(galleryID, postID) {
-    $log.debug('postService.deletePost()');
-
-    return authService.getToken()
-    .then( token => {
-      let url = `${__API_URL__}/api/gallery/${galleryID}/post/${postID}`; // eslint-disable-line
-      let config = {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      };
-      return $http.delete(url, config);
-    })
-    .then( res => {
-      for (let i = 0; i < service.allPosts.length; i++) {
-        let current = service.allPosts[i];
-        if (current._id === postID) {
-          service.allPosts.splice(i, 1);
-          break;
-        }
-      }
-    })
-    .catch( err => {
-      $log.error(err.message);
-      return $q.reject(err);
-    });
-  };
 
   return service;
 }
