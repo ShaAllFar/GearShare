@@ -14,11 +14,11 @@ function UploadImageController($log, imageService) {
 
   this.image = {};
 
-  this.uploadPostImage = function() {
-    imageService.uploadPostImage(this.post, this.image)
+  this.uploadPostImage = function(files) {
+    imageService.uploadPostImage(this.post, files)
     .then(() => {
-      this.image.name = null;
-      this.image.desc = null;
+      // this.image.name = null;
+      // this.image.desc = null;
       this.image.file = null;
     });
   };
