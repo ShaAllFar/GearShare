@@ -17,7 +17,9 @@ function postService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
+
       let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post`; // eslint-disable-line
+
       // let url = `${__API_URL__}/api/gallery/`;
       let config = {
         headers: {
@@ -37,11 +39,7 @@ function postService($q, $log, $http, authService) {
       // console.log('WHATISTHIS?', service.allPosts);
       // console.log('FUCK THIS', service.allPosts);
 
-      // service.allPosts[0] = post;
-      // service.allPosts[1] = post;
-      // service.allPosts[2] = post;
-
-      service.allPosts.push(post);
+      service.allPosts.unshift(post);
       console.log(service.allPosts);
       return post;
 
@@ -52,14 +50,29 @@ function postService($q, $log, $http, authService) {
     });
   };
 
+  service.fetchAllPostsFromDB = function() {
+    $log.debug('postService.fetchAllPostsFromDB()');
+
+    let url = `${__API_URL__}/api/post`;
+    let config = {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    };
+    return $http.get(url, config);
+  };
+
   service.fetchUserGallery = function() {
     $log.debug('postService.fetchUserGallery()');
 
     return authService.getToken()
     .then( token => {
-      // console.log(authService);
+      console.log(authService);
       // let url = `${__API_URL__}/api/gallery/${authService.galleryID}/post`;
+
       let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}`; // eslint-disable-line
+
       let config = {
         headers: {
           Accept: 'application/json',
@@ -75,6 +88,38 @@ function postService($q, $log, $http, authService) {
       let gallery = res.data;
       // service.allPosts.unshift(post);
       return gallery;
+    })
+    .catch( err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
+  service.fetchUserPosts = function() {
+    $log.debug('postService.fetchUserPosts');
+
+    authService.getUserId();
+
+    return authService.getGalleryId()
+    .then( () => {
+      return authService.getToken();
+    })
+
+
+    .then( token => {
+      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post`;
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+      return $http.get(url, config);
+    })
+    .then( res => {
+      $log.log('user posts retrieved');
+      service.allPosts = res.data;
+      return service.allPosts;
     })
     .catch( err => {
       $log.error(err.message);

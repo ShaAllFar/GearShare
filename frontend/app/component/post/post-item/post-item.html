@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <edit-gallery ng-if="postItemCtrl.showEditPost" post="postItemCtrl.post"></edit-gallery>
+  <edit-post ng-if="postItemCtrl.showEditPost" post="postItemCtrl.post"></edit-post>
 
   <div class="update-container" ng-if="!postItemCtrl.showEditPost">
     <button class="edit-label" ng-click="postItemCtrl.showEditPost = !postItemCtrl.showEditPost">edit</button>

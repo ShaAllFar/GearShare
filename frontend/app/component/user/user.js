@@ -3,10 +3,10 @@
 require('./_user.scss');
 
 module.exports = {
-    template: require('./user.html'),
-    controller: ['$log', 'profileService', 'authService', UserController],
-    controllerAs: 'userCtrl',
-}
+  template: require('./user.html'),
+  controller: ['$log', 'profileService', 'authService', UserController],
+  controllerAs: 'userCtrl',
+};
 
 
 function UserController($log, profileService, authService){
@@ -17,15 +17,15 @@ function UserController($log, profileService, authService){
     .then(user => {
       $log.log('got user', user);
       this.user = user;
-    })
-  }
-  this.fetchUserData();
+    });
+  };
+  // this.fetchUserData();
 
   this.fetchGallery = function (){
     authService.getGalleryId()
     .then(gallery => {
-      $log.log('user, galleryData', gallery)
-    })
-  }
-  this.fetchGallery();
+      $log.log('user, galleryData', gallery);
+    });
+  };
+  // this.fetchGallery();
 }
