@@ -19,5 +19,13 @@
       <span class="item-label">price:</span>
       <span>{{ homePostCtrl.post.price }}</span>
     </div>
+    <div>
+      <span class="item-label">image:</span>
+      <ul ng-repeat="image in homePostCtrl.post.images">
+        <li>
+          <img ng-src="homePostCtrl.post.images(image)" />
+        </li>
+      </ul>
+    </div>
   </div>
 </li>

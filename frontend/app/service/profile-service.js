@@ -37,5 +37,30 @@ function profileService($q,$log, $http, authService){
     });
   };
 
+  service.updateUserInfo = function(userID, userData){
+    $log.debug('profileService.updateUserInfo()');
+
+    return authService.getToken()
+    .then(token => {
+      let url = `${__API_URL__}/api/profile/${userID}`;
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+
+      return $http.put(url, userData, config);
+    })
+    .then(res => {
+      service.userData = res.data;
+      return service.userData;
+    })
+    .catch(err => {
+      $log.error(err.message);
+    });
+  }
+
   return service;
 }
