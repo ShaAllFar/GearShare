@@ -34,6 +34,7 @@ function ProfileController($log, $location, $rootScope, postService, galleryServ
 
   this.fetchUserPosts();
 
+
   // $rootScope.$on('locationChangeSuccess', () => {
   //   this.fetchUserGallery();
   // });

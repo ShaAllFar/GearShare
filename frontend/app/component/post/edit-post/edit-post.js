@@ -7,19 +7,16 @@ module.exports = {
   controller: ['$log', 'postService', EditPostController],
   controllerAs: 'editPostCtrl',
   bindings: {
-    image: '<',
-    post: '<',
+    post: '<'
   }
 };
 
 function EditPostController($log, postService) {
   $log.debug('EditPostController');
 
-  this.post = {};
-
-  this.editPost = function() {
+  this.updatePost = function() {
     $log.debug('editPostCtrl.editPost()');
-    postService.updatePost(this.gallery, this.post)
+    postService.updatePost(this.post._id, this.post)
     .then( () => {
       $log.debug('post updated');
     })

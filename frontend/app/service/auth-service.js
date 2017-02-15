@@ -9,6 +9,7 @@ function authService($q, $log, $http, $window) {
   let token = null;
   service.currentUserID = null;
   service.currentGalleryID = null;
+  service.currentPostID = null;
 
 
   function setToken(_token){

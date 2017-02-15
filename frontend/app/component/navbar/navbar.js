@@ -6,7 +6,7 @@ module.exports = {
   template: require('./navbar.html'),
   controller: ['$log', '$location', '$rootScope', 'authService', NavbarController],
   controllerAs: 'navbarCtrl'
-}
+};
 
 function NavbarController($log, $location, $rootScope, authService){
   $log.debug('NavbarController');
@@ -31,7 +31,7 @@ function NavbarController($log, $location, $rootScope, authService){
 
   $rootScope.$on('$locationChangeSuccess', () => {
     this.checkPath();
-  })
+  });
 
   this.logout = function(){
     $log.debug('navbarCtrl.logout()');
@@ -39,5 +39,10 @@ function NavbarController($log, $location, $rootScope, authService){
     .then(() => {
       $location.url('/');
     });
+  };
+
+  this.newPost = function() {
+    $log.debug('navbarCtrl.newPost()');
+    $location.url('/profile');
   };
 }
