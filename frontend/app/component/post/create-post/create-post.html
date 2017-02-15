@@ -3,10 +3,26 @@
 
   <form class="post-form"
     ng-submit="createPostCtrl.createPost()">
-    <input
-      name="category"
-      placeholder="category"
+
+    <select name="category"
+      form="post-form"
       ng-model="createPostCtrl.post.category" required>
+      <option value="" disabled selected> --select a category-- </option>
+      <option value="ski">ski + bindings</option>
+      <option value="ski">ski boots</option>
+
+      <option value="snowboard">snowboard + bindings</option>
+      <option value="snowboard">snowboard</option>
+      <option value="snowboard">snowboard bindings</option>
+      <option value="snowboard">snowboard boots</option>
+
+      <option value="soft-goods">jackets</option>
+      <option value="soft-goods">pants</option>
+      <option value="soft-goods">gloves/mittens</option>
+      <option value="soft-goods">helmets</option>
+      <option value="soft-goods">goggles</option>
+
+    </select>
 
     <input
       name="price"
