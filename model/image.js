@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const imageSchema = Schema({
-  name: { type: String, required: true},
-  desc: { type: String, required: true},
+  name: { type: String },
+  desc: { type: String },
   created: { type: String, default: Date.now},
   userID: { type: Schema.Types.ObjectId, required: true},
   galleryID: { type: Schema.Types.ObjectId, required: true},
