@@ -2,9 +2,9 @@
 
 require('./_profile.scss');
 
-module.exports = ['$log', '$location', '$rootScope', 'postService', 'galleryService',ProfileController];
+module.exports = ['$log', '$location', '$rootScope', 'postService', ProfileController];
 
-function ProfileController($log, $location, $rootScope, postService, galleryService) {
+function ProfileController($log, $location, $rootScope, postService) {
   $log.debug('ProfileController');
   console.log(postService);
 
