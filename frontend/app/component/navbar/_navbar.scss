@@ -1,0 +1,30 @@
+@import "../../scss/lib/theme/vars";
+
+.navbar {
+  height: 10vw;
+  background: $brand-secondary;
+  img {
+    height: 6vw;
+    width: 6vw;
+    float: left;
+    padding-left: $gutter-std;
+    padding-top: 2vw;
+  }
+  h1 {
+    float: left;
+    font-family: $font-secondary;
+    padding-top: $gutter-sm;
+    padding-left: $gutter-sm;
+  }
+  nav {
+    margin-right: $gutter-std;
+    .btn-container {
+      padding-top: 2.75vw;
+      button {
+        float: right;
+        margin-left: $gutter-sm;
+      }
+    }
+  }
+
+}
