@@ -5,7 +5,8 @@
     <p> email {{ userCtrl.user.email}}</p>
     <img ng-src="{{userCtrl.user.profileImageURI}}">
   </div>
-
+  <upload-profile></upload-profile>
+  
     <edit-user ng-if="userCtrl.showEditProfile" user="userCtrl.user"></edit-user>
 
     <div class="update-container" ng-if="!userCtrl.showEditProfile">
