@@ -5,7 +5,8 @@ module.exports = {
   controller: ['$log', 'postService', HomePostController],
   controllerAs: 'homePostCtrl',
   bindings: {
-    post: '<'
+    post: '<',
+    image: '<'
   }
 };
 
