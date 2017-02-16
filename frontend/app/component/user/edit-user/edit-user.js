@@ -7,7 +7,7 @@ module.exports = {
   bindings: {
     user: '<'
   }
-}
+};
 
 function EditUserController($log, profileService, authService){
   $log.debug('EditUserController');
@@ -15,7 +15,7 @@ function EditUserController($log, profileService, authService){
   this.updateUserInfo = function(){
     $log.debug('editUserCtrl.updateUserInfo()');
 
-    profileService.updateUserInfo(authService.currentUserID,this.user)
+    profileService.updateUserInfo(authService.currentUserID, this.user)
     .then(() => {
       $log.log('user updated');
     })

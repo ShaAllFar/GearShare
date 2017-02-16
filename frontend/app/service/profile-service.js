@@ -60,7 +60,7 @@ function profileService($q,$log, $http, authService){
     .catch(err => {
       $log.error(err.message);
     });
-  }
+  };
 
   return service;
 }

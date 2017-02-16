@@ -3,14 +3,19 @@
 
 
 module.exports = {
-    template: require('./user.html'),
-    controller: ['$log', 'profileService', 'authService', UserController],
-    controllerAs: 'userCtrl',
-}
+  template: require('./user.html'),
+  controller: ['$log', 'profileService', 'authService', UserController],
+  controllerAs: 'userCtrl',
+  bindings: {
+    user: '<'
+  }
+};
 
 
 function UserController($log, profileService, authService){
   $log.debug('UserController');
+
+  this.showEditProfile = false;
 
   this.user = null;
   this.fetchUserData = function(){
