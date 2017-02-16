@@ -29,7 +29,6 @@ function ProfileController($log, $location, $rootScope, postService) {
     postService.fetchUserPosts()
     .then( posts => {
       this.allPosts = posts.reverse();
-      this.currentPost = posts[0];
     });
   };
 

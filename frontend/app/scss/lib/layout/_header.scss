@@ -5,7 +5,7 @@
 // }
 
 .signin-header {
-  height: 9vw;
+  height: 8.5vw;
   background: $brand-secondary;
   opacity: 0.75;
   text-align: center;
@@ -27,6 +27,7 @@
   .signin-header {
     width: 50%;
     float: left;
+    height: 7.25vw;
 
     span {
       font-size: $font-std + 1vw;
@@ -37,7 +38,7 @@
 
 @media (min-width: 900px) {
   .signin-header {
-    height: 7vw;
+    height: 6.25vw;
 
     span {
       margin-top: 0.5%;

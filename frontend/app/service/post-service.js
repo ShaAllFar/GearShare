@@ -34,7 +34,6 @@ function postService($q, $log, $http, authService) {
     .then( res => {
       $log.log('post created');
 
-      console.log(res.data);
       let post = res.data;
       // console.log('WHATISTHIS?', service.allPosts);
       // console.log('FUCK THIS', service.allPosts);
@@ -94,7 +93,7 @@ function postService($q, $log, $http, authService) {
       };
       return $http.delete(url, config);
     })
-    .then( res => {
+    .then( res => { //eslint-disable-line
       for (let i = 0; i < service.allPosts.length; i++) {
         let current = service.allPosts[i];
         if (current._id === postID) {
@@ -112,7 +111,7 @@ function postService($q, $log, $http, authService) {
   service.fetchAllPostsFromDB = function() {
     $log.debug('postService.fetchAllPostsFromDB()');
 
-    let url = `${__API_URL__}/api/post`;
+    let url = `${__API_URL__}/api/post`; //eslint-disable-line
     let config = {
       headers: {
         Accept: 'application/json',
@@ -166,7 +165,7 @@ function postService($q, $log, $http, authService) {
 
 
     .then( token => {
-      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post`;
+      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post`; //eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',
