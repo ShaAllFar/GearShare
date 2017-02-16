@@ -55,6 +55,7 @@ function imageService($q, $log, $http, Upload, authService) {
             }
           })
           .then(res => {
+            $log.log('image-service line 58', res.data);
             postData.images.unshift(res.data);
             return res.data;
           })

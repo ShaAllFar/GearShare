@@ -5,7 +5,7 @@ module.exports = {
   controller: ['$log', 'imageService', UploadImageController],
   controllerAs: 'uploadImageCtrl',
   bindings: {
-    post: '<'
+    post: '<',
   }
 };
 
