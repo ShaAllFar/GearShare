@@ -37,11 +37,41 @@ postRouter.post('/api/gallery/:galleryID/post', bearerAuth, jsonParser, function
   });
 });
 
+postRouter.get('/api/post', function(req, res, next) {
+  debug('GET: /api/post');
+
+
+  Post.find({})
+  .then(post => {
+    console.log(post);
+    if(post === null) return next(createError(404, 'no posts found'));
+    res.json(post);
+  })
+  .catch(next);
+});
+
+postRouter.get('/api/gallery/:galleryID/post', bearerAuth, function(req, res, next) {
+  debug('GET: /api/gallery/:galleyID/post');
+
+  Post.find({galleryID: req.params.galleryID})
+  .populate('images')
+  .then(post => {
+    console.log(post);
+    if(post === null) return next(createError(404, 'post not found'));
+    // if(post.userID.toString() !== req.user._id.toString()){
+    //   return next(createError(401, 'invalid user'));
+    // }
+    res.json(post);
+  })
+  .catch(next);
+});
+
 
 postRouter.get('/api/gallery/:galleyID/post/:postID', bearerAuth, function(req, res, next) {
   debug('GET: /api/gallery/:galleyID/post/:postID');
 
   Post.findById(req.params.postID)
+  // .populate('image')
   .then(post => {
     if(post === null) return next(createError(404, 'post not found'));
     if(post.userID.toString() !== req.user._id.toString()){
@@ -72,7 +102,7 @@ postRouter.delete('/api/gallery/:galleryID/post/:postID', bearerAuth, function(r
   Gallery.findById(req.params.galleryID)
   .then(gallery => {
     gallery.postIDs.remove(req.params.postID);
-    return Post.findByIdAndRemove(req.params.postID)
+    return Post.findByIdAndRemove(req.params.postID);
   })
   .then(post => {
     if(post === null) return next(createError(404,'id not found'));
@@ -80,5 +110,5 @@ postRouter.delete('/api/gallery/:galleryID/post/:postID', bearerAuth, function(r
   })
   .catch(err => {
     next(createError(404, err.message));
-  })
+  });
 });

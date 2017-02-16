@@ -1,0 +1,21 @@
+<section class="home">
+  <h2>Homepage</h2>
+  <input class="input-std" type="text" ng-model="homeCtrl.postSearchTerm" placeholder="search" />
+<select ng-model="homeCtrl.select" ng-change="homeCtrl.filterByCategory(homeCtrl.select)">
+<!-- <option value="" disabled selected >Please Choose</option> -->
+  <option value="snowboard">snowboard</option>
+  <option value="fgfg">fgfg</option>
+  <option value="ski">ski</option>
+
+
+</select>
+  <button ng-click="homeCtrl.fetchAllPostsFromDB()">reset by date</button>
+  <button ng-click="homeCtrl.filterByNewest()">filter by Newest</button>
+  <button ng-click="homeCtrl.filterByCategory('snowboard')">filter by Category</button>
+
+  <home-posts
+    ng-repeat="item in homeCtrl.homePostArray | postSearch: homeCtrl.postSearchTerm"
+    post="item">
+
+  </home-posts>
+</section>

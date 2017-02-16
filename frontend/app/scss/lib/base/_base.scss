@@ -1,0 +1,103 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: $font-secondary;
+  font-size: $font-std;
+  background: $white;
+  // color: $black;
+  color: #fff;
+
+  background-image: url(../../../img/woods.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+a {
+  text-decoration: none;
+  color: $black;
+  font-weight: bold;
+}
+
+.clear-fix:after {
+  clear: both;
+  content: " ";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+h1 {
+  @extend .clear-fix;
+  color: $white;
+  font-size: $font-lg;
+  margin-bottom: $gutter-sm;
+}
+
+h2 {
+  @extend .clear-fix;
+  font-size: $font-std + 2vw;
+  margin: $gutter-sm;
+}
+
+h3 {
+  @extend .clear-fix;
+  font-size: $font-std + 1vw;
+  margin-bottom: $gutter-sm;
+}
+
+button {
+  padding: 1% 5%;
+  background: $black;
+  color: $white;
+  font-size: 2vw;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 350ms all;
+  margin-bottom: $gutter-sm;
+}
+
+.btn-primary {
+  @extend button;
+  background: $brand-primary;
+
+  &:hover {
+    background: $btn-hover-primary;
+    color: $white;
+  }
+}
+
+.btn-secondary {
+  @extend button;
+  background: $brand-secondary;
+
+  &:hover {
+    background: $btn-hover-secondary;
+    color: $white;
+  }
+}
+
+.btn-tertiary {
+  @extend button;
+  background: $brand-tertiary;
+
+  &:hover {
+    background: $btn-hover-tertiary;
+    color: $white;
+  }
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 1.5vw 2vw;
+  font-size: $font-std;
+  border: solid 0.1vw #95989a;
+  box-sizing: border-box;
+  margin-bottom: $gutter-sm;
+}
+
+input[type="password"] {
+  @extend input[type="text"];
+}
