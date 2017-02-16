@@ -1,9 +1,14 @@
 <section class="profile">
-  <h2>Profile</h2>
+  <h2>my bin</h2>
     <div class="post-section">
 
       <user></user>
       <create-post></create-post>
+      <div class="home-link">
+        <a href="/#!/home"><img alt="HOME" src="../../../../img/goggles.png"></a>
+        <a href="/#!/home"><h3>home</h3></a>
+      </div>
+      <div class="clear-fix"></div>
       <ul>
         <post-item
           ng-repeat="item in profileCtrl.allPosts"

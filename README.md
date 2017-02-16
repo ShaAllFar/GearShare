@@ -24,7 +24,7 @@ As a gear enthusiasts
 
 ### User Model
 
-This application contains a multiple resource API that uses MongoDB to serve as a database, and Express.js to handle routing. It uses basic and bearer authentication to give access to new and returning users. The user is able to run CRUD operations, allowing them to create and edit a gallery, create and update a post to their gallery, and add or delete an image from their post. All images are housed using Amazon Web Services S3 storage. The models are being used through mongoose that connect with a MongoDB collection. In order to grant a user access, they must receive a valid JSON web token by entering a username, password, email, and location.
+This application contains a multiple resource API that uses MongoDB to serve as a database, and Express.js to handle routing. It uses basic and bearer authentication to give access to new and returning users. The user is able to run CRUD operations, allowing them to create and update a post to their gallery, and add or delete an image from their post. All images are housed using Amazon Web Services S3 storage. The models are being used through mongoose that connect with a MongoDB collection. The front-end was built on the AngularJS framework using a component based architecture with Webpack to handle the module build process. Sass was implemented for all styling.
 
 # Set Up
 
