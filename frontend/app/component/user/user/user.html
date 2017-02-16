@@ -1,15 +1,15 @@
 <section class="user">
   <div class="current-item" ng-if="!userCtrl.showEditProfile">
-    <img class="superman" ng-src="{{userCtrl.user.profileImageURI}}">
-    <p> name {{ userCtrl.user.username}}</p>
-    <p> location {{ userCtrl.user.location}}</p>
-    <p> email {{ userCtrl.user.email}}</p>
+    <img ng-src="{{userCtrl.user.profileImageURI}}">
+    <p> {{ userCtrl.user.username}}</p>
+    <p> {{ userCtrl.user.email}}</p>
+    <p> location: {{ userCtrl.user.location}}</p>
   </div>
-  
+
 
     <edit-user ng-if="userCtrl.showEditProfile" user="userCtrl.user"></edit-user>
 
     <div class="update-container" ng-if="!userCtrl.showEditProfile">
-      <button class="edit-label" ng-click="userCtrl.showEditProfile = !userCtrl.showEditProfile">edit</button>
+      <button class="btn-secondary" ng-click="userCtrl.showEditProfile = !userCtrl.showEditProfile">edit</button>
     </div>
 </section>
