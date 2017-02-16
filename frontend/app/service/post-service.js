@@ -31,7 +31,7 @@ function postService($q, $log, $http, authService) {
 
       return $http.post(url, post, config);
     })
-    .then( res => {
+    .then(res => {
       $log.log('post created');
 
       let post = res.data;

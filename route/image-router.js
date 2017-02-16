@@ -78,7 +78,7 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
   })
   .then(image => {
     tempImage = image;
-    tempPost.images.push(image._id);
+    tempPost.images.unshift(image._id);
     return tempPost.save();
   })
   .then(() => res.json(tempImage))
