@@ -31,6 +31,8 @@ function s3uploadProm(params) {
   });
 }
 
+
+
 imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, upload.single('image'), function(req, res, next) {
   debug('POST: /api/gallery/postID/image'); //TODO double check path
 
@@ -88,6 +90,7 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
   });
 
 });
+
 
 imageRouter.delete('/api/gallery/:galleryID/post/:postID/image/:imageID', bearerAuth, function(req, res, next) {
   debug('DELETE: api/gallery/:galleryID/post/:postID/image/:imageID');
