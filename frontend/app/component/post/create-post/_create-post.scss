@@ -12,11 +12,12 @@
     height: 15vw;
     width: 15vw;
     margin-left: $gutter-sm;
+    margin-top: $gutter-sm;
   }
 
   .post-form {
     float: right;
-    border: 1px solid green;
+    // border: 1px solid green;
     top: 0;
     width: 60%;
     height: 25vw;
@@ -25,6 +26,7 @@
       padding-bottom: 1vw;
       .category {
         width: 17.5vw;
+        margin-top: $gutter-sm;
       }
       .price {
         width: 8vw;

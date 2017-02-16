@@ -1,9 +1,22 @@
 @import "../../scss/lib/theme/vars";
 
 .profile {
+  h2 {
+    text-align: center;
+  }
 
   .post-section {
     border: 1px solid orange;
+    a {
+      color: $white;
+
+    }
+    img {
+      position: relative;
+      height: 15vw;
+      width: 15vw;
+      float: right;
+    }
 
   }
 }
