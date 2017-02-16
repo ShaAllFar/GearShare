@@ -1,0 +1,54 @@
+@import "../../../scss/lib/theme/vars";
+
+.user-post {
+  float: left;
+  width: 50%;
+  height: 28vw;
+  border: 1px solid red;
+
+  .placeholder-image {
+    float: left;
+    background: #000;
+    height: 15vw;
+    width: 15vw;
+    margin-left: $gutter-sm;
+    margin-top: $gutter-sm;
+  }
+
+  .post-form {
+    float: right;
+    // border: 1px solid green;
+    top: 0;
+    width: 60%;
+    height: 25vw;
+    margin-top: $gutter-sm;
+
+    p {
+      padding-bottom: 1vw;
+      .category {
+        width: 17.5vw;
+        padding: 2vw;
+
+      }
+      .price {
+        width: 8vw;
+        padding: 0.5vw;
+        border: none;
+      }
+      .name {
+        width: 19vw;
+        padding: 0.5vw;
+        border: none;
+
+      }
+      .description {
+        margin-top: 1vw;
+        min-width: 25.5vw;
+      }
+    }
+    button {
+      margin-left: 6vw;
+      padding-bottom: 0.75vw;
+    }
+  }
+}
