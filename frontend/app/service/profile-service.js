@@ -80,7 +80,7 @@ function profileService($q,$log, $http, Upload, authService){
         data: {
           image: file
         }
-      });
+      })
     })
     .then(res => {
       $log.log('image response', res.data);
