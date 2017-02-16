@@ -19,6 +19,5 @@ exports.exampleGallery2 = {
 exports.examplePost2 = {
   name: 'post name2',
   desc: 'post description2',
-  price: 2002,
-  category: 'snowboard'
+  price: 2002
 };

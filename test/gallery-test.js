@@ -145,22 +145,26 @@ describe('Gallery Routes', function(){
   describe('GET: /api/gallery/:id', () => {
     beforeEach(done => {
       new User(exampleUser)
-    .generatePasswordHash(exampleUser.password)
-    .then(user  => user.save())
-    .then(user => {
-      this.tempUser = user;
-      return user.generateToken();
-    })
-    .then(token => {
-      this.tempToken = token;
+      .generatePasswordHash(exampleUser.password)
+      .then(user  => user.save())
+      .then(user => {
+        this.tempUser = user;
+        return user.generateToken();
+      })
+      .then(token => {
+        this.tempToken = token;
+        done();
+      })
+      .catch(done);
+    });
+    beforeEach(done => {
       exampleGallery.userID = this.tempUser._id.toString();
-      return new Gallery(exampleGallery).save();
-    })
-    .then(gallery => {
-      this.tempGallery = gallery;
-      done();
-    })
-    .catch(done);
+      new Gallery(exampleGallery).save()
+      .then(gallery => {
+        this.tempGallery = gallery;
+        done();
+      })
+      .catch(done);
     });
     afterEach(() => {
       delete exampleGallery.userID;
@@ -210,7 +214,7 @@ describe('Gallery Routes', function(){
     });
     describe('with wrong user provided', () => {
       //second user
-      beforeEach(done => {
+      before(done => {
         new User(exampleUser2)
         .generatePasswordHash(exampleUser2.password)
         .then(user  => user.save())
@@ -220,9 +224,13 @@ describe('Gallery Routes', function(){
         })
         .then(token => {
           this.tempToken2 = token;
-          exampleGallery2.userID = this.tempUser2._id.toString();
-          return new Gallery(exampleGallery2).save();
+          done();
         })
+        .catch(done);
+      });
+      before(done => {
+        exampleGallery2.userID = this.tempUser2._id.toString();
+        new Gallery(exampleGallery2).save()
         .then(gallery => {
           this.tempGallery2 = gallery;
           done();
@@ -256,9 +264,13 @@ describe('Gallery Routes', function(){
       })
       .then(token => {
         this.tempToken = token;
-        exampleGallery.userID = this.tempUser._id.toString();
-        return new Gallery(exampleGallery).save();
+        done();
       })
+      .catch(done);
+    });
+    beforeEach(done => {
+      exampleGallery.userID = this.tempUser._id.toString();
+      new Gallery(exampleGallery).save()
       .then(gallery => {
         this.tempGallery = gallery;
         done();
@@ -344,8 +356,8 @@ describe('Gallery Routes', function(){
           expect(res.status).to.equal(404);
           done();
         });
-      });
-    });
+      })
+    })
   });
 
   describe('DELETE: /api/gallery/:id', () => {
@@ -359,9 +371,13 @@ describe('Gallery Routes', function(){
       })
       .then(token => {
         this.tempToken = token;
-        exampleGallery.userID = this.tempUser._id.toString();
-        return new Gallery(exampleGallery).save();
+        done();
       })
+      .catch(done);
+    });
+    beforeEach(done => {
+      exampleGallery.userID = this.tempUser._id.toString();
+      new Gallery(exampleGallery).save()
       .then(gallery => {
         this.tempGallery = gallery;
         done();

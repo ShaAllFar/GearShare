@@ -45,16 +45,24 @@ describe('Post Routes', function(){
     })
     .then(token => {
       this.tempToken = token;
-      exampleGallery.userID = this.tempUser._id.toString();
-      return new Gallery(exampleGallery).save();
+      done();
     })
+    .catch(done);
+  });
+  beforeEach(done => {
+    exampleGallery.userID = this.tempUser._id.toString();
+    new Gallery(exampleGallery).save()
     .then(gallery => {
       this.tempGallery = gallery;
-      examplePost.userID = this.tempUser._id.toString();
-      examplePost.galleryID = this.tempGallery._id.toString();
-      return new Post(examplePost).save();
+      done();
     })
-    .then( post => {
+    .catch(done);
+  });
+  beforeEach(done => {
+    examplePost.galleryID = this.tempGallery._id;
+    examplePost.userID = this.tempUser._id;
+    new Post(examplePost).save()
+    .then(post => {
       this.tempPost = post;
       done();
     })
@@ -82,9 +90,9 @@ describe('Post Routes', function(){
           expect(res.body.galleryID).to.equal(this.tempGallery._id.toString());
           expect(res.body.userID).to.equal(this.tempUser._id.toString());
           done();
-        });
+        })
       });
-    });
+    })
     describe('with an invalid body', () => {
       it('should return bad request', done => {
         request.post(`${url}/api/gallery/${this.tempGallery._id}/post`)
@@ -118,7 +126,7 @@ describe('Post Routes', function(){
         request.post(`${url}/api/gallery/${this.tempGallery._id}/post`)
         .send(examplePost)
         .set({
-          Authorization: 'Bearer '
+          Authorization: `Bearer `
         })
         .end(res => {
           expect(res.status).to.equal(401);
@@ -132,46 +140,46 @@ describe('Post Routes', function(){
   describe('GET: /api/gallery/:galleryID/post/:postID', () => {
     describe('with a valid body', () => {
       it('should return a post', done => {
-        request.get(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}`)
-        .set({
-          Authorization: `Bearer ${this.tempToken}`
-        })
-        .end((err,res) => {
-          if(err) return done(err);
-          expect(res.status).to.equal(200);
-          expect(examplePost.name).to.equal('post name');
-          expect(examplePost.desc).to.equal('post description');
-          expect(res.body.galleryID).to.equal(this.tempGallery._id.toString());
-          expect(res.body.userID).to.equal(this.tempUser._id.toString());
-          done();
-        });
+          request.get(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}`)
+          .set({
+            Authorization: `Bearer ${this.tempToken}`
+          })
+          .end((err,res) => {
+            if(err) return done(err);
+            expect(res.status).to.equal(200);
+            expect(examplePost.name).to.equal('post name');
+            expect(examplePost.desc).to.equal('post description');
+            expect(res.body.galleryID).to.equal(this.tempGallery._id.toString());
+            expect(res.body.userID).to.equal(this.tempUser._id.toString());
+            done();
+          })
       });
     });
     describe('with an invalid id', () => {
       it('should return not found', done => {
-        request.get(`${url}/api/gallery/${this.tempGallery._id}/post/5875c352abf66a4b867bf7c2`)
-        .set({
-          Authorization: `Bearer ${this.tempToken}`
-        })
-        .end((err,res) => {
-          expect(err.name).to.equal('Error');
-          expect(res.status).to.equal(404);
-          expect(res.body).to.be.empty;
-          done();
-        });
+          request.get(`${url}/api/gallery/${this.tempGallery._id}/post/5875c352abf66a4b867bf7c2`)
+          .set({
+            Authorization: `Bearer ${this.tempToken}`
+          })
+          .end((err,res) => {
+            expect(err.name).to.equal('Error');
+            expect(res.status).to.equal(404);
+            expect(res.body).to.be.empty;
+            done();
+          })
       });
-    });
+    })
     describe('with no token provided', () => {
       it('should return unauthorized', done => {
-        request.get(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}`)
-        .set({
-          Authorization: 'Bearer '
-        })
-        .end(res => {
-          expect(res.status).to.equal(401);
-          expect(res.body).to.equal(undefined);
-          done();
-        });
+          request.get(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}`)
+          .set({
+            Authorization: `Bearer `
+          })
+          .end(res => {
+            expect(res.status).to.equal(401);
+            expect(res.body).to.equal(undefined);
+            done();
+          })
       });
     });
     describe('with wrong user provided', () => {
@@ -185,16 +193,24 @@ describe('Post Routes', function(){
         })
         .then(token => {
           this.tempToken2 = token;
-          exampleGallery2.userID = this.tempUser2._id.toString();
-          return new Gallery(exampleGallery2).save();
+          done();
         })
+        .catch(done);
+      });
+      before(done => {
+        exampleGallery2.userID = this.tempUser2._id.toString();
+        new Gallery(exampleGallery2).save()
         .then(gallery => {
           this.tempGallery2 = gallery;
-          examplePost2.userID = this.tempUser2._id.toString();
-          examplePost2.galleryID = this.tempGallery2._id.toString();
-          return new Post(examplePost2).save();
+          done();
         })
-        .then( post => {
+        .catch(done);
+      });
+      before(done => {
+        examplePost2.galleryID = this.tempGallery2._id;
+        examplePost2.userID = this.tempUser2._id;
+        new Post(examplePost2).save()
+        .then(post => {
           this.tempPost2 = post;
           done();
         })
@@ -205,17 +221,17 @@ describe('Post Routes', function(){
         delete examplePost2.galleryID;
       });
       it('should return unauthorized', done => {
-        request.get(`${url}/api/gallery/${this.tempGallery2._id}/post/${this.tempPost2._id}`)
-        .set({
-          Authorization: `Bearer ${this.tempToken}`
-        })
-        .end(res => {
-          expect(res.status).to.equal(401);
-          expect(res.body).to.equal(undefined);
-          done();
-        });
+          request.get(`${url}/api/gallery/${this.tempGallery2._id}/post/${this.tempPost2._id}`)
+          .set({
+            Authorization: `Bearer ${this.tempToken}`
+          })
+          .end(res => {
+            expect(res.status).to.equal(401);
+            expect(res.body).to.equal(undefined);
+            done();
+          })
       });
-    });
+    })
   });
 
   describe('PUT: /api/gallery/:galleryID/post/:postID', () => {
@@ -252,8 +268,8 @@ describe('Post Routes', function(){
           expect(res.body).to.equal(undefined);
           done();
         });
-      });
-    });
+      })
+    })
     describe('with an invalid id', () => {
       it('should return not found', done => {
         let updated = {name: 'new name', desc: 'new description', price: 100};
@@ -277,7 +293,7 @@ describe('Post Routes', function(){
         request.put(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}`)
         .send(updated)
         .set({
-          Authorization: 'Bearer '
+          Authorization: `Bearer `
         })
         .end(res => {
           expect(res.status).to.equal(401);
@@ -319,7 +335,7 @@ describe('Post Routes', function(){
       it('should return unauthorized', done => {
         request.delete(`${url}/api/gallery/${this.tempGallery._id}/post/${this.tempPost._id}`)
         .set({
-          Authorization: 'Bearer '
+          Authorization: `Bearer `
         })
         .end(res => {
           expect(res.status).to.equal(401);
@@ -339,7 +355,7 @@ describe('Post Routes', function(){
           expect(res.status).to.equal(204);
           expect(this.tempGallery.postIDs).to.be.empty;
           done();
-        });
+        })
       });
     });
     describe('with invalid gallery id', () => {
@@ -354,5 +370,6 @@ describe('Post Routes', function(){
         });
       });
     });
+
   });
 });

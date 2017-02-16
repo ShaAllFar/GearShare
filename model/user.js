@@ -11,10 +11,10 @@ const debug = require('debug')('gear-share:user');
 const Schema = mongoose.Schema;
 
 const userSchema = Schema({
-  username: {type: String, required: true, unique: true},
+  username: {type: String, require: true, unique: true},
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
-  profileImageURI: {type: String},
+  profileImageURI: {type: String, required: true},
   location: {type: String, required: true},
   findHash: {type: String, unique: true}
 });
@@ -69,7 +69,7 @@ userSchema.methods.generateToken = function() {
 
   return new Promise((resolve, reject) => {
     this.generateFindHash()
-    .then(findHash => resolve(jwt.sign({token: findHash, userID: this._id}, process.env.APP_SECRET)))
+    .then(findHash => resolve(jwt.sign({token: findHash}, process.env.APP_SECRET)))
     .catch(err => reject(err));
   });
 };
