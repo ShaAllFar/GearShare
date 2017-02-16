@@ -7,25 +7,45 @@ function imageService($q, $log, $http, Upload, authService) {
 
   let service = {};
 
+  service.fetchPostImages = function(postData) {
+    $log.debug('fetchPostImages');
+
+    return authService.getGalleryId()
+    .then(() => {
+      return authService.getToken();
+    })
+    .then(token => {
+      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postData._id}/image`;
+      let config = {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      };
+      return $http.get(url, config);
+    })
+    .then(res => {
+      $log.log('post images retrieved');
+    })
+    .catch(err => {
+      $log.error(err.message);
+      return $q.reject(err);
+    });
+  };
+
   service.uploadPostImage = function(postData, files) {
     $log.debug('uploadPostImage');
-    // console.log(postID);
-    // console.log(files);
 
     return authService.getToken()
     .then(token => {
-      // console.log(token);
       let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postData._id}/image`; //eslint-disable-line
-      // console.log(url);
       let headers = {
         Authorization: `Bearer ${token}`,
         Accept: 'application/json'
       };
-      // console.log(headers);
 
       if (files && files.length) {
         for (var i = 0; i < files.length; i++) {
-          console.log(files);
           Upload.upload({
             url,
             headers,
@@ -35,8 +55,6 @@ function imageService($q, $log, $http, Upload, authService) {
             }
           })
           .then(res => {
-            console.log('DATA',res.data);
-            console.log('POST DATA', postData);
             postData.images.unshift(res.data);
             return res.data;
           })
@@ -51,7 +69,6 @@ function imageService($q, $log, $http, Upload, authService) {
 
   service.deletePostImage = function(postData, imageData) {
     $log.debug('imageService.deletePostImage');
-    console.log(imageData);
 
     return authService.getToken()
     .then(token => {

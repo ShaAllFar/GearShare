@@ -79,6 +79,17 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
 
 });
 
+imageRouter.get('/api/gallery/:galleryID/post/:postID/image', bearerAuth, function(req, res, next) {
+  debug('GET: /api/gallery/:galleryID/post/:postID/image');
+
+  Image.find({postID: req.params.postID})
+  .then(image => {
+    if (image === null) return next(createError(404, 'image not found'));
+    res.json(image);
+  })
+  .catch(next);
+});
+
 imageRouter.delete('/api/gallery/:galleryID/post/:postID/image/:imageID', bearerAuth, function(req, res, next) {
   debug('DELETE: api/gallery/:galleryID/post/:postID/image/:imageID');
 
