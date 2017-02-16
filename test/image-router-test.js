@@ -30,41 +30,51 @@ describe('Image Routes', function() {
   after( done => {
     serverToggle.serverOff(server, done);
   });
-
-  beforeEach(done => {
-    new User(exampleUser)
-    .generatePasswordHash(exampleUser.password)
-    .then(user  => user.save())
-    .then(user => {
-      this.tempUser = user;
-      return user.generateToken();
-    })
-    .then(token => {
-      this.tempToken = token;
-      exampleGallery.userID = this.tempUser._id.toString();
-      return new Gallery(exampleGallery).save();
-    })
-    .then(gallery => {
-      this.tempGallery = gallery;
-      examplePost.userID = this.tempUser._id.toString();
-      examplePost.galleryID = this.tempGallery._id.toString();
-      return new Post(examplePost).save();
-    })
-    .then( post => {
-      this.tempPost = post;
-      done();
-    })
-    .catch(done);
-  });
-  afterEach( done => {
-    delete exampleGallery.userID;
-    delete examplePost.galleryID;
-    delete examplePost.userID;
-    done();
-  });
   afterEach(done => clearDB(done));
 
   describe('POST: /api/gallery/:postID/image', () => {
+    beforeEach( done => {
+      new User(exampleUser)
+      .generatePasswordHash(exampleUser.password)
+      .then( user => user.save())
+      .then( user => {
+        this.tempUser = user;
+        return user.generateToken();
+      })
+      .then( token => {
+        this.tempToken = token;
+        done();
+      })
+      .catch(done);
+    });
+
+    beforeEach( done => {
+      exampleGallery.userID = this.tempUser._id.toString();
+      new Gallery(exampleGallery).save()
+      .then( gallery => {
+        this.tempGallery = gallery;
+        done();
+      })
+      .catch(done);
+    });
+
+    beforeEach( done => {
+      examplePost.userID = this.tempUser._id.toString();
+      examplePost.galleryID = this.tempGallery._id.toString();
+      new Post(examplePost).save()
+      .then( post => {
+        this.tempPost = post;
+        done();
+      })
+      .catch(done);
+    });
+
+    afterEach( done => {
+      delete exampleGallery.userID;
+      delete examplePost.galleryID;
+      delete examplePost.userID;
+      done();
+    });
     describe('with a valid token and valid data', () => {
 
       it('should return an image', done => {
@@ -195,6 +205,48 @@ describe('Image Routes', function() {
   });
 
   describe('DELETE: api/image/:imageID', () => {
+    beforeEach( done => {
+      new User(exampleUser)
+      .generatePasswordHash(exampleUser.password)
+      .then( user => user.save())
+      .then( user => {
+        this.tempUser = user;
+        return user.generateToken();
+      })
+      .then( token => {
+        this.tempToken = token;
+        done();
+      })
+      .catch(done);
+    });
+
+    beforeEach( done => {
+      exampleGallery.userID = this.tempUser._id.toString();
+      new Gallery(exampleGallery).save()
+      .then( gallery => {
+        this.tempGallery = gallery;
+        done();
+      })
+      .catch(done);
+    });
+
+    beforeEach( done => {
+      examplePost.userID = this.tempUser._id.toString();
+      examplePost.galleryID = this.tempGallery._id.toString();
+      new Post(examplePost).save()
+      .then( post => {
+        this.tempPost = post;
+        done();
+      })
+      .catch(done);
+    });
+
+    afterEach( done => {
+      delete exampleGallery.userID;
+      delete examplePost.galleryID;
+      delete examplePost.userID;
+      done();
+    });
 
     beforeEach(done => {
       exampleImage.userID = this.tempUser._id.toString();
@@ -251,4 +303,6 @@ describe('Image Routes', function() {
       });
     });
   });
+
+
 });

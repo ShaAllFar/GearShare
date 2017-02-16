@@ -34,10 +34,10 @@ function s3uploadProm(params) {
 imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, upload.single('image'), function(req, res, next) {
   debug('POST: /api/gallery/postID/image'); //TODO double check path
 
-  // if(!req.body.name || !req.body.desc) {
-  //   del([`${dataDir}/*`]);
-  //   return next(createError(400, 'missing name and/or description'));
-  // }
+  if(!req.body.name || !req.body.desc) {
+    del([`${dataDir}/*`]);
+    return next(createError(400, 'missing name and/or description'));
+  }
 
   if(!req.file) {
     return next(createError(400, 'file not found'));
@@ -56,13 +56,8 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
     Body: fs.createReadStream(req.file.path)
   };
 
-  let tempPost;
-  let tempImage;
   Post.findById(req.params.postID)
-  .then( (post) => {
-    tempPost = post;
-    return s3uploadProm(params);
-  })
+  .then( () => s3uploadProm(params))
   .then( s3data => {
     del([`${dataDir}/*`]);
     let imageData = {
@@ -76,16 +71,11 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
     };
     return new Image(imageData).save();
   })
-  .then(image => {
-    tempImage = image;
-    tempPost.images.push(image._id);
-    return tempPost.save();
-  })
-  .then(() => res.json(tempImage))
+  .then( image => res.json(image))
   .catch( err => {
     del([`${dataDir}/*`]);
     next(createError(404,err.message));
-  });
+  })
 
 });
 

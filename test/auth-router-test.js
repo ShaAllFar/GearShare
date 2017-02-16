@@ -18,6 +18,18 @@ const testData = require('./lib/test-data.js');
 
 const exampleUser = testData.exampleUser;
 
+// describe('at root', () => {
+//   it.only('should return app title', done => {
+//     request.get(`${url}/`)
+//     .end((err,res) => {
+//       if(err) return done(err);
+//       // expect(res.status).to.equal(200);
+//       // expect(res.text).to.equal('Gear Share');
+//       expect(res.body).to.be.empty;
+//       done();
+//     });
+//   });
+// });
 
 describe('Auth Routes', function() {
   before(done => {
@@ -27,11 +39,21 @@ describe('Auth Routes', function() {
   after(done => {
     serverToggle.serverOff(server, done);
   });
-
+  // afterEach(done => {
+  //   Promise.all([
+  //     User.remove({})
+  //   ])
+  //   .then(() => done())
+  //   .catch(done);
   afterEach(done => clearDB(done));
-
+  // });
   describe('POST: /api/signup', function() {
     describe('with a valid body', function() {
+      after(done => {
+        User.remove({})
+        .then(() => done())
+        .catch(done);
+      });
 
       it('should return a token', done => {
         request.post(`${url}/api/signup`)
@@ -186,40 +208,40 @@ describe('Auth Routes', function() {
       });
     });
 
-    // describe('with no profileImageURI', function() {
-    //   it('should throw a 400 error', done => {
-    //     request.post(`${url}/api/signup`)
-    //     .send({
-    //       username: exampleUser.username,
-    //       email: exampleUser.email,
-    //       password: exampleUser.password,
-    //       location:  exampleUser.location
-    //     })
-    //     .end( (err, res) => {
-    //       expect(err).to.be.an('error');
-    //       expect(res.status).to.equal(400);
-    //       done();
-    //     });
-    //   });
-    // });
-    //
-    // describe('with an invalid profileImageURI', function() {
-    //   it('should throw a 400 error', done => {
-    //     request.post(`${url}/api/signup`)
-    //     .send({
-    //       username: exampleUser.username,
-    //       email: exampleUser.email,
-    //       password: exampleUser.password,
-    //       profileImageURI: User.profileImageURI,
-    //       location:  exampleUser.location
-    //     })
-    //     .end( (err, res) => {
-    //       expect(err).to.be.an('error');
-    //       expect(res.status).to.equal(400);
-    //       done();
-    //     });
-    //   });
-    // });
+    describe('with no profileImageURI', function() {
+      it('should throw a 400 error', done => {
+        request.post(`${url}/api/signup`)
+        .send({
+          username: exampleUser.username,
+          email: exampleUser.email,
+          password: exampleUser.password,
+          location:  exampleUser.location
+        })
+        .end( (err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
+
+    describe('with an invalid profileImageURI', function() {
+      it('should throw a 400 error', done => {
+        request.post(`${url}/api/signup`)
+        .send({
+          username: exampleUser.username,
+          email: exampleUser.email,
+          password: exampleUser.password,
+          profileImageURI: User.profileImageURI,
+          location:  exampleUser.location
+        })
+        .end( (err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
 
     describe('with no location', function() {
       it('should throw a 400 error', done => {
@@ -269,6 +291,12 @@ describe('Auth Routes', function() {
       .catch(done);
     });
 
+    after(done => {
+      User.remove({})
+      .then(() => done())
+      .catch(done);
+    });
+
     describe('with a valid/authenticated user', () => {
       it('should return a token', done => {
         request.get(`${url}/api/signin`)
@@ -281,6 +309,8 @@ describe('Auth Routes', function() {
         });
       });
     });
+
+    //TODO with an invalid token 'token required'
 
     describe('with an invalid password/unauthenticated user', () => {
       it('should return a 401 error', done => {
