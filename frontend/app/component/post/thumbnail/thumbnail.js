@@ -13,23 +13,6 @@ module.exports = {
 function ThumbnailController($log, imageService) {
   $log.debug('ThumbnailController');
 
-  $log.log('haha',this.image)
-
-  // this.fetchedImages = [];
-  //
-  // this.fetchPostImages = function() {
-  //   $log.debug('thumbnailCtrl.fetchPostImages');
-  //
-  //   imageService.fetchPostImages(this.post)
-  //   .then(image => {
-  //     console.log('IMAGE', image);
-  //     this.fetchedImages = image;
-  //     console.log('ARRAY', this.fetchedImages);
-  //   });
-  // };
-
-  // this.fetchPostImages();
-
   this.deletePostImage = function() {
     $log.debug('thumbnailCtrl.deletePostImage()');
 

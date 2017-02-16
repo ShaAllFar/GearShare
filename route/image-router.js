@@ -38,7 +38,7 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
   //   del([`${dataDir}/*`]);
   //   return next(createError(400, 'missing name and/or description'));
   // }
-  
+
   if(!req.file) {
     return next(createError(400, 'file not found'));
   }
@@ -87,17 +87,6 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
     next(createError(404,err.message));
   });
 
-});
-
-imageRouter.get('/api/gallery/:galleryID/post/:postID/image', bearerAuth, function(req, res, next) {
-  debug('GET: /api/gallery/:galleryID/post/:postID/image');
-
-  Image.find({postID: req.params.postID})
-  .then(image => {
-    if (image === null) return next(createError(404, 'image not found'));
-    res.json(image);
-  })
-  .catch(next);
 });
 
 imageRouter.delete('/api/gallery/:galleryID/post/:postID/image/:imageID', bearerAuth, function(req, res, next) {
