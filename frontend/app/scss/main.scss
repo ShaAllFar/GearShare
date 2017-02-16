@@ -4,7 +4,9 @@
 @import './lib/layout/layout';
 @import './lib/layout/header';
 @import './lib/layout/footer';
+@import '../view/landing/landing';
 @import '../component/landing/login/login';
 @import '../component/landing/signup/signup';
-@import '../view/landing/landing';
+@import '../component/navbar/navbar';
 @import '../component/post/thumbnail/thumbnail';
+@import '../component/user/user/user';

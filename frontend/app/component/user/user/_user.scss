@@ -1,0 +1,14 @@
+@import "../../../scss/lib/theme/vars";
+
+.user {
+  border: 1px solid blue;
+  float: left;
+  width: 45%;
+  .current-item {
+    img {
+      width: 25vw;
+      height: auto;
+    }
+
+  }
+}

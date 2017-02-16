@@ -1,45 +1,51 @@
 <section class="user-post">
   <h2>My Bin</h2>
-  <upload-image post="postItemCtrl.post"></upload-image>
+  <div class="placeholder-image"></div>
+  <!-- <upload-image post="postItemCtrl.post"></upload-image> -->
   <form class="post-form"
     ng-submit="createPostCtrl.createPost()">
 
-    <select name="category"
-      form="post-form"
-      ng-model="createPostCtrl.post.category" required>
-      <option value="" disabled selected> --select a category-- </option>
-      <option value="ski">ski + bindings</option>
-      <option value="ski">ski boots</option>
+    <p>category:
+      <select class="category"
+        form="post-form"
+        ng-model="createPostCtrl.post.category" required>
+        <option value="" disabled selected> --select-- </option>
+        <option value="ski">ski + bindings</option>
+        <option value="ski">ski boots</option>
 
-      <option value="snowboard">snowboard + bindings</option>
-      <option value="snowboard">snowboard</option>
-      <option value="snowboard">snowboard bindings</option>
-      <option value="snowboard">snowboard boots</option>
+        <option value="snowboard">snowboard + bindings</option>
+        <option value="snowboard">snowboard</option>
+        <option value="snowboard">snowboard bindings</option>
+        <option value="snowboard">snowboard boots</option>
 
-      <option value="soft-goods">jackets</option>
-      <option value="soft-goods">pants</option>
-      <option value="soft-goods">gloves/mittens</option>
-      <option value="soft-goods">helmets</option>
-      <option value="soft-goods">goggles</option>
+        <option value="soft-goods">jackets</option>
+        <option value="soft-goods">pants</option>
+        <option value="soft-goods">gloves/mittens</option>
+        <option value="soft-goods">helmets</option>
+        <option value="soft-goods">goggles</option>
 
-    </select>
-
-    <input
-      name="price"
-      placeholder="price"
-      ng-model="createPostCtrl.post.price" required>
-
-    <input
-      name="name"
-      placeholder="name"
-      ng-model="createPostCtrl.post.name" required>
-
-    <input
-      name="description"
-      placeholder="description"
-      ng-model="createPostCtrl.post.desc" required>
-
-    <button type="submit">submit post</button>
+      </select>
+    </p>
+    <p>price: $
+      <input
+        class="price"
+        placeholder="price"
+        ng-model="createPostCtrl.post.price" required>
+    </p>
+    <p>name:
+      <input
+        class="name"
+        placeholder="name"
+        ng-model="createPostCtrl.post.name" required>
+    </p>
+    <p>description:
+      <textarea
+        type="text"
+        class="description"
+        ng-model="createPostCtrl.post.desc" required>
+      </textarea>
+    </p>
+    <button class="btn-tertiary" type="submit">submit post</button>
   </form>
 
 </section>
