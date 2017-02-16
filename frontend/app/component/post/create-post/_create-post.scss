@@ -3,7 +3,7 @@
 .user-post {
   float: left;
   width: 50%;
-  height: 30vw;
+  height: 28vw;
   border: 1px solid red;
 
   .placeholder-image {
@@ -21,12 +21,14 @@
     top: 0;
     width: 60%;
     height: 25vw;
+    margin-top: $gutter-sm;
 
     p {
       padding-bottom: 1vw;
       .category {
         width: 17.5vw;
-        margin-top: $gutter-sm;
+        padding: 2vw;
+
       }
       .price {
         width: 8vw;

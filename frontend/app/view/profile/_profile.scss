@@ -7,15 +7,23 @@
 
   .post-section {
     border: 1px solid orange;
-    a {
-      color: $white;
 
-    }
-    img {
+    .home-link {
       position: relative;
-      height: 15vw;
-      width: 15vw;
       float: right;
+      img {
+        height: 15vw;
+        width: 15vw;
+        // float: right;
+      }
+      h3 {
+        position: absolute;
+        color: $white;
+        font-size: 3vw;
+        top: 4.5vw;
+        right: 13vw;
+      }
+
     }
 
   }
