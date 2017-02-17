@@ -1,8 +1,6 @@
 .login {
   padding: 5%;
   background: rgba(38, 34, 98, 0.75);
-  width: 75%;
-  margin: 0 auto;
 
   .login-form {
     text-align: center;
@@ -17,10 +15,8 @@
 
 @media (min-width: 600px) {
   .login {
-    padding: 4%;
-    width: 32%;
+    width: 35%;
     float: left;
-    margin-left: $gutter-std;
 
     .login-form {
       input {
