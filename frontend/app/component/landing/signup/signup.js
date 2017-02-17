@@ -13,7 +13,7 @@ function SignupController($log, $location, authService){
   .then(() => {
     $location.url('/home');
   }).catch(err => {
-    $log.error(err.message);;
+    $log.error(err.message);
   });
 
   this.signup = function(user){

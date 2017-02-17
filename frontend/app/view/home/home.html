@@ -1,21 +1,29 @@
 <section class="home">
-  <h2>Homepage</h2>
   <input class="input-std" type="text" ng-model="homeCtrl.postSearchTerm" placeholder="search" />
-<select ng-model="homeCtrl.select" ng-change="homeCtrl.filterByCategory(homeCtrl.select)">
-<!-- <option value="" disabled selected >Please Choose</option> -->
-  <option value="snowboard">snowboard</option>
-  <option value="fgfg">fgfg</option>
-  <option value="ski">ski</option>
 
+  <div class="filter-container">
+    <select ng-model="homeCtrl.select" ng-change="homeCtrl.filterByCategory(homeCtrl.select)">
+      <!-- <option value="" disabled selected> --select-- </option> -->
+      <option value="ski">ski + bindings</option>
+      <option value="ski">ski boots</option>
 
-</select>
-  <button ng-click="homeCtrl.fetchAllPostsFromDB()">reset by date</button>
-  <button ng-click="homeCtrl.filterByNewest()">filter by Newest</button>
-  <button ng-click="homeCtrl.filterByCategory('snowboard')">filter by Category</button>
+      <option value="snowboard">snowboard + bindings</option>
+      <option value="snowboard">snowboard</option>
+      <option value="snowboard">snowboard bindings</option>
+      <option value="snowboard">snowboard boots</option>
+
+      <option value="soft-goods">jackets</option>
+      <option value="soft-goods">pants</option>
+      <option value="soft-goods">gloves/mittens</option>
+      <option value="soft-goods">helmets</option>
+      <option value="soft-goods">goggles</option>
+    </select>
+    <button ng-click="homeCtrl.filterByNewest()">filter by newest</button>
+    <button ng-click="homeCtrl.fetchAllPostsFromDB()">reset</button>
+  </div>
 
   <home-posts
     ng-repeat="item in homeCtrl.homePostArray | postSearch: homeCtrl.postSearchTerm"
     post="item">
-
   </home-posts>
 </section>

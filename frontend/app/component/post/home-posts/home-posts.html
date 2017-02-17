@@ -17,13 +17,13 @@
 
     <div>
       <span class="item-label">price:</span>
-      <span>{{ homePostCtrl.post.price }}</span>
+      <span>{{ homePostCtrl.post.price | currency }}</span>
     </div>
     <div>
       <span class="item-label">image:</span>
-      <ul ng-repeat="image in homePostCtrl.post.images">
+      <ul ng-repeat="item in homePostCtrl.post.images" post="homePostCtrl.post" image="item">
         <li>
-          <img ng-src="homePostCtrl.post.images(image)" />
+          <img src="{{image.imageURI}}" alt="image.desc"/>
         </li>
       </ul>
     </div>

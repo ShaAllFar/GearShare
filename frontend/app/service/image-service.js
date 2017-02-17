@@ -7,6 +7,33 @@ function imageService($q, $log, $http, Upload, authService) {
 
   let service = {};
 
+
+service.getImages = function(imageID){
+  return authService.getToken()
+  .then(token => {
+    let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postData._id}/image/58a6378535cb8637b522b2a4`
+    let config = {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    };
+
+    return $http.get(url,config);
+  })
+  .then(res => {
+    $log.log('image retrieved');
+  })
+  .catch(err => {
+    $log.error(err.message);
+    return $q.reject(err);
+  });
+
+}
+
+
+
+
   service.fetchPostImages = function(postData) {
     $log.debug('fetchPostImages');
 
@@ -32,7 +59,7 @@ function imageService($q, $log, $http, Upload, authService) {
       return $q.reject(err);
     });
   };
-  
+
   service.uploadPostImage = function(postData, files) {
     $log.debug('uploadPostImage');
 
