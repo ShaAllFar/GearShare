@@ -71,7 +71,7 @@ postRouter.get('/api/gallery/:galleyID/post/:postID', bearerAuth, function(req, 
   debug('GET: /api/gallery/:galleyID/post/:postID');
 
   Post.findById(req.params.postID)
-  // .populate('image')
+  .populate('images')
   .then(post => {
     if(post === null) return next(createError(404, 'post not found'));
     if(post.userID.toString() !== req.user._id.toString()){
@@ -88,6 +88,7 @@ postRouter.put('/api/gallery/:galleryID/post/:postID', bearerAuth, jsonParser, f
   if(!req.body.name) return next(createError(400, 'body required'));
 
   Post.findByIdAndUpdate(req.params.postID, req.body, {new: true})
+  .populate('images')
   .then(post => {
     if(post === null) return next(createError(404,'post not found'));
     res.json(post);
