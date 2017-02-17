@@ -23,7 +23,7 @@
   </div>
 
   <home-posts
-    ng-repeat="item in homeCtrl.homePostArray"
+    ng-repeat="item in homeCtrl.homePostArray | postSearch: homeCtrl.postSearchTerm"
     post="item">
   </home-posts>
 </section>
