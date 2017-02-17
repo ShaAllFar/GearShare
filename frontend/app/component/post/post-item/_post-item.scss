@@ -2,14 +2,25 @@
 
 .post-item {
   color: white;
-  border: 1px solid black;
+  border: 3px solid $white;
+  background: rgba(38, 34, 98, 0.75);
   width: 50%;
   margin: 0 auto;
   margin-top: 2vw;
+  padding: 1.5vw;
+
 
   .current-item {
     padding-top: 2vw;
     float: right;
+    font-size: 1.5vw;
+    margin-left: 2.5vw;
+    div {
+      margin-bottom: 5px;
+    }
+    button {
+      background: $brand-tertiary;
+    }
   }
 
   .update-container {

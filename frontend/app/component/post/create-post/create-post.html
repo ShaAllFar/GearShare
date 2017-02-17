@@ -1,12 +1,11 @@
 <section class="user-post">
   <!-- <h2>create post</h2> -->
-  <div class="placeholder-image">
-    <img src="../../../../../img/gear-share-orange.png">
-  </div>
+
   <form class="post-form"
     ng-submit="createPostCtrl.createPost()">
 
-    <p>category:
+    <p>
+      <span>category:</span>
       <select class="category"
         form="post-form"
         ng-model="createPostCtrl.post.category" required>
@@ -27,19 +26,22 @@
 
       </select>
     </p>
-    <p>price: $
+    <p>
+      <span>price: $</span>
       <input
         class="price"
         placeholder="price"
         ng-model="createPostCtrl.post.price" required>
     </p>
-    <p>name:
+    <p>
+      <span>name:</span>
       <input
         class="name"
         placeholder="name"
         ng-model="createPostCtrl.post.name" required>
     </p>
-    <p>description:
+    <p>
+      <span>description:</span>
       <textarea
         type="text"
         class="description"

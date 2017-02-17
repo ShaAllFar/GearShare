@@ -24,10 +24,11 @@ mongoose.connect(process.env.MONGODB_URI);
 app.use(cors());
 app.use(morgan('dev'));
 
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/img/gear-share-crest.png');
-});
+// app.get('/', function (req, res) {
+//   res.sendFile(__dirname + '/img/gear-share-crest.png');
+// });
 
+app.use(express.static(`${__dirname}/build`));
 app.use(imageRouter);
 app.use(authRouter);
 app.use(galleryRouter);

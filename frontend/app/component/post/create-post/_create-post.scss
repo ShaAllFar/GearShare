@@ -4,6 +4,7 @@
   float: left;
   width: 50%;
   height: 28vw;
+  padding: 1vw;
   // border: 1px solid black;
   // background-color: rgba(255, 255, 255, 0.5);
   background: rgba(38, 34, 98, 0.75);;
@@ -24,9 +25,24 @@
   .post-form {
     float: right;
     top: 0;
-    width: 60%;
+    width: 100%;
     height: 25vw;
     margin-top: $gutter-sm;
+    font-size: 1.5vw;
+
+    span {
+      width: 20% !important;
+      display: inline-block !important;
+    }
+
+    input {
+      padding: 2% !important;
+      width: 65% !important;
+    }
+
+    textarea {
+      @extend input;
+    }
 
     p {
       padding-bottom: 1vw;
@@ -52,7 +68,9 @@
       }
     }
     button {
-      margin-left: 6vw;
+      float: right;
+      margin-top: 1vw;
+      margin-right: 5vw;
       padding-bottom: 0.75vw;
     }
   }

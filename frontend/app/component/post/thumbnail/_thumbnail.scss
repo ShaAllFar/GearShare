@@ -1,12 +1,18 @@
 .thumbnail {
+  position: relative;
+  margin-bottom: 10px;
+
   .thumbnail-rendered {
 
     img {
-      max-width: 100%;
+      width: 100%;
     }
   }
 
   .del-img-btn {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
     font-weight: bold;
     border-radius: 50%;
     padding: 2%;
