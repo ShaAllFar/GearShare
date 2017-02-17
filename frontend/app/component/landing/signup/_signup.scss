@@ -1,6 +1,8 @@
 .signup {
   padding: 5%;
   background: rgba(186, 101, 40, 0.75);
+  width: 75%;
+  margin: 0 auto;
 
   .signup-form {
     text-align: center;
@@ -15,8 +17,10 @@
 
 @media (min-width: 600px) {
   .signup {
-    width: 35%;
+    padding: 4%;
+    width: 32%;
     float: right;
+    margin-right: $gutter-std;
 
     .signup-form {
       input {

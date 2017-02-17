@@ -8,12 +8,12 @@ module.exports = {
 
 function SignupController($log, $location, authService){
   $log.debug('SignupController');
-
+  
   authService.getToken()
   .then(() => {
     $location.url('/home');
   }).catch(err => {
-    $log.error(err.message);;
+    $log.error(err.message);
   });
 
   this.signup = function(user){
