@@ -16,6 +16,8 @@ function HomePostController($log, postService, imageService) {
   this.postArray = [];
   this.arrayOfImageIDs = [];
 
+  console.log('jshgdysgdfisgdg', this.post);
+
   this.fetchAllPostsFromDB = () => {
     postService.fetchAllPostsFromDB()
 
@@ -31,6 +33,8 @@ function HomePostController($log, postService, imageService) {
         this.arrayOfImageIDs.push(images._id);
       });
 
+      // this.getImages();
+
       console.log('IMAGE-IDS', this.arrayOfImageIDs);
       return this.postArray;
     })
@@ -41,16 +45,16 @@ function HomePostController($log, postService, imageService) {
   };
   this.fetchAllPostsFromDB();
 
-  console.log('POST', this.postArray);
-  this.getImages = () => {
-    imageService.getImages(this.postArray._id, this.arrayOfImageIDs)
-    .then (image => {
-      // console.log('POST', this.homePostArray.post);
-      console.log('image', image);
-    })
-    .catch(err => {
-      $log.error(err);
-    });
-  };
-  this.getImages();
+  // console.log('POST', this.postArray);
+  // this.getImages = () => {
+  //   console.log('KASHFHSDBFUIB', this.postArray)
+  //   imageService.getImages(this.postArray, this.arrayOfImageIDs)
+  //   .then (image => {
+  //     // console.log('POST', this.homePostArray.post);
+  //     console.log('image', image);
+  //   })
+  //   .catch(err => {
+  //     $log.error(err);
+  //   });
+  // };
 }

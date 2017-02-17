@@ -42,6 +42,7 @@ postRouter.get('/api/post', function(req, res, next) {
 
 
   Post.find({})
+  .populate('images')
   .then(post => {
     console.log(post);
     if(post === null) return next(createError(404, 'no posts found'));

@@ -21,9 +21,9 @@
     </div>
     <div>
       <span class="item-label">image:</span>
-      <ul ng-repeat="item in homePostCtrl.post.images" post="homePostCtrl.post" image="item">
+      <ul ng-repeat="item in homePostCtrl.post.images" post="homePostCtrl.post">
         <li>
-          <img src="{{image.imageURI}}" alt="image.desc"/>
+          <img src="{{item.imageURI}}" alt="{{item.desc}}"/>
         </li>
       </ul>
     </div>
