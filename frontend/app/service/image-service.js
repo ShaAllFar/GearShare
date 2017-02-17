@@ -32,7 +32,7 @@ function imageService($q, $log, $http, Upload, authService) {
       return $q.reject(err);
     });
   };
-
+  
   service.uploadPostImage = function(postData, files) {
     $log.debug('uploadPostImage');
 

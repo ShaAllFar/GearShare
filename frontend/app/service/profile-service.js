@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = ['$q', '$log', '$http', 'authService', profileService];
+module.exports = ['$q', '$log', '$http', 'Upload','authService', profileService];
 
-function profileService($q,$log, $http, authService){
+function profileService($q,$log, $http, Upload, authService){
   // $log.debug('profileService');
 
   let service = {};
@@ -61,6 +61,38 @@ function profileService($q,$log, $http, authService){
       $log.error(err.message);
     });
   };
+
+  service.uploadProfileImage = function( file){
+    $log.debug('uploadProfileImage');
+    console.log(file);
+    return authService.getToken()
+    .then(token => {
+      let url = `${__API_URL__}/api/profile/${authService.currentUserID}/image`;
+      let headers = {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+      };
+      console.log('user', authService.currentUserID);
+      return Upload.upload({
+        url,
+        headers,
+        method: 'POST',
+        data: {
+          image: file
+        }
+      })
+    })
+    .then(res => {
+      $log.log('image response', res.data);
+      console.log('hello or some shit');
+      return res.data;
+    })
+    .catch(err => {
+      $log.log('something', err.message);
+      $log.error(err.message);
+    })
+  }
+
 
   return service;
 }

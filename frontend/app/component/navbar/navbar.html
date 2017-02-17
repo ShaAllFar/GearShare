@@ -5,11 +5,12 @@
   </div>
 
   <div class="normal-header" ng-hide="navbarCtrl.hideButtons">
-    <h1>gear-share</h1>
+    <a href="/#!/home"><img src="../../../../img/gear-share-small.png"></a>
+    <a href="/#!/home"><h1>GEARSHARE</h1></a>
     <nav>
       <div>
-        <button class="btn-std" ng-click="navbarCtrl.logout()">logout</button>
-        <button class="btn-std" ng-click="navbarCtrl.newPost()">+ new post</button>
+        <button class="btn-primary" ng-click="navbarCtrl.logout()">logout</button>
+        <button class="btn-tertiary" ng-click="navbarCtrl.newPost()">+ new post</button>
       </div>
     </nav>
   </div>

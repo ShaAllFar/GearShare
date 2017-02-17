@@ -1,0 +1,15 @@
+@import "../../../scss/lib/theme/vars";
+
+.user {
+  border: 1px solid blue;
+  float: left;
+  width: 25%;
+  height: 28vw;
+  .current-item {
+    .superman {
+      width: 15vw;
+      height: auto;
+    }
+
+  }
+}
