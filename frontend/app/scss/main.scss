@@ -5,8 +5,10 @@
 @import './lib/layout/header';
 @import './lib/layout/footer';
 @import '../view/landing/landing';
+@import '../view/home/home';
 @import '../component/landing/login/login';
 @import '../component/landing/signup/signup';
 @import '../component/navbar/navbar';
 @import '../component/post/thumbnail/thumbnail';
+@import '../component/post/home-posts/home-posts';
 @import '../component/user/user/user';

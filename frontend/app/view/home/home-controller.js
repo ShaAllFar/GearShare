@@ -2,20 +2,43 @@
 
 require('./_home.scss');
 
-module.exports = ['$log', '$rootScope','postService', HomeController];
+module.exports = ['$log', '$rootScope','postService', 'imageService', HomeController];
 
-function HomeController($log, $rootScope, postService){
+function HomeController($log, $rootScope, postService, imageService){
   $log.debug('HomeController');
 
   this.homePostArray = [];
+  this.homeImageArray = [];
+
+  // this.fetchPostImages = () => {
+  //   imageService.fetchPostImages(this.post)
+  //   .then(images => {
+  //     images.forEach( image => {
+  //       this.homeImageArray.push(image);
+  //       console.log('home Images',this.homeImageArray);
+  //     });
+  //     return this.homeImageArray;
+  //   })
+  // }
+  // this.fetchPostImages();
+
+  this.fetchImage = () => {
+    console.log('asaasaasa');
+    imageService.getImages()
+    .then (image => {
+      console.log('image', image);
+    });
+  }
+this.fetchImage();
 
   this.fetchAllPostsFromDB = () => {
     postService.fetchAllPostsFromDB()
 
     .then( (posts) => {
-      this.homePostArray = [];
+      // this.homePostArray = [];
       posts.data.forEach( (post) => {
         this.homePostArray.push(post);
+        console.log(this.homePostArray);
       });
       return this.homePostArray;
     });

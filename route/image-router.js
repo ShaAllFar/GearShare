@@ -32,7 +32,13 @@ function s3uploadProm(params) {
 }
 
 
-
+imageRouter.get('/api/gallery/:galleryID/post/:postID/image/:imageID', bearerAuth, function(req,res,next){
+  Image.findById(req.params.imageID)
+  .then(image => {
+    res.json(image);
+  })
+  .catch(next);
+})
 imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, upload.single('image'), function(req, res, next) {
   debug('POST: /api/gallery/postID/image'); //TODO double check path
 
