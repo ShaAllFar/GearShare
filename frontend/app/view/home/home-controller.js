@@ -70,10 +70,11 @@ function HomeController($log, $rootScope, postService, imageService){
       filteredArr = this.homePostArray.filter(post => {
         console.log(post.category);
         return post.category.toString() === category;
-      })
+      });
       this.homePostArray = filteredArr;
-    })
-  }
+      console.log('SHOULD BE AN ARRAY', filteredArr);
+    });
+  };
 
 
 }

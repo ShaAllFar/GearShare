@@ -38,7 +38,7 @@ imageRouter.get('/api/gallery/:galleryID/post/:postID/image/:imageID', bearerAut
     res.json(image);
   })
   .catch(next);
-})
+});
 
 imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, upload.single('image'), function(req, res, next) {
   debug('POST: /api/gallery/postID/image'); //TODO double check path

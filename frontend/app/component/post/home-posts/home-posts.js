@@ -13,35 +13,44 @@ module.exports = {
 function HomePostController($log, postService, imageService) {
   $log.debug('HomePostController');
 
-  this.homePostArray = [];
+  this.postArray = [];
+  this.arrayOfImageIDs = [];
 
   this.fetchAllPostsFromDB = () => {
     postService.fetchAllPostsFromDB()
 
     .then( (posts) => {
-      // this.homePostArray = [];
-      posts.data.forEach( (post) => {
-        this.homePostArray.push(post);
+      console.log(posts);
+      posts.data.forEach( (posts) => {
+        console.log('XXXXXX');
+        this.postArray.push(posts);
       });
-      console.log('this',this.homePostArray);
-      return this.homePostArray;
+
+      this.postArray.forEach((images) => {
+        console.log('AAAAAA');
+        this.arrayOfImageIDs.push(images._id);
+      });
+
+      console.log('IMAGE-IDS', this.arrayOfImageIDs);
+      return this.postArray;
     })
     .catch(err => {
       $log.error(err);
-    })
+    });
 
   };
   this.fetchAllPostsFromDB();
 
+  console.log('POST', this.postArray);
   this.getImages = () => {
-    console.log('asaasaasa');
-    imageService.getImages(this.post, this.image )
+    imageService.getImages(this.postArray._id, this.arrayOfImageIDs)
     .then (image => {
+      // console.log('POST', this.homePostArray.post);
       console.log('image', image);
     })
     .catch(err => {
       $log.error(err);
-    })
-  }
+    });
+  };
   this.getImages();
 }
