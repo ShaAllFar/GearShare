@@ -1,4 +1,4 @@
-<section class="home">
+<section class="home page-wrapper">
   <input class="input-std" type="text" ng-model="homeCtrl.postSearchTerm" placeholder="search" />
 
   <div class="filter-container">
@@ -23,7 +23,7 @@
   </div>
 
   <home-posts
-    ng-repeat="item in homeCtrl.homePostArray"
+    ng-repeat="item in homeCtrl.homePostArray | postSearch: homeCtrl.postSearchTerm"
     post="item">
   </home-posts>
 </section>

@@ -1,11 +1,37 @@
 .home-posts{
-  width: 48%;
   list-style: none;
-  float: left;
-  margin-bottom: 2%;
+  color: white;
+  border: 3px solid $white;
+  background: rgba(38, 34, 98, 0.75);
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 2vw;
+  padding: 1.5vw;
+
+  .info-wrapper{
+    float: right;
+    padding-top: 2vw;
+    font-size: 1.5vw;
+    margin-right: 6%;
+    width: 37%;
+    span{
+
+      // display: block;
+    }
+  }
   .item-label{
     font-weight: bold;
   }
 
-
+  .post-images-wrapper{
+    height: 30vw;
+    overflow: auto;
+    width: 50%;
+    li{
+      margin-bottom: 2%;
+      img{
+        width: 100%;
+      }
+    }
+  }
 }

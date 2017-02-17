@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="gear-share">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>gear-share</title>
+  </head>
+  <body>
+    <header>
+      <navbar></navbar>
+    </header>
+
+    <main>
+      <ui-view></ui-view>
+    </main>
+    <footer></footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        setTimeout(function() {
+          $('.signin-header').on('click', function() {
+            $('.login').toggle();
+          });
+
+          $('.signup-header').on('click', function() {
+            $('.signup').toggle();
+          });
+        }, 500);
+      });
+    </script>
+  </body>
+</html>

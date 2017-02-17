@@ -4,7 +4,7 @@ module.exports = function(){
   return function(posts, searchTerm){
     let fuzzyRegex = generateFuzzyRegex(searchTerm);
     return posts.filter(post => {
-      return fuzzyRegex.test(post.name.toUpperCase());
+      return fuzzyRegex.test(post.name.toUpperCase()) || fuzzyRegex.test(post.desc.toUpperCase()) || fuzzyRegex.test(post.category.toUpperCase()) || fuzzyRegex.test(post.price);
     });
   };
 };

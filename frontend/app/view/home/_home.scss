@@ -1,16 +1,28 @@
-.home{
-  width: 100%;
-  margin-top: 2%;
+// @import "../../../scss/lib/theme/vars";
 
+.home{
+  input{
+    display: block;
+    margin-top: 3%;
+    width: 50%;
+    margin-left: 25%;
+  }
   .filter-container{
-    margin: 1%;
+    float: left;
+    width: 20%;
+    height: 28vw;
+    margin-top: 19px;
     select{
-      width: 34%;
+      width: 100%;
       padding: 1%;
+      margin-bottom: 3%;
+      height: 3vw; 
     }
     button{
-
-
+      width: 100%;
+      background-color: #ba6528;
+      padding: 2%;
+      font-size: 1.75vw;
     }
   }
 }

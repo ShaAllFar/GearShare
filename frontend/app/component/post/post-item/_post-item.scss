@@ -4,10 +4,11 @@
   color: white;
   border: 3px solid $white;
   background: rgba(38, 34, 98, 0.75);
-  width: 50%;
+  width: 48%;
   margin: 0 auto;
   margin-top: 2vw;
   padding: 1.5vw;
+  margin-left: 25%;
 
 
   .current-item {
@@ -15,6 +16,7 @@
     float: right;
     font-size: 1.5vw;
     margin-left: 2.5vw;
+    width: 37%;
     div {
       margin-bottom: 5px;
     }
