@@ -1,9 +1,16 @@
 <section class="navbar">
-  <h1>gear-share</h1>
-  <nav>
-    <div ng-hide="navbarCtrl.hideButtons">
-      <button class="btn-std" ng-click="navbarCtrl.logout()">logout</button>
-      <button class="btn-std" ng-click="navbarCtrl.newPost()">+ new post</button>
-    </div>
-  </nav>
+  <div class="initial-header clear-fix" ng-hide="!navbarCtrl.hideButtons">
+    <div ng-click="" class="signin-header"><span>sign in</span></div>
+    <div class="signup-header"><span>sign up</span></div>
+  </div>
+
+  <div class="normal-header" ng-hide="navbarCtrl.hideButtons">
+    <h1>gear-share</h1>
+    <nav>
+      <div>
+        <button class="btn-std" ng-click="navbarCtrl.logout()">logout</button>
+        <button class="btn-std" ng-click="navbarCtrl.newPost()">+ new post</button>
+      </div>
+    </nav>
+  </div>
 </section>
