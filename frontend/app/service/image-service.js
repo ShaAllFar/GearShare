@@ -8,10 +8,10 @@ function imageService($q, $log, $http, Upload, authService) {
   let service = {};
 
 
-service.getImages = function(imageID){
+service.getImages = function(postData, imageData){
   return authService.getToken()
   .then(token => {
-    let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postData._id}/image/58a6378535cb8637b522b2a4`
+    let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postData._id}/image/${imageData}`
     let config = {
       headers: {
         Accept: 'application/json',
@@ -23,6 +23,7 @@ service.getImages = function(imageID){
   })
   .then(res => {
     $log.log('image retrieved');
+    return res.data;
   })
   .catch(err => {
     $log.error(err.message);
