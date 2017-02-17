@@ -6,6 +6,12 @@ html, body {
   background: $white;
   // color: $black;
   color: #fff;
+
+  background-image: url(../../../img/woods.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 a {
@@ -94,11 +100,4 @@ input[type="text"] {
 
 input[type="password"] {
   @extend input[type="text"];
-}
-
-.page-wrapper {
-  min-height: 700px;
-  width: 90%;
-  margin: $gutter-std;
-  margin-top: 0;
 }

@@ -1,17 +1,10 @@
 <section class="navbar">
-  <div class="initial-header clear-fix" ng-hide="!navbarCtrl.hideButtons">
-    <div ng-click="" class="signin-header"><span>sign in</span></div>
-    <div class="signup-header"><span>sign up</span></div>
-  </div>
-
-  <div class="normal-header" ng-hide="navbarCtrl.hideButtons">
-    <a href="/#!/home"><img src="../../../../img/gear-share-small.png"></a>
-    <a href="/#!/home"><h1>GEARSHARE</h1></a>
-    <nav>
-      <div>
-        <button class="btn-primary" ng-click="navbarCtrl.logout()">logout</button>
-        <button class="btn-tertiary" ng-click="navbarCtrl.newPost()">+ new post</button>
-      </div>
-    </nav>
-  </div>
+  <a href="/#!/home"><img src="../../../../img/gear-share-small.png"></a>
+  <a href="/#!/home"><h1>GEARSHARE</h1></a>
+  <nav>
+    <div class="btn-container" ng-hide="navbarCtrl.hideButtons">
+      <button class="btn-primary" ng-click="navbarCtrl.logout()">logout</button>
+      <button class="btn-tertiary" ng-click="navbarCtrl.newPost()">+ new post</button>
+    </div>
+  </nav>
 </section>

@@ -7,6 +7,7 @@
 .signin-header {
   height: 8.5vw;
   background: $brand-secondary;
+  opacity: 0.75;
   text-align: center;
   color: $white;
 
@@ -44,19 +45,5 @@
       font-size: $font-std + 0.25vw;
       margin-top: 4%;
     }
-  }
-}
-
-span {
-  display: inline-block;
-  clear: both;
-  width: 100%;
-  font-size: 7vw;
-  text-align: center;
-
-  img {
-    vertical-align: middle;
-    width: 10vw;
-    margin: 0 2vw;
   }
 }
