@@ -13,8 +13,8 @@
     "test": "DEBUG='gear-share*' mocha",
     "start": "DEBUG='gear-share*' node server.js",
     "snowfall": "DEBUG='gear-share*' ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*",
-    "heroku-postbuild": "webpack -p --progress",
-    "build": "webpack",
+    "heroku-postbuild": "cd frontend; webpack -p --progress",
+    "build": "cd frontend; webpack",
     "build-watch": "webpack-dev-server --inline --hot"
   },
   "repository": {
