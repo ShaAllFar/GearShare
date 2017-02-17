@@ -101,3 +101,10 @@ input[type="text"] {
 input[type="password"] {
   @extend input[type="text"];
 }
+
+.page-wrapper {
+  min-height: 700px;
+  width: 90%;
+  margin: $gutter-std;
+  margin-top: 0;
+}
