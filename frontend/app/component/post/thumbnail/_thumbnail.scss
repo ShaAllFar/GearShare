@@ -1,5 +1,14 @@
-.del-img-btn {
-  font-weight: bold;
-  border-radius: 50%;
-  padding: 2%;
+.thumbnail {
+  .thumbnail-rendered {
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .del-img-btn {
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2%;
+  }
 }

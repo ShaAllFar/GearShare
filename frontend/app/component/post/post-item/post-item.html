@@ -19,16 +19,17 @@
       <span class="item-label">price: $</span>
       <span>{{ postItemCtrl.post.price }}</span>
     </div>
-  </div>
 
-  <upload-image post="postItemCtrl.post"></upload-image>
+    <div class="update-container" ng-if="!postItemCtrl.showEditPost">
+      <button class="btn-secondary" ng-click="postItemCtrl.showEditPost = !postItemCtrl.showEditPost">edit</button>
+      <button class="btn-secondary" ng-click="postItemCtrl.deletePost()">delete</button>
+    </div>
+  </div>
+  <edit-post ng-if="postItemCtrl.showEditPost" post="postItemCtrl.post"></edit-post>
 
   <thumbnail-container post="postItemCtrl.post"></thumbnail-container>
 
-  <edit-post ng-if="postItemCtrl.showEditPost" post="postItemCtrl.post"></edit-post>
+  <upload-image post="postItemCtrl.post"></upload-image>
 
-  <div class="update-container" ng-if="!postItemCtrl.showEditPost">
-    <button class="edit-label" ng-click="postItemCtrl.showEditPost = !postItemCtrl.showEditPost">edit</button>
-    <button class="delete-label" ng-click="postItemCtrl.deletePost()">delete</button>
-  </div>
+
 </li>
