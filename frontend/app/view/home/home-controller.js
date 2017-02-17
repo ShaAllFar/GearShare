@@ -2,7 +2,7 @@
 
 require('./_home.scss');
 
-module.exports = ['$log', '$rootScope','postService', 'imageService', HomeController];
+module.exports = ['$log', '$rootScope','postService', 'imageService',  HomeController];
 
 function HomeController($log, $rootScope, postService, imageService){
   $log.debug('HomeController');
@@ -22,29 +22,33 @@ function HomeController($log, $rootScope, postService, imageService){
   // }
   // this.fetchPostImages();
 
-  this.fetchImage = () => {
-    console.log('asaasaasa');
-    imageService.getImages()
-    .then (image => {
-      console.log('image', image);
-    });
-  }
-this.fetchImage();
+  // this.getImages = () => {
+  //   console.log('asaasaasa');
+  //   imageService.getImages(this.post, this.image )
+  //   .then (image => {
+  //     console.log('image', image);
+  //   })
+  //   .catch(err => {
+  //     $log.error(err);
+  //   })
+  // }
+  // this.getImages();
 
-  this.fetchAllPostsFromDB = () => {
-    postService.fetchAllPostsFromDB()
-
-    .then( (posts) => {
-      // this.homePostArray = [];
-      posts.data.forEach( (post) => {
-        this.homePostArray.push(post);
-        console.log(this.homePostArray);
-      });
-      return this.homePostArray;
-    });
-
-  };
-  this.fetchAllPostsFromDB();
+  // this.fetchAllPostsFromDB = () => {
+  //   postService.fetchAllPostsFromDB()
+  //
+  //   .then( (posts) => {
+  //     // this.homePostArray = [];
+  //     posts.data.forEach( (post) => {
+  //       this.homePostArray.push(post);
+  //
+  //       console.log(this.homePostArray);
+  //     });
+  //     return this.homePostArray;
+  //   });
+  //
+  // };
+  // this.fetchAllPostsFromDB();
 
   this.filterByNewest = function(){
     this.homePostArray.sort((a,b) => {
