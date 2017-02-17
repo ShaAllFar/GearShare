@@ -1,0 +1,19 @@
+@import "../../../scss/lib/theme/vars";
+
+.edit-user {
+  // border: 1px solid blue;
+  float: left;
+  width: 25%;
+  height: 28vw;
+  .edit-user-form {
+
+
+    .edit-user-container {
+      img {
+        width: 20vw;
+        height: auto;
+      }
+
+    }
+  }
+}

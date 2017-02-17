@@ -4,20 +4,23 @@
   float: left;
   width: 50%;
   height: 28vw;
-  border: 1px solid red;
+  border: 1px solid black;
 
   .placeholder-image {
     float: left;
-    background: #000;
     height: 15vw;
     width: 15vw;
     margin-left: $gutter-sm;
     margin-top: $gutter-sm;
+
+    img {
+      height: 15vw;
+      width: 15vw;
+    }
   }
 
   .post-form {
     float: right;
-    // border: 1px solid green;
     top: 0;
     width: 60%;
     height: 25vw;

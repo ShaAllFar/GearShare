@@ -1,15 +1,22 @@
 @import "../../../scss/lib/theme/vars";
 
 .user {
-  border: 1px solid blue;
+  // border: 1px solid blue;
   float: left;
   width: 25%;
   height: 28vw;
   .current-item {
-    .superman {
-      width: 15vw;
+    img {
+      width: 20vw;
       height: auto;
     }
+    p {
+      padding-top: 0.5vw;
+    }
 
+  }
+  .btn-secondary {
+    margin-top: 2vw;
+    padding: 0.5vw 3vw;
   }
 }
