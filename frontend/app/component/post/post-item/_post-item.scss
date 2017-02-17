@@ -1,6 +1,19 @@
+@import "../../../scss/lib/theme/vars";
+
 .post-item {
   color: white;
-  border: 1px solid green;
+  border: 1px solid black;
   width: 50%;
   margin: 0 auto;
+  margin-top: 2vw;
+
+  .current-item {
+    padding-top: 2vw;
+    float: right;
+  }
+
+  .update-container {
+    margin-top: 2vw;
+    margin-left: 2vw;
+  }
 }
