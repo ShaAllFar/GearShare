@@ -27,6 +27,13 @@
         float: right;
         margin-left: $gutter-sm;
       }
+
+      .btn-primary {
+        &:hover {
+          background: $btn-hover-secondary *2;
+          color: $white;
+        }
+      }
     }
   }
 }

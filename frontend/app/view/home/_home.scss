@@ -12,11 +12,25 @@
     width: 20%;
     height: 28vw;
     margin-top: 19px;
+    .btn-secondary2{
+      background: #262262;
+      color: #fff;
+      border-radius: 20px;
+      display: block;
+      width: 96%;
+      padding: 2%;
+      text-align: center;
+      margin-bottom: 3%;
+      a{
+        color: #fff;
+      }
+    }
+
     select{
       width: 100%;
       padding: 1%;
       margin-bottom: 3%;
-      height: 3vw; 
+      height: 3vw;
     }
     button{
       width: 100%;
