@@ -28,7 +28,7 @@ app.use(morgan('dev'));
 //   res.sendFile(__dirname + '/img/gear-share-crest.png');
 // });
 
-app.use(express.static(`${__dirname}/build`));
+app.use(express.static(`${__dirname}/frontend/build`));
 app.use(imageRouter);
 app.use(authRouter);
 app.use(galleryRouter);
