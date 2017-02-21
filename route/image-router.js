@@ -87,7 +87,8 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
   })
   .then(image => {
     tempImage = image;
-    tempPost.images.unshift(image._id);
+    tempPost.images.push(image._id);
+    // tempPost.images.reverse();
     return tempPost.save();
   })
   .then(() => res.json(tempImage))
@@ -97,7 +98,6 @@ imageRouter.post('/api/gallery/:galleryID/post/:postID/image', bearerAuth, uploa
   });
 
 });
-
 
 imageRouter.delete('/api/gallery/:galleryID/post/:postID/image/:imageID', bearerAuth, function(req, res, next) {
   debug('DELETE: api/gallery/:galleryID/post/:postID/image/:imageID');

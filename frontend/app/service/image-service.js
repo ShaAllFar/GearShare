@@ -8,7 +8,7 @@ function imageService($q, $log, $http, Upload, authService) {
   let service = {};
 
   service.getImages = function(postData, imageID){
-    console.log('HERE', postData)
+    console.log('HERE', postData);
     return authService.getToken()
     .then(token => {
       let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postData._id}/image/${imageID}`;
@@ -84,7 +84,7 @@ function imageService($q, $log, $http, Upload, authService) {
           })
           .then(res => {
             $log.log('image-service line 58', res.data);
-            postData.images.unshift(res.data);
+            postData.images.push(res.data);
             return res.data;
           })
           .catch(err => {
