@@ -9,6 +9,13 @@
     float: right;
   }
 
+  button {
+    margin-top: $gutter-std;
+    clear: both;
+    background: $brand-tertiary;
+    padding: 0.25vw 1.25vw;
+  }
+
   // .update-container {
   //   margin-top: 2vw;
   //   margin-left: 2vw;

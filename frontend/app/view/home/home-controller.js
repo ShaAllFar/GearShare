@@ -18,8 +18,8 @@ function HomeController($log, $rootScope, postService, imageService){
         console.log('home Images',this.homeImageArray);
       });
       return this.homeImageArray;
-    })
-  }
+    });
+  };
   this.fetchPostImages();
 
   this.getImages = () => {
@@ -30,8 +30,8 @@ function HomeController($log, $rootScope, postService, imageService){
     })
     .catch(err => {
       $log.error(err);
-    })
-  }
+    });
+  };
   this.getImages();
 
   this.fetchAllPostsFromDB = () => {
@@ -44,17 +44,18 @@ function HomeController($log, $rootScope, postService, imageService){
 
         console.log(this.homePostArray);
       });
-      return this.homePostArray;
+      return this.homePostArray.reverse();
     });
 
   };
+
   this.fetchAllPostsFromDB();
 
   this.filterByNewest = function(){
     this.homePostArray.sort((a,b) => {
       return a.created < b.created;
     });
-  }
+  };
 
   this.filterByCategory = function(category){
     let filteredArr;
