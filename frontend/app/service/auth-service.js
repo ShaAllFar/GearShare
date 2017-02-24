@@ -117,14 +117,14 @@ function authService($q, $log, $http, $window) {
     $log.debug('currentUserID', service.currentUserID);
 
     return service.currentUserID;
-  }
+  };
 
   service.getGalleryId = function(){
     $log.debug('authService.getGalleryID');
 
     return service.getToken()
     .then(token => {
-      let url = `${__API_URL__}/api/user/${service.currentUserID}/gallery`
+      let url = `${__API_URL__}/api/user/${service.currentUserID}/gallery`; // eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',
@@ -132,14 +132,14 @@ function authService($q, $log, $http, $window) {
           Authorization: `Bearer ${token}`
         }
       };
-      return $http.get(url, config)
+      return $http.get(url, config);
 
     })
     .then(res => {
       $log.log('response', res);
       this.currentGalleryID = res.data._id;
-    })
-  }
+    });
+  };
 
   return service;
 
