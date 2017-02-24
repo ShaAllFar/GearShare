@@ -63,8 +63,8 @@ function authService($q, $log, $http, $window) {
     })
     .then( () => {
       let gallery = {
-        name: 'shit',
-        desc: 'turtle'
+        name: 'initial user gallery',
+        desc: 'created on user signup'
       };
       let url = `${__API_URL__}/api/gallery`; // eslint-disable-line
       let config = {
