@@ -15,11 +15,11 @@ function NavbarController($log, $location, $rootScope, authService){
     let path = $location.path();
 
     if(path === '/join'){
-      this.hideButtons = true;
+      this.hideNavbar = true;
     }
 
     if(path !== '/join'){
-      this.hideButtons = false;
+      this.hideNavbar = false;
       authService.getToken()
       .catch(() => {
         $location.url('/join#login');
