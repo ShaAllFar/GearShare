@@ -1,0 +1,14 @@
+.chat {
+  width: 50%;
+  height: auto;
+  border: 2px solid red;
+  float: right;
+  #chat-form {
+    fieldset {
+      input {
+        // width: 20%;
+      }
+    }
+
+  }
+}

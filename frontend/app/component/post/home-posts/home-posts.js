@@ -16,26 +16,26 @@ function HomePostController($log, postService, imageService) {
   this.postArray = [];
   this.arrayOfImageIDs = [];
 
-  console.log('jshgdysgdfisgdg', this.post);
+  // console.log('jshgdysgdfisgdg', this.post);
 
   this.fetchAllPostsFromDB = () => {
     postService.fetchAllPostsFromDB()
 
     .then( (posts) => {
-      console.log(posts);
+      // console.log(posts);
       posts.data.forEach( (posts) => {
-        console.log('XXXXXX');
+        // console.log('XXXXXX');
         this.postArray.push(posts);
       });
 
       this.postArray.forEach((images) => {
-        console.log('AAAAAA');
+        // console.log('AAAAAA');
         this.arrayOfImageIDs.push(images._id);
       });
 
       // this.getImages();
 
-      console.log('IMAGE-IDS', this.arrayOfImageIDs);
+      // console.log('IMAGE-IDS', this.arrayOfImageIDs);
       return this.postArray;
     })
     .catch(err => {
