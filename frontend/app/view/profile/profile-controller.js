@@ -6,13 +6,10 @@ module.exports = ['$log', '$location', '$rootScope', 'postService', ProfileContr
 
 function ProfileController($log, $location, $rootScope, postService) {
   $log.debug('ProfileController');
-  console.log(postService);
 
   $location.url('/profile');
 
   this.allPosts = [];
-  // this.gallery = [];
-
 
   // this.fetchUserGallery = function() {
   //   postService.fetchUserGallery()
@@ -33,7 +30,6 @@ function ProfileController($log, $location, $rootScope, postService) {
   };
 
   this.fetchUserPosts();
-
 
   // $rootScope.$on('locationChangeSuccess', () => {
   //   this.fetchUserGallery();

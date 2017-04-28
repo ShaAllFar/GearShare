@@ -15,7 +15,6 @@ function HomeController($log, $rootScope, postService, imageService){
     .then(images => {
       images.forEach( image => {
         this.homeImageArray.push(image);
-        console.log('home Images',this.homeImageArray);
       });
       return this.homeImageArray;
     });
@@ -23,7 +22,6 @@ function HomeController($log, $rootScope, postService, imageService){
   this.fetchPostImages();
 
   this.getImages = () => {
-    console.log('asaasaasa');
     imageService.getImages(this.post, this.image )
     .then (image => {
       console.log('image', image);
@@ -41,8 +39,6 @@ function HomeController($log, $rootScope, postService, imageService){
       this.homePostArray = [];
       posts.data.forEach( (post) => {
         this.homePostArray.push(post);
-
-        console.log(this.homePostArray);
       });
       return this.homePostArray.reverse();
     });
@@ -69,11 +65,9 @@ function HomeController($log, $rootScope, postService, imageService){
     })
     .then(() => {
       filteredArr = this.homePostArray.filter(post => {
-        console.log(post.category);
         return post.category.toString() === category;
       });
       this.homePostArray = filteredArr;
-      console.log('SHOULD BE AN ARRAY', filteredArr);
     });
   };
 
