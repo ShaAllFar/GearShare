@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 module.exports = {
   template: require('./user.html'),
   controller: ['$log', 'profileService', 'authService', UserController],
@@ -10,7 +8,6 @@ module.exports = {
     user: '<'
   }
 };
-
 
 function UserController($log, profileService, authService){
   $log.debug('UserController');
@@ -23,17 +20,14 @@ function UserController($log, profileService, authService){
     .then(user => {
       $log.log('got user', user);
       this.user = user;
-    })
-  }
+    });
+  };
   this.fetchUserData();
 
   this.fetchGallery = function (){
     authService.getGalleryId()
     .then(gallery => {
-      $log.log('user, galleryData', gallery)
-    })
-  }
-  // this.fetchGallery
-
-
+      $log.log('user, galleryData', gallery);
+    });
+  };
 }

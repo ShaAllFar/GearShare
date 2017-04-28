@@ -23,6 +23,6 @@ function UploadProfileImageController($log, profileService){
     })
     .catch(err => {
       $log.error(err.message);
-    })
-  }
+    });
+  };
 }

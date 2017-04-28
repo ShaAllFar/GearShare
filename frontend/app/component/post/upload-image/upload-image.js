@@ -15,11 +15,8 @@ function UploadImageController($log, imageService) {
   this.image = {};
 
   this.uploadPostImage = function(files) {
-    // console.log(files);
     imageService.uploadPostImage(this.post, files)
     .then(() => {
-      // this.image.name = null;
-      // this.image.desc = null;
       this.image.image = null;
     });
   };

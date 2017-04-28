@@ -3,7 +3,6 @@
 module.exports = ['$q', '$log', '$http', 'Upload','authService', profileService];
 
 function profileService($q,$log, $http, Upload, authService){
-  // $log.debug('profileService');
 
   let service = {};
   service.userData = {};
@@ -64,15 +63,13 @@ function profileService($q,$log, $http, Upload, authService){
 
   service.uploadProfileImage = function( file){
     $log.debug('uploadProfileImage');
-    console.log(file);
     return authService.getToken()
     .then(token => {
       let url = `${__API_URL__}/api/profile/${authService.currentUserID}/image`;
       let headers = {
-          Accept: 'application/json',
-          Authorization: `Bearer ${token}`
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`
       };
-      console.log('user', authService.currentUserID);
       return Upload.upload({
         url,
         headers,
@@ -80,18 +77,17 @@ function profileService($q,$log, $http, Upload, authService){
         data: {
           image: file
         }
-      })
+      });
     })
     .then(res => {
       $log.log('image response', res.data);
-      console.log('hello or some shit');
       return res.data;
     })
     .catch(err => {
       $log.log('something', err.message);
       $log.error(err.message);
-    })
-  }
+    });
+  };
 
 
   return service;

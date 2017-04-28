@@ -7,10 +7,6 @@ function postService($q, $log, $http, authService) {
 
   let service = {};
   service.allPosts = [];
-  // console.log(service.allPosts);
-  // service.allPosts.push('Anything');
-  // console.log(service.allPosts);
-  // console.log(service.allPosts.push('Anything'));
 
   service.createPost = (post) => {
     $log.debug('postService.createPost()');
@@ -35,13 +31,9 @@ function postService($q, $log, $http, authService) {
       $log.log('post created');
 
       let post = res.data;
-      // console.log('WHATISTHIS?', service.allPosts);
-      // console.log('FUCK THIS', service.allPosts);
 
       service.allPosts.unshift(post);
-      console.log(service.allPosts);
       return post;
-
     })
     .catch( err => {
       $log.error(err.message);
@@ -126,7 +118,6 @@ function postService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
-      console.log(authService);
       // let url = `${__API_URL__}/api/gallery/${authService.galleryID}/post`;
 
       let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}`; // eslint-disable-line
