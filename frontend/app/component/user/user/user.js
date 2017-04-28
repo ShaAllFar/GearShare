@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 module.exports = {
   template: require('./user.html'),
   controller: ['$log', 'profileService', 'authService', UserController],
@@ -10,7 +8,6 @@ module.exports = {
     user: '<'
   }
 };
-
 
 function UserController($log, profileService, authService){
   $log.debug('UserController');
