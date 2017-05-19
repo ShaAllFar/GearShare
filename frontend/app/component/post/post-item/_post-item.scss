@@ -1,25 +1,23 @@
 @import "../../../scss/lib/theme/vars";
 
 .post-item {
+  float: right;
   color: white;
   border: 3px solid $white;
   background: rgba(38, 34, 98, 0.75);
   width: 48%;
-  margin: 0 auto;
-  margin-top: 2vw;
+  margin: 0 auto 2vw;
   padding: 1.5vw;
-  margin-left: 25%;
-
 
   .current-item {
-    padding-top: 2vw;
     float: right;
     font-size: 1.5vw;
-    margin-left: 2.5vw;
-    width: 37%;
+    width: 45%;
+
     div {
       margin-bottom: 5px;
     }
+
     button {
       background: $brand-tertiary;
       padding: 0.25vw 1.25vw;
@@ -27,7 +25,6 @@
   }
 
   .update-container {
-    margin-top: 2vw;
-    margin-left: 2vw;
+    margin-top: 1vw;
   }
 }

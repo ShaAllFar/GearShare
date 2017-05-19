@@ -5,19 +5,29 @@
   float: right;
 
   .edit-container {
-    padding-top: 2vw;
-    float: right;
+    font-size: 1.5vw;
+    margin-right: 1.5vw;
+    width: 80%;
+
+    .item-label {
+      display: inline-block;
+      font-size: 1.5vw;
+      margin-bottom: 0.5vw;
+    }
+
+    input, textarea, select {
+      width: 100%;
+    }
+
+    input, select {
+      margin-bottom: 0.5vw;
+    }
   }
 
   button {
-    margin-top: $gutter-std;
     clear: both;
+    margin-top: $gutter-std;
     background: $brand-tertiary;
     padding: 0.25vw 1.25vw;
   }
-
-  // .update-container {
-  //   margin-top: 2vw;
-  //   margin-left: 2vw;
-  // }
 }

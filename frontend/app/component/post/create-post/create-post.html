@@ -1,5 +1,4 @@
 <section class="user-post">
-  <!-- <h2>create post</h2> -->
 
   <form class="post-form"
     ng-submit="createPostCtrl.createPost()">
@@ -23,9 +22,9 @@
         <option value="soft-goods">gloves/mittens</option>
         <option value="soft-goods">helmets</option>
         <option value="soft-goods">goggles</option>
-
       </select>
     </p>
+
     <p>
       <span>price: $</span>
       <input
@@ -33,6 +32,7 @@
         placeholder="price"
         ng-model="createPostCtrl.post.price" required>
     </p>
+
     <p>
       <span>name:</span>
       <input
@@ -40,6 +40,7 @@
         placeholder="name"
         ng-model="createPostCtrl.post.name" required>
     </p>
+
     <p>
       <span>description:</span>
       <textarea

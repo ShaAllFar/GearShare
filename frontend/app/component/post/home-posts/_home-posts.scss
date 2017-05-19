@@ -1,4 +1,4 @@
-.home-posts{
+.home-posts {
   list-style: none;
   color: white;
   border: 3px solid $white;
@@ -8,22 +8,18 @@
   margin-top: 2vw;
   padding: 1.5vw;
 
-  .info-wrapper{
+  .info-wrapper {
     float: right;
-    padding-top: 2vw;
     font-size: 1.5vw;
     margin-right: 2%;
     width: 41%;
-    span{
 
-      // display: block;
+    .whole-label {
+      margin-bottom: 0.5vw;
     }
   }
-  .item-label{
-    font-weight: bold;
-  }
 
-  .post-images-wrapper{
+  .post-images-wrapper {
     height: 30vw;
     overflow: auto;
     width: 50%;

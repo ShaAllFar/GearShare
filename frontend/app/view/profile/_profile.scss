@@ -3,14 +3,16 @@
 .profile {
   h2 {
     text-align: center;
+    font-family: 'Rhodium Libre', serif;
+    text-shadow: 4px 4px 4px $black;
   }
 
   .post-section {
-    // border: 1px solid orange;
 
     .home-link {
       position: relative;
       float: right;
+
       img {
         height: 15vw;
         width: 15vw;

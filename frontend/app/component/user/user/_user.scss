@@ -1,24 +1,42 @@
 @import "../../../scss/lib/theme/vars";
 
 .user {
-  // border: 1px solid blue;
   float: left;
-  width: 25%;
+  width: 40%;
   height: 28vw;
+
   .current-item {
+    padding-top: 3vw;
+    background: rgba(186, 101, 40, 0.75);
+    border: solid 3px $white;
+
     img {
-      width: 20vw;
+      float: left;
+      width: 15vw;
+      margin-left: 3vw;
+      margin-right: 4vw;
       height: auto;
       border: solid 3px $white;
     }
-    p {
-      font-size: 1.5vw;
-      padding-top: 0.5vw;
+
+    .profile-info {
+      clear: both;
+      padding-top: 3vw;
+      margin-bottom: 3.5vw;
+      margin-left: 3vw;
+
+      p {
+        font-size: 1.5vw;
+        padding-top: 0.5vw;
+      }
     }
 
-  }
-  .btn-secondary {
-    margin-top: 2vw;
-    padding: 0.5vw 3vw;
+    .update-container {
+
+      .btn-secondary {
+        margin-top: 2vw;
+        padding: 0.5vw 3vw;
+      }
+    }
   }
 }
