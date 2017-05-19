@@ -4,7 +4,7 @@
   z-index: 1;
 
   span {
-    font-family: $font-primary;
+    font-family: 'Rhodium Libre', serif;
     display: inline-block;
     clear: both;
     width: 100%;
@@ -13,7 +13,7 @@
     position: absolute;
     right: 20px;
     bottom: 275px;
-    text-shadow: 2px 2px $black;
+    text-shadow: 4px 4px 4px $black;
     z-index: -9000;
 
     img {
