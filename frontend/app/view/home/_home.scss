@@ -1,13 +1,15 @@
-// @import "../../../scss/lib/theme/vars";
+@import "../../scss/lib/theme/vars";
 
-.home{
-  input{
+.home {
+
+  input {
     display: block;
     margin-top: 3%;
     width: 50%;
     margin-left: 25%;
   }
-  .filter-container{
+
+  .filter-container {
     float: left;
     width: 20%;
     height: 28vw;
@@ -21,18 +23,18 @@
       padding: 2%;
       text-align: center;
       margin-bottom: 3%;
-      a{
+      a {
         color: #fff;
       }
     }
 
-    select{
+    select {
       width: 100%;
       padding: 1%;
-      margin-bottom: 3%;
-      height: 3vw;
+      margin-bottom: 7%;
     }
-    button{
+
+    button {
       width: 100%;
       background-color: #ba6528;
       padding: 2%;
