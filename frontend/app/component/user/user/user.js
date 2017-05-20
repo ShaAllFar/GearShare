@@ -15,7 +15,6 @@ function UserController($log, profileService, authService){
   this.changeEdit = {
     showEditProfile: false
   };
-  // this.showEditProfile = false;
 
   this.user = null;
   this.fetchUserData = function(){

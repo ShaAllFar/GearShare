@@ -1,5 +1,6 @@
-// header {
-//   height: 8vw;
-//   background: $brand-secondary;
-//   margin-bottom: $gutter-lg;
-// }
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2000;
+}
