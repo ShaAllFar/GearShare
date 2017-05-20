@@ -1,89 +1,49 @@
 @import "../../scss/lib/theme/vars";
 
-.navbar-header {
-  height: 10vw;
-  background: rgba(38, 34, 98, 0.75);
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 2000;
+.navbar {
 
-  img {
-    height: 6vw;
-    width: 6vw;
-    float: left;
-    padding-left: $gutter-std;
-    padding-top: 2vw;
-  }
+  .navbar-header {
 
-  a {
-    h1 {
+    height: 10vw;
+    background: rgba(38, 34, 98, 0.75);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2000;
+
+    img {
+      height: 6vw;
+      width: 6vw;
       float: left;
-      font-family: 'Rhodium Libre', serif;
-      padding-top: $gutter-sm;
-      padding-left: $gutter-sm;
+      padding-left: $gutter-std;
+      padding-top: 2vw;
     }
-  }
 
-  nav {
-    margin-right: $gutter-std;
-    .btn-container {
-      padding-top: 2.75vw;
-      button {
-        float: right;
-        margin-left: $gutter-sm;
+    a {
+      h1 {
+        float: left;
+        font-family: 'Rhodium Libre', serif;
+        padding-top: $gutter-sm;
+        padding-left: $gutter-sm;
       }
+    }
 
-      .btn-primary {
-        &:hover {
-          background: $btn-hover-secondary *2;
-          color: $white;
+    nav {
+      margin-right: $gutter-std;
+      .btn-container {
+        padding-top: 2.75vw;
+        button {
+          float: right;
+          margin-left: $gutter-sm;
+        }
+
+        .btn-primary {
+          &:hover {
+            background: $btn-hover-secondary *2;
+            color: $white;
+          }
         }
       }
-    }
-  }
-}
-
-.signin-header {
-  height: 8.5vw;
-  background: $brand-secondary;
-  opacity: 0.75;
-  text-align: center;
-  color: $white;
-
-  span {
-    font-size: $font-lg;
-    display: inline-block;
-    margin-top: 1.5%;
-  }
-}
-
-.signup-header {
-  @extend .signin-header;
-  background: $brand-tertiary;
-}
-
-@media (min-width: 600px) {
-  .signin-header {
-    width: 50%;
-    float: left;
-    height: 7.25vw;
-
-    span {
-      font-size: $font-std + 1vw;
-      margin-top: 4%;
-    }
-  }
-}
-
-@media (min-width: 900px) {
-  .signin-header {
-    height: 6.25vw;
-
-    span {
-      margin-top: 0.5%;
-      font-size: $font-std + 0.25vw;
-      margin-top: 4%;
     }
   }
 }

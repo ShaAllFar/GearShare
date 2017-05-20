@@ -3,23 +3,74 @@
   min-height: 600px;
   z-index: 1;
 
-  span {
-    font-family: 'Rhodium Libre', serif;
-    display: inline-block;
-    clear: both;
-    width: 100%;
-    font-size: 7vw;
-    text-align: center;
+  .initial-header {
+
+    .signin-header {
+      height: 8.5vw;
+      background: $brand-secondary;
+      opacity: 0.75;
+      text-align: center;
+      color: $white;
+      cursor: pointer;
+
+      span {
+        font-size: $font-lg;
+        display: inline-block;
+        margin-top: 1.5%;
+      }
+    }
+
+    .signup-header {
+      @extend .signin-header;
+      background: $brand-tertiary;
+    }
+
+    @media (min-width: 600px) {
+      .signin-header {
+        width: 50%;
+        float: left;
+        height: 7.25vw;
+
+        span {
+          font-size: $font-std + 1vw;
+          margin-top: 4%;
+        }
+      }
+    }
+
+    @media (min-width: 900px) {
+      .signin-header {
+        height: 6.25vw;
+
+        span {
+          margin-top: 0.5%;
+          font-size: $font-std + 0.25vw;
+          margin-top: 4%;
+        }
+      }
+    }
+  }
+
+  .main-title {
     position: absolute;
-    right: 20px;
-    bottom: 275px;
-    text-shadow: 4px 4px 4px $black;
+    top: 275px;
+    left: 20vw;
     z-index: -9000;
 
-    img {
-      vertical-align: middle;
-      width: 10vw;
-      margin: 0 2vw;
+    span {
+      font-family: 'Rhodium Libre', serif;
+      display: inline-block;
+      clear: both;
+      width: 100%;
+      font-size: 7vw;
+      text-align: center;
+      text-shadow: 4px 4px 4px $black;
+
+      img {
+        vertical-align: middle;
+        width: 10vw;
+        margin: 0 2vw;
+      }
     }
   }
 }
