@@ -3,12 +3,12 @@
 .user {
   float: left;
   width: 40%;
-  height: 28.5vw;
 
   .current-item {
     padding-top: 3vw;
     background: rgba(186, 101, 40, 0.75);
     border: solid 3px $white;
+    height: 27.35vw;
 
     img {
       float: left;
@@ -21,8 +21,8 @@
 
     .profile-info {
       clear: both;
-      padding-top: 2.85vw;
-      margin-bottom: 3.15vw;
+      padding-top: 2.75vw;
+      padding-bottom: 3.15vw;
       margin-left: 3vw;
 
       p {
