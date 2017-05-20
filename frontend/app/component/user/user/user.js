@@ -17,16 +17,18 @@ function UserController($log, profileService, authService){
   };
 
   this.user = null;
-  this.fetchUserData = function(){
+  
+  this.fetchUserData = function() {
     profileService.fetchUserData()
     .then(user => {
       $log.log('got user');
       this.user = user;
     });
   };
+
   this.fetchUserData();
 
-  this.fetchGallery = function (){
+  this.fetchGallery = function () {
     authService.getGalleryId()
     .then(gallery => {
       $log.log('user, galleryData', gallery);
