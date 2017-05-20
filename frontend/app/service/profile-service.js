@@ -81,7 +81,7 @@ function profileService($q,$log, $http, Upload, authService) {
     })
     .then(res => {
       $log.log('image response', res.data);
-      return res.data;
+      service.userData.profileImageURI = res.data.imageURI;
     })
     .catch(err => {
       $log.log('something', err.message);
