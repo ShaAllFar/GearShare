@@ -1,17 +1,19 @@
 <section class="profile page-wrapper">
-  <h2>my bin</h2>
-    <div class="post-section">
+  <div class="headers">
+    <h2>profile info</h2>
+    <h2>my bin</h2>
+  </div>
 
-      <user></user>
-      <create-post></create-post>
+  <div class="post-section">
+    <user></user>
+    <create-post></create-post>
 
-      <div class="clear-fix"></div>
-      <ul>
-        <post-item
-          ng-repeat="item in profileCtrl.allPosts"
-          post="item">
-        </post-item>
-      </ul>
-    </div>
-
+    <div class="clear-fix"></div>
+    <ul>
+      <post-item
+        ng-repeat="item in profileCtrl.allPosts"
+        post="item">
+      </post-item>
+    </ul>
+  </div>
 </section>

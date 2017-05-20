@@ -2,12 +2,24 @@
 
 .profile {
   h2 {
+    margin-top: 5vw;
     text-align: center;
     font-family: 'Rhodium Libre', serif;
     text-shadow: 4px 4px 4px $black;
+
+    &:first-child {
+      float: left;
+      margin-left: 7.5vw;
+    }
+
+    &:nth-child(2) {
+      float: right;
+      margin-right: 16vw;
+    }
   }
 
   .post-section {
+    clear: both;
 
     .home-link {
       position: relative;
