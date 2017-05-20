@@ -12,7 +12,7 @@ function profileService($q,$log, $http, Upload, authService){
 
     return authService.getToken()
     .then(token => {
-      let url = `${__API_URL__}/api/profile/${authService.currentUserID}`;
+      let url = `${__API_URL__}/api/profile/${authService.currentUserID}`; // eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',
@@ -41,7 +41,7 @@ function profileService($q,$log, $http, Upload, authService){
 
     return authService.getToken()
     .then(token => {
-      let url = `${__API_URL__}/api/profile/${userID}`;
+      let url = `${__API_URL__}/api/profile/${userID}`; // eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',
@@ -65,7 +65,7 @@ function profileService($q,$log, $http, Upload, authService){
     $log.debug('uploadProfileImage');
     return authService.getToken()
     .then(token => {
-      let url = `${__API_URL__}/api/profile/${authService.currentUserID}/image`;
+      let url = `${__API_URL__}/api/profile/${authService.currentUserID}/image`; // eslint-disable-line
       let headers = {
         Accept: 'application/json',
         Authorization: `Bearer ${token}`
@@ -88,7 +88,6 @@ function profileService($q,$log, $http, Upload, authService){
       $log.error(err.message);
     });
   };
-
 
   return service;
 }

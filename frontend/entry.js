@@ -42,4 +42,4 @@ context.keys().forEach(key => {
   let name = camelcase(path.basename(key, '.js'));
   let module = context(key);
   gearShare.filter(name, module);
-})
+});
