@@ -2,16 +2,37 @@
 
 .edit-user {
   float: left;
-  width: 25%;
-  height: 28vw;
+  width: 100%;
+
   .edit-user-form {
 
     .edit-user-container {
+      height: 27.15vw;
+      padding-top: 3vw;
+      background: rgba(186, 101, 40, 0.75);
+      border: solid 3px $white;
+
       img {
-        width: 20vw;
+        float: left;
+        width: 15vw;
+        margin-left: 3vw;
+        margin-right: 4vw;
         height: auto;
+        border: solid 3px $white;
       }
 
+      .user-buttons {
+        margin-bottom: 11vw;
+      }
+
+      .fieldset-editing {
+        clear: both;
+        margin-left: 3vw;
+
+        .item-label {
+          font-size: 1.5vw;
+        }
+      }
     }
   }
 }

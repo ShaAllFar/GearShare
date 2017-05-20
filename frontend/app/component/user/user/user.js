@@ -12,13 +12,16 @@ module.exports = {
 function UserController($log, profileService, authService){
   $log.debug('UserController');
 
-  this.showEditProfile = false;
+  this.changeEdit = {
+    showEditProfile: false
+  };
+  // this.showEditProfile = false;
 
   this.user = null;
   this.fetchUserData = function(){
     profileService.fetchUserData()
     .then(user => {
-      $log.log('got user', user);
+      $log.log('got user');
       this.user = user;
     });
   };
