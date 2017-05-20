@@ -2,9 +2,9 @@
 
 require('./_home.scss');
 
-module.exports = ['$log', '$rootScope', '$location', 'postService', 'imageService',  HomeController];
+module.exports = ['$log', '$rootScope', '$location', 'postService',  HomeController];
 
-function HomeController($log, $rootScope, $location, postService, imageService){
+function HomeController($log, $rootScope, $location, postService){
   $log.debug('HomeController');
 
   this.goToProfile = function() {
@@ -13,29 +13,6 @@ function HomeController($log, $rootScope, $location, postService, imageService){
   };
 
   this.homePostArray = [];
-  this.homeImageArray = [];
-
-  this.fetchPostImages = () => {
-    imageService.fetchPostImages(this.post)
-    .then(images => {
-      images.forEach( image => {
-        this.homeImageArray.push(image);
-      });
-      return this.homeImageArray;
-    });
-  };
-  this.fetchPostImages();
-
-  this.getImages = () => {
-    imageService.getImages(this.post, this.image )
-    .then (image => {
-      console.log('image', image);
-    })
-    .catch(err => {
-      $log.error(err);
-    });
-  };
-  this.getImages();
 
   this.fetchAllPostsFromDB = () => {
     postService.fetchAllPostsFromDB()
@@ -47,7 +24,6 @@ function HomeController($log, $rootScope, $location, postService, imageService){
       });
       return this.homePostArray.reverse();
     });
-
   };
 
   this.fetchAllPostsFromDB();

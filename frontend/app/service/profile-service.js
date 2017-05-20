@@ -22,17 +22,17 @@ function profileService($q,$log, $http, Upload, authService){
 
       return $http.get(url, config);
     })
-    .then( res => {
+    .then(res => {
       $log.log('user data retrieved');
       service.userData = res.data;
       if(!service.userData.profileImageURI){
         service.userData.profileImageURI = 'https://s-media-cache-ak0.pinimg.com/236x/dc/26/8b/dc268be243b9176a64ebf2fe7aa47ba1.jpg';
       }
-      $log.log('service.userData', service.userData);
+      $log.log('service.userData retrieved');
       return service.userData;
     })
-    .catch( err => {
-      $log.error('aaaaa',err.message);
+    .catch(err => {
+      $log.error('aaaaa', err.message);
     });
   };
 

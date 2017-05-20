@@ -142,5 +142,4 @@ function authService($q, $log, $http, $window) {
   };
 
   return service;
-
 }

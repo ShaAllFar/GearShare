@@ -16,7 +16,6 @@ function postService($q, $log, $http, authService) {
 
       let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post`; // eslint-disable-line
 
-      // let url = `${__API_URL__}/api/gallery/`;
       let config = {
         headers: {
           Accept: 'application/json',
@@ -45,7 +44,9 @@ function postService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
+
       let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postID}`; // eslint-disable-line
+      
       let config = {
         headers: {
           Accept: 'application/json',
@@ -77,7 +78,9 @@ function postService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
+
       let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postID}`; // eslint-disable-line
+
       let config = {
         headers: {
           Authorization: `Bearer ${token}`
@@ -118,8 +121,6 @@ function postService($q, $log, $http, authService) {
 
     return authService.getToken()
     .then( token => {
-      // let url = `${__API_URL__}/api/gallery/${authService.galleryID}/post`;
-
       let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}`; // eslint-disable-line
 
       let config = {
@@ -133,9 +134,7 @@ function postService($q, $log, $http, authService) {
     })
     .then( res => {
       $log.log('user gallery (allPosts) retrieved');
-      // console.log(res.data);
       let gallery = res.data;
-      // service.allPosts.unshift(post);
       return gallery;
     })
     .catch( err => {
@@ -153,8 +152,6 @@ function postService($q, $log, $http, authService) {
     .then( () => {
       return authService.getToken();
     })
-
-
     .then( token => {
       let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post`; //eslint-disable-line
       let config = {
@@ -175,8 +172,6 @@ function postService($q, $log, $http, authService) {
       return $q.reject(err);
     });
   };
-
-
 
   return service;
 }
