@@ -2,12 +2,12 @@
 
 module.exports = ['$q', '$log', '$http', 'Upload','authService', profileService];
 
-function profileService($q,$log, $http, Upload, authService){
+function profileService($q,$log, $http, Upload, authService) {
 
   let service = {};
   service.userData = {};
 
-  service.fetchUserData = function(){
+  service.fetchUserData = function() {
     $log.debug('profileService.fetchUserData()');
 
     return authService.getToken()
@@ -25,10 +25,10 @@ function profileService($q,$log, $http, Upload, authService){
     .then(res => {
       $log.log('user data retrieved');
       service.userData = res.data;
-      if(!service.userData.profileImageURI){
+      if(!service.userData.profileImageURI) {
         service.userData.profileImageURI = 'https://s-media-cache-ak0.pinimg.com/236x/dc/26/8b/dc268be243b9176a64ebf2fe7aa47ba1.jpg';
       }
-      $log.log('service.userData retrieved');
+      $log.log('service.userData', service.userData);
       return service.userData;
     })
     .catch(err => {
@@ -36,7 +36,7 @@ function profileService($q,$log, $http, Upload, authService){
     });
   };
 
-  service.updateUserInfo = function(userID, userData){
+  service.updateUserInfo = function(userID, userData) {
     $log.debug('profileService.updateUserInfo()');
 
     return authService.getToken()
@@ -61,7 +61,7 @@ function profileService($q,$log, $http, Upload, authService){
     });
   };
 
-  service.uploadProfileImage = function( file){
+  service.uploadProfileImage = function(file) {
     $log.debug('uploadProfileImage');
     return authService.getToken()
     .then(token => {

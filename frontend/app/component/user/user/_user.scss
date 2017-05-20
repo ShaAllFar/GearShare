@@ -1,40 +1,35 @@
 @import "../../../scss/lib/theme/vars";
 
 .user {
-  float: left;
-  width: 40%;
 
   .current-item {
-    padding-top: 3vw;
-    background: rgba(186, 101, 40, 0.75);
-    border: solid 0.25vw $white;
-    height: 27.35vw;
 
     img {
       float: left;
       width: 15vw;
       margin-left: 3vw;
-      margin-right: 4vw;
+      margin-right: 4.5vw;
       height: 15vw;
       border: solid 0.25vw $white;
     }
 
     .profile-info {
       clear: both;
-      padding-top: 2.75vw;
-      padding-bottom: 3.15vw;
+      padding-top: 2.5vw;
       margin-left: 3vw;
 
-      p {
+      span {
+        display: inline-block;
         font-size: 1.5vw;
-        padding-top: 0.5vw;
+        padding-bottom: 0.25vw;
       }
     }
 
     .update-container {
 
       .btn-secondary {
-        padding: 0.35vw 2.8vw;
+        margin-top: 3.5vw;
+        padding: 0.35vw 2.9vw;
       }
     }
   }

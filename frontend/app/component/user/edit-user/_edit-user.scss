@@ -1,36 +1,44 @@
 @import "../../../scss/lib/theme/vars";
 
 .edit-user {
-  float: left;
-  width: 100%;
 
   .edit-user-form {
 
     .edit-user-container {
-      height: 27.35vw;
-      padding-top: 3vw;
-      background: rgba(186, 101, 40, 0.75);
-      border: solid 0.25vw $white;
 
       img {
         float: left;
         width: 15vw;
         margin-left: 3vw;
-        margin-right: 4vw;
+        margin-right: 4.5vw;
         height: 15vw;
         border: solid 0.25vw $white;
       }
 
-      .user-buttons {
-        margin-bottom: 11vw;
+      .btn-secondary {
+        margin-top: 3.5vw;
+        margin-bottom: 12vw;
       }
 
       .fieldset-editing {
         clear: both;
+        width: $box-lg;
         margin-left: 3vw;
 
         .item-label {
           font-size: 1.5vw;
+        }
+
+        .email-label {
+          margin-right: 3.1vw;
+        }
+
+        .location-label {
+          margin-right: 1.35vw;
+        }
+
+        input {
+          width: 60% !important;
         }
       }
     }

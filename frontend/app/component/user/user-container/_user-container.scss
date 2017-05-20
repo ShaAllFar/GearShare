@@ -1,0 +1,18 @@
+.user-container {
+  float: left;
+  width: 40%;
+  padding-top: 3vw;
+  background: rgba(186, 101, 40, 0.75);
+  border: solid 0.25vw $white;
+  height: 27.35vw;
+  position: relative;
+
+  .upload {
+    position: absolute;
+    left: 23vw;
+
+    .btn-secondary {
+      padding: 0.35vw 2.2vw;
+    }
+  }
+}
