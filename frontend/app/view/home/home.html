@@ -2,7 +2,7 @@
   <input class="input-std" type="text" ng-model="homeCtrl.postSearchTerm" placeholder="search" />
 
   <div class="filter-container">
-    <button class="btn-secondary"><a href="/#!/profile">my profile</a></button>
+    <button class="btn-secondary" ng-click="homeCtrl.goToProfile()">my profile</button>
     <select ng-model="homeCtrl.select" ng-change="homeCtrl.filterByCategory(homeCtrl.select)">
       <option value="ski">ski + bindings</option>
       <option value="ski">ski boots</option>

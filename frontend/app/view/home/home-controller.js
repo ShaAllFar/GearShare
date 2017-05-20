@@ -2,10 +2,15 @@
 
 require('./_home.scss');
 
-module.exports = ['$log', '$rootScope','postService', 'imageService',  HomeController];
+module.exports = ['$log', '$rootScope', '$location', 'postService', 'imageService',  HomeController];
 
-function HomeController($log, $rootScope, postService, imageService){
+function HomeController($log, $rootScope, $location, postService, imageService){
   $log.debug('HomeController');
+
+  this.goToProfile = function() {
+    $log.debug('homeCtrl.goToProfile()');
+    $location.url('/profile');
+  };
 
   this.homePostArray = [];
   this.homeImageArray = [];
@@ -70,6 +75,4 @@ function HomeController($log, $rootScope, postService, imageService){
       this.homePostArray = filteredArr;
     });
   };
-
-
 }
