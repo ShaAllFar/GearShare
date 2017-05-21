@@ -5,6 +5,32 @@
 
   .initial-header {
 
+    .arrow-up-login {
+      width: 0;
+      height: 0;
+      border-left: 2vw solid transparent;
+      border-right: 2vw solid transparent;
+      border-bottom: 2vw solid $brand-secondary;
+      opacity: 0.75;
+      margin: 0 auto;
+    }
+
+    .arrow-up-signup {
+      @extend .arrow-up-login;
+
+      border-bottom: 2vw solid $brand-tertiary;
+    }
+
+    .join-inner-left {
+      float: left;
+      width: 50%;
+    }
+
+    .join-inner-right {
+      float: right;
+      width: 50%;
+    }
+
     .signin-header {
       height: 8.5vw;
       background: rgba(38, 34, 98, 0.75);
@@ -24,6 +50,18 @@
       background: rgba(186, 101, 40, 0.75);
     }
 
+    @media (min-width: 900px) {
+      .signin-header {
+        height: 6.25vw;
+
+        span {
+          margin-top: 0.5%;
+          font-size: $font-std + 0.25vw;
+          margin-top: 4%;
+        }
+      }
+    }
+
     @media (min-width: 600px) {
       .signin-header {
         width: 50%;
@@ -37,15 +75,16 @@
       }
     }
 
-    @media (min-width: 900px) {
-      .signin-header {
-        height: 6.25vw;
 
-        span {
-          margin-top: 0.5%;
-          font-size: $font-std + 0.25vw;
-          margin-top: 4%;
-        }
+    @media (max-width: 600px) {
+      .join-inner-left {
+        float: none;
+        width: 100%;
+      }
+
+      .join-inner-right {
+        float: none;
+        width: 100%;
       }
     }
   }

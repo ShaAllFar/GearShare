@@ -1,11 +1,22 @@
 .signup {
-  padding: 5%;
   background: rgba(186, 101, 40, 0.75);
-  width: 75%;
+  padding: 5%;
+  width: 65%;
   margin: 0 auto;
 
   .signup-form {
     text-align: center;
+
+    input {
+      font-size: $font-sm;
+      padding: 1vw 2vw;
+      margin-bottom: 4%;
+    }
+
+    button {
+      padding: 2% 10%;
+      font-size: $font-sm;
+    }
 
     .btn-tertiary {
       box-sizing: border-box;
@@ -13,41 +24,32 @@
       margin-bottom: 0;
     }
   }
-}
 
-@media (min-width: 600px) {
-  .signup {
-    padding: 4%;
-    width: 32%;
-    float: right;
-    margin-right: $gutter-std;
+  @media (max-width: 900px) {
+    padding: 6%;
 
     .signup-form {
       input {
-        font-size: $font-sm + 0.5vw;
-        padding: 1vw 2vw;
-        margin-bottom: $gutter-std;
+        font-size: $font-std - 0.5vw;
       }
 
       button {
-        padding: 2% 10%;
-        font-size: $font-sm + 0.5vw;
+        font-size: $font-std - 0.5vw;
       }
     }
   }
-}
 
-@media (min-width: 900px) {
-  .signup {
+  @media (max-width: 600px) {
     .signup-form {
+
       input {
-        font-size: $font-sm + 0.25vw;
-        padding: 1vw 1.5vw;
-        margin-bottom: $gutter-sm + 2%;
+        font-size: $font-lg - 2vw;
+        padding: 2vw 3vw;
+        margin-bottom: $gutter-sm + 1.5%;
       }
 
       button {
-        font-size: $font-sm + 0.25vw;
+        font-size: $font-lg - 2vw;
       }
     }
   }
