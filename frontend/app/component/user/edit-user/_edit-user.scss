@@ -27,25 +27,70 @@
 
         fieldset {
           margin-bottom: 0.3vw;
+
+          .item-label {
+            font-size: 1.5vw;
+            vertical-align: middle;
+          }
+
+          .email-label {
+            margin-right: 3.1vw;
+          }
+
+          .location-label {
+            margin-right: 1.35vw;
+          }
+
+          input {
+            padding-left: 0.5vw;
+            width: 60% !important;
+            height: 1.25vw;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+
+    .edit-user-form {
+
+      .edit-user-container {
+
+        img {
+          width: 30vw;
+          height: 30vw;
         }
 
-        .item-label {
-          font-size: 1.5vw;
-          vertical-align: middle;
+        .btn-secondary {
+          margin-top: 12vw;
+          font-size: $font-std + 0.5vw;
+          padding: 0.75vw 8.6vw;
+          margin-bottom: 17.25vw;
         }
 
-        .email-label {
-          margin-right: 3.1vw;
-        }
+        .fieldset-editing {
 
-        .location-label {
-          margin-right: 1.35vw;
-        }
+          fieldset {
+            margin-bottom: 1vw;
 
-        input {
-          padding-left: 0.5vw;
-          width: 60% !important;
-          height: 1.25vw;
+            .item-label {
+              font-size: $font-std + 1vw;
+            }
+
+            .email-label {
+              margin-right: 6.1vw;
+            }
+
+            .location-label {
+              margin-right: 2.6vw;
+            }
+
+            input {
+              width: 65% !important;
+              height: 2vw;
+            }
+          }
         }
       }
     }

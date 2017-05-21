@@ -33,4 +33,33 @@
       }
     }
   }
+
+  @media (max-width: 600px) {
+
+    .current-item {
+
+      img {
+        width: 30vw;
+        height: 30vw;
+      }
+
+      .update-container {
+
+        .btn-secondary {
+          margin-top: 12vw;
+          font-size: $font-std + 0.5vw;
+          padding: 0.75vw 10.5vw;
+        }
+      }
+
+      .profile-info {
+        padding-top: 3.5vw;
+
+        span {
+          font-size: $font-std + 1vw;
+          padding-bottom: 1.25vw;
+        }
+      }
+    }
+  }
 }

@@ -5,7 +5,7 @@
     margin-top: 15vw;
     text-align: center;
     font-family: 'Rhodium Libre', serif;
-    text-shadow: 4px 4px 4px $black;
+    text-shadow: 0.25vw 0.25vw 0.25vw $black;
 
     &:first-child {
       float: left;
@@ -21,23 +21,35 @@
   .post-section {
     clear: both;
 
-    .home-link {
-      position: relative;
-      float: right;
+    h2 {
+      display: none;
+    }
+  }
 
-      img {
-        height: 15vw;
-        width: 15vw;
-      }
-      h3 {
-        position: absolute;
-        color: $white;
-        font-size: 3vw;
-        top: 4.5vw;
-        right: 13vw;
-      }
+  @media (max-width: 600px) {
+    .headers {
 
+      h2 {
+        width: 75%;
+        margin: 15vw auto 2vw;
+        font-size: $font-lg + 1vw;
+
+        &:first-child {
+          float: none;
+        }
+
+        &:nth-child(2) {
+          display: none;
+        }
+      }
     }
 
+    .post-section {
+      h2 {
+        display: block;
+        width: 75%;
+        margin: 0 auto;
+      }
+    }
   }
 }
