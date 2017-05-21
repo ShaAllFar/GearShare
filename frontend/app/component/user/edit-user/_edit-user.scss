@@ -16,8 +16,8 @@
       }
 
       .btn-secondary {
-        margin-top: 3.5vw;
-        margin-bottom: 12vw;
+        margin-top: 7vw;
+        margin-bottom: 8vw;
       }
 
       .fieldset-editing {
@@ -25,8 +25,13 @@
         width: $box-lg;
         margin-left: 3vw;
 
+        fieldset {
+          margin-bottom: 0.3vw;
+        }
+
         .item-label {
           font-size: 1.5vw;
+          vertical-align: middle;
         }
 
         .email-label {
@@ -38,7 +43,9 @@
         }
 
         input {
+          padding-left: 0.5vw;
           width: 60% !important;
+          height: 1.25vw;
         }
       }
     }

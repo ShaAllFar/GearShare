@@ -38,9 +38,10 @@
       display: inline-block !important;
     }
 
-    input {
+    input, select {
       padding: 2% !important;
       width: 65% !important;
+      height: 1.75vw;
     }
 
     textarea {
@@ -49,6 +50,7 @@
 
     p {
       padding-bottom: 1vw;
+
       .category {
         width: 17.5vw;
         padding: 2vw;
@@ -70,9 +72,9 @@
         min-width: 25.5vw;
       }
     }
+
     button {
       float: right;
-      margin-top: 1vw;
       margin-right: 4vw;
     }
   }

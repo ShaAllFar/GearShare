@@ -7,12 +7,16 @@
   height: 27.35vw;
   position: relative;
 
-  .upload {
+  .upload, .home-btn {
     position: absolute;
     left: 23vw;
 
-    .btn-secondary {
+    .btn-primary, .btn-secondary {
       padding: 0.35vw 2.2vw;
     }
+  }
+
+  .upload {
+    top: 6.5vw;
   }
 }

@@ -30,4 +30,12 @@
       }
     }
   }
+
+  @media (max-width: 600px) {
+    width: 75%;
+
+    .info-wrapper {
+      font-size: $font-std + 0.5vw;
+    }
+  }
 }

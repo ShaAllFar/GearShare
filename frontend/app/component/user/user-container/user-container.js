@@ -2,13 +2,18 @@
 
 module.exports = {
   template: require('./user-container.html'),
-  controller: ['$log', UserContainerController],
+  controller: ['$log', '$location', UserContainerController],
   controllerAs: 'userContainerCtrl',
   bindings: {
     user: '<'
   }
 };
 
-function UserContainerController($log){
+function UserContainerController($log, $location){
   $log.debug('UserContainerController');
+
+  this.goHome = function() {
+    $log.debug('homeCtrl.goHome()');
+    $location.url('/home');
+  };
 }

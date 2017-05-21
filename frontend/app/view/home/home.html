@@ -1,6 +1,4 @@
 <section class="home page-wrapper">
-  <input class="input-std" type="text" ng-model="homeCtrl.postSearchTerm" placeholder="search"/>
-
   <div class="filter-container">
     <button class="btn-secondary" ng-click="homeCtrl.goToProfile()">my profile</button>
     <select ng-model="homeCtrl.select" ng-change="homeCtrl.filterByCategory(homeCtrl.select)">
@@ -21,6 +19,8 @@
     <!-- <button class="btn-tertiary" ng-click="homeCtrl.filterByNewest()">filter by newest</button> -->
     <button class="btn-tertiary" ng-click="homeCtrl.reloadForNewest()">reset</button>
   </div>
+
+  <input class="input-std" type="text" ng-model="homeCtrl.postSearchTerm" placeholder="search"/>
 
   <home-posts
     ng-repeat="item in homeCtrl.homePostArray | postSearch: homeCtrl.postSearchTerm"

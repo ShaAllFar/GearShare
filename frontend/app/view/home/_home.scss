@@ -13,12 +13,14 @@
   .filter-container {
     float: left;
     width: 20%;
-    height: 28vw;
-    margin-top: 2.5vw;
+    // height: 28vw;
+    margin-top: 8vw;
 
     select {
+      height: 1.75vw;
       width: 100%;
       margin-bottom: 3.5%;
+      margin-top: 0.25vw;
     }
 
     button {
@@ -27,7 +29,7 @@
       font-size: 1.75vw;
 
       &:nth-child(1) {
-        margin-bottom: 0;
+        margin-bottom: 0.15vw;
       }
 
       &:nth-child(3) {
@@ -36,6 +38,31 @@
 
       a {
         color: #fff;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    input {
+      margin-top: 0;
+      font-size: $font-std + 1vw;
+    }
+
+    .filter-container {
+      float: none;
+      width: 50%;
+      margin: 15vw auto 0.25vw;
+
+      select {
+        margin-bottom: 2.5%;
+      }
+
+      button {
+        font-size: $font-std + 1vw;
+
+        &:nth-child(1) {
+          margin-bottom: 1vw;
+        }
       }
     }
   }
