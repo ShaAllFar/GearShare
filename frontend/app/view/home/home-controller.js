@@ -28,6 +28,10 @@ function HomeController($log, $rootScope, $location, postService){
 
   this.fetchAllPostsFromDB();
 
+  this.reloadForNewest = function() {
+    this.fetchAllPostsFromDB();
+  };
+
   this.filterByNewest = function(){
     this.homePostArray.sort((a,b) => {
       return a.created < b.created;
