@@ -39,4 +39,12 @@
       }
     }
   }
+
+  @media (max-width: 600px) {
+    nav {
+      button {
+        font-size: $font-std + 0.5vw;
+      }
+    }
+  }
 }
