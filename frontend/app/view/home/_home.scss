@@ -44,7 +44,8 @@
 
   @media (max-width: 600px) {
     input {
-      margin-top: 0;
+      margin: 0 auto;
+      width: 75%;
       font-size: $font-std + 1vw;
     }
 

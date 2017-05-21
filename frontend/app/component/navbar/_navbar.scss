@@ -30,8 +30,10 @@
 
     nav {
       margin-right: $gutter-std;
+
       .btn-container {
         padding-top: 2.75vw;
+
         button {
           float: right;
           margin-left: $gutter-sm;
@@ -41,9 +43,16 @@
   }
 
   @media (max-width: 600px) {
-    nav {
-      button {
-        font-size: $font-std + 0.5vw;
+    .navbar-header {
+
+      nav {
+        .btn-container {
+          padding-top: 2.5vw;
+        }
+
+        button {
+          font-size: $font-std + 0.5vw;
+        }
       }
     }
   }
