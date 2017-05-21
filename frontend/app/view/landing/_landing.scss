@@ -7,8 +7,7 @@
 
     .signin-header {
       height: 8.5vw;
-      background: $brand-secondary;
-      opacity: 0.75;
+      background: rgba(38, 34, 98, 0.75);
       text-align: center;
       color: $white;
       cursor: pointer;
@@ -22,7 +21,7 @@
 
     .signup-header {
       @extend .signin-header;
-      background: $brand-tertiary;
+      background: rgba(186, 101, 40, 0.75);
     }
 
     @media (min-width: 600px) {
