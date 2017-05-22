@@ -51,18 +51,21 @@
 
     .filter-container {
       float: none;
-      width: 50%;
+      width: 35%;
       margin: 15vw auto 0.25vw;
 
       select {
-        margin-bottom: 2.5%;
+        font-size: $font-std + 0.5vw;
+        height: 3.5vw;
+        margin-bottom: 1.5vw;
       }
 
       button {
-        font-size: $font-std + 1vw;
+        font-size: $font-std + 0.5vw;
 
         &:nth-child(1) {
-          margin-bottom: 1vw;
+          padding: 0.75vw;
+          margin-bottom: 1.25vw;
         }
       }
     }
