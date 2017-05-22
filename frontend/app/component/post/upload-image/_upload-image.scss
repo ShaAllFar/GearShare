@@ -1,7 +1,14 @@
 .upload-image {
   margin-top: 1vw;
+
   button {
-    margin-top: 5px;
-    margin-left: 0;
+    margin-left: 3.5vw;
+  }
+
+  @media (max-width: 600px) {
+    button {
+      margin-left: 4.75vw;
+      font-size: $font-std + 0.5vw;
+    }
   }
 }

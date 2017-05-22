@@ -7,7 +7,23 @@
     <div class="edit-container">
       <fieldset>
         <span class="item-label">category:</span>
-        <input name="desc" class="input-std" ng-model="editPostCtrl.post.category">
+        <select class="category"
+          ng-model="editPostCtrl.post.category" required>
+          <option value="" disabled selected> --select-- </option>
+          <option value="ski">ski + bindings</option>
+          <option value="ski">ski boots</option>
+
+          <option value="snowboard">snowboard + bindings</option>
+          <option value="snowboard">snowboard</option>
+          <option value="snowboard">snowboard bindings</option>
+          <option value="snowboard">snowboard boots</option>
+
+          <option value="soft-goods">jackets</option>
+          <option value="soft-goods">pants</option>
+          <option value="soft-goods">gloves/mittens</option>
+          <option value="soft-goods">helmets</option>
+          <option value="soft-goods">goggles</option>
+        </select>
       </fieldset>
 
       <fieldset>
@@ -22,11 +38,10 @@
 
       <fieldset>
         <span class="item-label">description:</span>
-        <input name="desc" class="input-std" ng-model="editPostCtrl.post.desc">
+        <textarea name="desc" class="input-std" ng-model="editPostCtrl.post.desc"></textarea>
       </fieldset>
-
     </div>
 
-    <button type="submit" class="btn-std">update</button>
+    <button type="submit" class="btn-tertiary">update</button>
   </form>
 </section>

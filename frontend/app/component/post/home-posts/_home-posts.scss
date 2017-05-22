@@ -1,37 +1,44 @@
-.home-posts{
+.home-posts {
   list-style: none;
   color: white;
-  border: 3px solid $white;
+  border: 0.25vw solid $white;
   background: rgba(38, 34, 98, 0.75);
   width: 50%;
   margin: 0 auto;
   margin-top: 2vw;
   padding: 1.5vw;
 
-  .info-wrapper{
+  .info-wrapper {
     float: right;
-    padding-top: 2vw;
     font-size: 1.5vw;
     margin-right: 2%;
     width: 41%;
-    span{
 
-      // display: block;
+    .whole-label {
+      margin-bottom: 1vw;
     }
   }
-  .item-label{
-    font-weight: bold;
-  }
 
-  .post-images-wrapper{
+  .post-images-wrapper {
     height: 30vw;
     overflow: auto;
     width: 50%;
+
     li{
       margin-bottom: 2%;
+
       img{
         width: 100%;
       }
+    }
+  }
+
+  @media (max-width: 600px) {
+    width: 75%;
+    height: 50vw;
+
+    .info-wrapper {
+      font-size: $font-std + 0.5vw;
     }
   }
 }

@@ -2,36 +2,33 @@
   <div class="current-item">
 
     <div class="info-wrapper">
-      <div class="name-label">
+      <div class="whole-label">
         <span class="item-label">name:</span>
         <span>{{ homePostCtrl.post.name }}</span>
       </div>
 
-      <div>
+      <div class="whole-label">
         <span class="item-label">description:</span>
         <span>{{ homePostCtrl.post.desc }}</span>
       </div>
 
-      <div>
+      <div class="whole-label">
         <span class="item-label">category:</span>
         <span>{{ homePostCtrl.post.category}}</span>
       </div>
 
-      <div>
+      <div class="whole-label">
         <span class="item-label">price:</span>
         <span>{{ homePostCtrl.post.price | currency }}</span>
       </div>
     </div>
-    <div>
 
-      <div class="post-images-wrapper">
-
-        <ul ng-repeat="item in homePostCtrl.post.images" post="homePostCtrl.post">
-          <li>
-            <img src="{{item.imageURI}}" alt="{{item.desc}}"/>
-          </li>
-        </ul>
-      </div>
+    <div class="post-images-wrapper">
+      <ul ng-repeat="item in homePostCtrl.post.images" post="homePostCtrl.post">
+        <li>
+          <img src="{{item.imageURI}}" alt="{{item.desc}}"/>
+        </li>
+      </ul>
     </div>
   </div>
 </li>

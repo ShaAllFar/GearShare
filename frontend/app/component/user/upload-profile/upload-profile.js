@@ -9,13 +9,12 @@ module.exports = {
   }
 };
 
-function UploadProfileImageController($log, profileService){
+function UploadProfileImageController($log, profileService) {
   $log.debug('UploadProfileImageController');
 
   this.image = {};
 
-
-  this.uploadProfileImage = function(file){
+  this.uploadProfileImage = function(file) {
     profileService.uploadProfileImage(file)
     .then(() => {
       console.log('image', this.image);

@@ -6,7 +6,7 @@ module.exports = {
   controllerAs: 'loginCtrl'
 };
 
-function LoginController($log, $location, authService){
+function LoginController($log, $location, authService) {
   $log.debug('LoginController');
 
   authService.getToken()
@@ -16,7 +16,7 @@ function LoginController($log, $location, authService){
     $log.error(err.message);
   });
 
-  this.login = function(user){
+  this.login = function() {
     $log.log('loginCtrl.login()');
 
     authService.login(this.user)

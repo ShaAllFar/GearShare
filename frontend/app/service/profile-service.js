@@ -2,17 +2,17 @@
 
 module.exports = ['$q', '$log', '$http', 'Upload','authService', profileService];
 
-function profileService($q,$log, $http, Upload, authService){
+function profileService($q,$log, $http, Upload, authService) {
 
   let service = {};
   service.userData = {};
 
-  service.fetchUserData = function(){
+  service.fetchUserData = function() {
     $log.debug('profileService.fetchUserData()');
 
     return authService.getToken()
     .then(token => {
-      let url = `${__API_URL__}/api/profile/${authService.currentUserID}`;
+      let url = `${__API_URL__}/api/profile/${authService.currentUserID}`; // eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',
@@ -22,26 +22,26 @@ function profileService($q,$log, $http, Upload, authService){
 
       return $http.get(url, config);
     })
-    .then( res => {
+    .then(res => {
       $log.log('user data retrieved');
       service.userData = res.data;
-      if(!service.userData.profileImageURI){
+      if(!service.userData.profileImageURI) {
         service.userData.profileImageURI = 'https://s-media-cache-ak0.pinimg.com/236x/dc/26/8b/dc268be243b9176a64ebf2fe7aa47ba1.jpg';
       }
       $log.log('service.userData', service.userData);
       return service.userData;
     })
-    .catch( err => {
-      $log.error('aaaaa',err.message);
+    .catch(err => {
+      $log.error('aaaaa', err.message);
     });
   };
 
-  service.updateUserInfo = function(userID, userData){
+  service.updateUserInfo = function(userID, userData) {
     $log.debug('profileService.updateUserInfo()');
 
     return authService.getToken()
     .then(token => {
-      let url = `${__API_URL__}/api/profile/${userID}`;
+      let url = `${__API_URL__}/api/profile/${userID}`; // eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',
@@ -61,11 +61,11 @@ function profileService($q,$log, $http, Upload, authService){
     });
   };
 
-  service.uploadProfileImage = function( file){
+  service.uploadProfileImage = function(file) {
     $log.debug('uploadProfileImage');
     return authService.getToken()
     .then(token => {
-      let url = `${__API_URL__}/api/profile/${authService.currentUserID}/image`;
+      let url = `${__API_URL__}/api/profile/${authService.currentUserID}/image`; // eslint-disable-line
       let headers = {
         Accept: 'application/json',
         Authorization: `Bearer ${token}`
@@ -81,14 +81,13 @@ function profileService($q,$log, $http, Upload, authService){
     })
     .then(res => {
       $log.log('image response', res.data);
-      return res.data;
+      service.userData.profileImageURI = res.data.imageURI;
     })
     .catch(err => {
       $log.log('something', err.message);
       $log.error(err.message);
     });
   };
-
 
   return service;
 }

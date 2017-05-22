@@ -1,4 +1,5 @@
 @import './lib/theme/vars';
+@import url('https://fonts.googleapis.com/css?family=Rhodium+Libre');
 @import './lib/base/reset';
 @import './lib/base/base';
 @import './lib/layout/layout';
@@ -13,5 +14,6 @@
 @import '../component/post/home-posts/home-posts';
 @import '../component/post/thumbnail-container/thumbnail-container';
 @import '../component/post/upload-image/upload-image';
-@import '../component/user/edit-user/edit-user';
+@import '../component/user/user-container/user-container';
 @import '../component/user/user/user';
+@import '../component/user/edit-user/edit-user';

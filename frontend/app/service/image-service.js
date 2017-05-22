@@ -10,7 +10,7 @@ function imageService($q, $log, $http, Upload, authService) {
   service.getImages = function(postData, imageID){
     return authService.getToken()
     .then(token => {
-      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postData._id}/image/${imageID}`;
+      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postData._id}/image/${imageID}`; // eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',
@@ -31,9 +31,6 @@ function imageService($q, $log, $http, Upload, authService) {
 
   };
 
-
-
-
   service.fetchPostImages = function(postData) {
     $log.debug('fetchPostImages');
 
@@ -42,7 +39,7 @@ function imageService($q, $log, $http, Upload, authService) {
       return authService.getToken();
     })
     .then(token => {
-      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postData._id}/image`;
+      let url = `${__API_URL__}/api/gallery/${authService.currentGalleryID}/post/${postData._id}/image`; // eslint-disable-line
       let config = {
         headers: {
           Accept: 'application/json',
@@ -51,7 +48,7 @@ function imageService($q, $log, $http, Upload, authService) {
       };
       return $http.get(url, config);
     })
-    .then(res => {
+    .then(() => {
       $log.log('post images retrieved');
     })
     .catch(err => {

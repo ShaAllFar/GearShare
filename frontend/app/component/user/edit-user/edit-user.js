@@ -5,7 +5,8 @@ module.exports = {
   controller: ['$log', 'profileService','authService', EditUserController],
   controllerAs: 'editUserCtrl',
   bindings: {
-    user: '<'
+    user: '<',
+    changeEdit: '='
   }
 };
 
@@ -17,6 +18,7 @@ function EditUserController($log, profileService, authService){
 
     profileService.updateUserInfo(authService.currentUserID, this.user)
     .then(() => {
+      this.changeEdit.showEditProfile = false;
       $log.log('user updated');
     })
     .catch(err => {

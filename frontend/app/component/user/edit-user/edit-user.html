@@ -6,21 +6,23 @@
 
     <div class="edit-user-container">
       <img ng-src="{{editUserCtrl.user.profileImageURI}}">
-      <fieldset>
-        <span class="item-label">name:</span>
-        <input name="name" class="input-std" ng-model="editUserCtrl.user.username" />
-      </fieldset>
-      <fieldset>
-        <span class="item-label">email:</span>
-        <input name="email" class="input-std" ng-model="editUserCtrl.user.email" />
-      </fieldset>
-      <fieldset>
-        <span class="item-label">location:</span>
-        <input name="location" class="input-std" ng-model="editUserCtrl.user.location" />
-      </fieldset>
-      <!-- <button class="btn-std">edit profile pic</button> -->
+
+      <button type="submit" class="btn-secondary">update</button>
+
+      <div class="fieldset-editing">
+        <fieldset>
+          <span class="item-label username-label">username:</span>
+          <input name="username" class="input-std username-input" ng-model="editUserCtrl.user.username" />
+        </fieldset>
+        <fieldset>
+          <span class="item-label email-label">email:</span>
+          <input name="email" class="input-std email-input" ng-model="editUserCtrl.user.email" />
+        </fieldset>
+        <fieldset>
+          <span class="item-label location-label">location:</span>
+          <input name="location" class="input-std" ng-model="editUserCtrl.user.location" />
+        </fieldset>
+      </div>
     </div>
-    <upload-profile></upload-profile>
-    <button type="submit" class="btn-std">update</button>
   </form>
 </section>

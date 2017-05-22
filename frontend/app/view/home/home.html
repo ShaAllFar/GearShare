@@ -1,10 +1,7 @@
 <section class="home page-wrapper">
-  <input class="input-std" type="text" ng-model="homeCtrl.postSearchTerm" placeholder="search" />
-
   <div class="filter-container">
-    <span class="btn-secondary2"><a href="/#!/profile">my profile</a></span>
+    <button class="btn-secondary" ng-click="homeCtrl.goToProfile()">my profile</button>
     <select ng-model="homeCtrl.select" ng-change="homeCtrl.filterByCategory(homeCtrl.select)">
-      <!-- <option value="" disabled selected> --select-- </option> -->
       <option value="ski">ski + bindings</option>
       <option value="ski">ski boots</option>
 
@@ -19,9 +16,11 @@
       <option value="soft-goods">helmets</option>
       <option value="soft-goods">goggles</option>
     </select>
-    <button ng-click="homeCtrl.filterByNewest()">filter by newest</button>
-    <button ng-click="homeCtrl.fetchAllPostsFromDB()">reset</button>
+    <!-- <button class="btn-tertiary" ng-click="homeCtrl.filterByNewest()">filter by newest</button> -->
+    <button class="btn-tertiary" ng-click="homeCtrl.reloadForNewest()">reset</button>
   </div>
+
+  <input class="input-std" type="text" ng-model="homeCtrl.postSearchTerm" placeholder="search"/>
 
   <home-posts
     ng-repeat="item in homeCtrl.homePostArray | postSearch: homeCtrl.postSearchTerm"

@@ -1,42 +1,73 @@
-// @import "../../../scss/lib/theme/vars";
+@import "../../scss/lib/theme/vars";
 
-.home{
-  input{
+.home {
+
+  input {
     display: block;
-    margin-top: 3%;
+    margin-top: 15vw;
     width: 50%;
     margin-left: 25%;
+    margin-bottom: 0;
   }
-  .filter-container{
+
+  .filter-container {
     float: left;
     width: 20%;
-    height: 28vw;
-    margin-top: 19px;
-    .btn-secondary2{
-      background: #262262;
-      color: #fff;
-      border-radius: 20px;
-      display: block;
-      width: 96%;
+    // height: 28vw;
+    margin-top: 8vw;
+
+    select {
+      height: 1.75vw;
+      width: 100%;
+      margin-bottom: 3.5%;
+      margin-top: 0.25vw;
+    }
+
+    button {
+      width: 100%;
       padding: 2%;
-      text-align: center;
-      margin-bottom: 3%;
-      a{
+      font-size: 1.75vw;
+
+      &:nth-child(1) {
+        margin-bottom: 0.15vw;
+      }
+
+      &:nth-child(3) {
+        margin-bottom: 4%;
+      }
+
+      a {
         color: #fff;
       }
     }
+  }
 
-    select{
-      width: 100%;
-      padding: 1%;
-      margin-bottom: 3%;
-      height: 3vw;
+  @media (max-width: 600px) {
+    input {
+      margin: 0 auto;
+      width: 75%;
+      font-size: $font-std + 1vw;
     }
-    button{
-      width: 100%;
-      background-color: #ba6528;
-      padding: 2%;
-      font-size: 1.75vw;
+
+    .filter-container {
+      float: none;
+      width: 35%;
+      margin: 15vw auto 0.25vw;
+
+      select {
+        font-size: $font-std + 0.5vw;
+        height: 3.5vw;
+        margin-bottom: 1.5vw;
+      }
+
+      button {
+        font-size: $font-std + 0.5vw;
+
+        &:nth-child(1) {
+          padding: 0.75vw;
+          margin-bottom: 1.25vw;
+        }
+      }
     }
   }
 }

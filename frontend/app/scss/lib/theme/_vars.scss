@@ -6,8 +6,8 @@ $brand-secondary: #262262;
 $brand-tertiary: #ba6528;
 
 /// *** button hovers ***
-$btn-hover-primary: $brand-primary * 2;
 $btn-hover-secondary: $brand-secondary * 2;
+$btn-hover-primary: $btn-hover-secondary;
 $btn-hover-tertiary: $brand-tertiary * 2;
 
 // *** box-sizes ***
@@ -21,7 +21,6 @@ $gutter-sm: $gutter-std / 2;
 $gutter-lg: $gutter-std * 2;
 
 // *** font-types ***
-$font-primary: 'Copperplate Gothic', serif;
 $font-secondary: 'Helvetica Neue', Helvetica, sans-serif;
 
 // *** font-sizes ***

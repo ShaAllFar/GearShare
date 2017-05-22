@@ -3,23 +3,112 @@
   min-height: 600px;
   z-index: 1;
 
-  span {
-    font-family: $font-primary;
-    display: inline-block;
-    clear: both;
-    width: 100%;
-    font-size: 7vw;
-    text-align: center;
+  .initial-header {
+
+    .arrow-up-login {
+      width: 0;
+      height: 0;
+      border-left: 2vw solid transparent;
+      border-right: 2vw solid transparent;
+      border-bottom: 2vw solid $brand-secondary;
+      opacity: 0.75;
+      margin: 0 auto;
+    }
+
+    .arrow-up-signup {
+      @extend .arrow-up-login;
+
+      border-bottom: 2vw solid $brand-tertiary;
+    }
+
+    .join-inner-left {
+      float: left;
+      width: 50%;
+    }
+
+    .join-inner-right {
+      float: right;
+      width: 50%;
+    }
+
+    .signin-header {
+      height: 8.5vw;
+      background: rgba(38, 34, 98, 0.75);
+      text-align: center;
+      color: $white;
+      cursor: pointer;
+
+      span {
+        font-size: $font-lg;
+        display: inline-block;
+        margin-top: 1.5%;
+      }
+    }
+
+    .signup-header {
+      @extend .signin-header;
+      background: rgba(186, 101, 40, 0.75);
+    }
+
+    @media (min-width: 900px) {
+      .signin-header {
+        height: 6.25vw;
+
+        span {
+          margin-top: 0.5%;
+          font-size: $font-std + 0.25vw;
+          margin-top: 4%;
+        }
+      }
+    }
+
+    @media (min-width: 600px) {
+      .signin-header {
+        width: 50%;
+        float: left;
+        height: 7.25vw;
+
+        span {
+          font-size: $font-std + 1vw;
+          margin-top: 4%;
+        }
+      }
+    }
+
+
+    @media (max-width: 600px) {
+      .join-inner-left {
+        float: none;
+        width: 100%;
+      }
+
+      .join-inner-right {
+        float: none;
+        width: 100%;
+      }
+    }
+  }
+
+  .main-title {
     position: absolute;
-    right: 20px;
-    bottom: 275px;
-    text-shadow: 2px 2px $black;
+    top: 275px;
+    left: 20vw;
     z-index: -9000;
 
-    img {
-      vertical-align: middle;
-      width: 10vw;
-      margin: 0 2vw;
+    span {
+      font-family: 'Rhodium Libre', serif;
+      display: inline-block;
+      clear: both;
+      width: 100%;
+      font-size: 7vw;
+      text-align: center;
+      text-shadow: 0.25vw 0.25vw 0.25vw $black;
+
+      img {
+        vertical-align: middle;
+        width: 10vw;
+        margin: 0 2vw;
+      }
     }
   }
 }

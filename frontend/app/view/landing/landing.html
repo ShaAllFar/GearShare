@@ -1,14 +1,22 @@
 <section class="landing">
-  <div class="join-container" >
-    <div class="join-inner">
-      <signup></signup>
-    </div>
-  </div>
-  <div class="join-container">
-    <div class="join-inner">
-      <login></login>
+  <div class="initial-header clear-fix">
+    <div ng-click="landingCtrl.toggleView.showLoginForm=!landingCtrl.toggleView.showLoginForm" class="signin-header"><span>sign in</span></div>
+    <div ng-click="landingCtrl.toggleView.showSignupForm=!landingCtrl.toggleView.showSignupForm" class="signup-header"><span>sign up</span></div>
+
+    <div class="join-container">
+      <div class="join-inner-left">
+        <div class="arrow-up-login" ng-if="landingCtrl.toggleView.showLoginForm"></div>
+        <login ng-if="landingCtrl.toggleView.showLoginForm"></login>
+      </div>
+
+      <div class="join-inner-right">
+        <div class="arrow-up-signup" ng-if="landingCtrl.toggleView.showSignupForm"></div>
+        <signup ng-if="landingCtrl.toggleView.showSignupForm"></signup>
+      </div>
     </div>
   </div>
 
-  <span><img src="../../../../img/gear-share-logo.png" alt="gearshare logo">GEARSHARE</span>
+  <div class="main-title">
+    <span><img src="../../../../img/gear-share-logo.png" alt="gearshare logo">GEARSHARE</span>
+  </div>
 </section>

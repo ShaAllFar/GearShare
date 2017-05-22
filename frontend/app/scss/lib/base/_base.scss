@@ -6,8 +6,7 @@ html, body {
   background: $white;
   color: #fff;
 
-
-  background-image: url(../../../img/woods.jpg);
+  background-image: url(../../../img/joey-sequence-1.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
@@ -99,6 +98,11 @@ input[type="text"] {
 
 input[type="password"] {
   @extend input[type="text"];
+}
+
+input:focus, textarea:focus {
+  background: $brand-primary;
+  color: $white;
 }
 
 .page-wrapper {

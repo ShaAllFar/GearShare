@@ -1,33 +1,61 @@
 @import "../../../scss/lib/theme/vars";
 
 .post-item {
+  clear: both;
+  float: right;
   color: white;
-  border: 3px solid $white;
+  border: 0.25vw solid $white;
   background: rgba(38, 34, 98, 0.75);
   width: 48%;
-  margin: 0 auto;
-  margin-top: 2vw;
+  margin: 0 auto 2vw;
   padding: 1.5vw;
-  margin-left: 25%;
 
 
   .current-item {
-    padding-top: 2vw;
     float: right;
     font-size: 1.5vw;
-    margin-left: 2.5vw;
-    width: 37%;
+    width: 45%;
+
     div {
-      margin-bottom: 5px;
+      margin-bottom: 1vw;
     }
+
     button {
-      background: $brand-tertiary;
-      padding: 0.25vw 1.25vw;
+      padding: 0.25vw 1.5vw;
     }
   }
 
   .update-container {
-    margin-top: 2vw;
-    margin-left: 2vw;
+    margin-top: 1.25vw;
+
+    .btn-tertiary:first-child {
+      padding: 0.25vw 2.35vw;
+    }
+  }
+
+  @media (max-width: 600px) {
+    float: none;
+    width: 74%;
+    height: 50vw;
+
+    &:first-child {
+      margin-top: 2vw;
+    }
+
+    .current-item {
+      font-size: $font-std + 0.5vw;
+
+      button {
+        padding: 0.5vw 3vw;
+        font-size: $font-std + 0.5vw;
+      }
+    }
+
+    .update-container {
+
+      .btn-tertiary:first-child {
+        padding: 0.5vw 4.5vw;
+      }
+    }
   }
 }

@@ -1,0 +1,42 @@
+.user-container {
+  float: left;
+  width: 40%;
+  padding-top: 3vw;
+  background: rgba(186, 101, 40, 0.75);
+  border: solid 0.25vw $white;
+  height: 27.35vw;
+  position: relative;
+
+  .upload, .home-btn {
+    position: absolute;
+    left: 23vw;
+
+    .btn-primary, .btn-secondary {
+      padding: 0.35vw 2.2vw;
+    }
+  }
+
+  .upload {
+    top: 6.5vw;
+  }
+
+  @media (max-width: 600px) {
+    float: none;
+    width: 77.5%;
+    height: 50vw;
+    margin: 0 auto;
+
+    .upload, .home-btn {
+      left: 39vw;
+
+      .btn-primary, .btn-secondary {
+        font-size: $font-std + 0.5vw;
+        padding: 0.75vw 9.3vw;
+      }
+    }
+
+    .upload {
+      top: 9vw;
+    }
+  }
+}

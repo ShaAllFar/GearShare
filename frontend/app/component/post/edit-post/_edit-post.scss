@@ -5,19 +5,65 @@
   float: right;
 
   .edit-container {
-    padding-top: 2vw;
-    float: right;
+    font-size: 1.5vw;
+    margin-right: 1.5vw;
+    width: 80%;
+
+    .item-label {
+      display: block;
+      font-size: 1.5vw;
+      margin-bottom: 0.5vw;
+    }
+
+    input, textarea, select {
+      padding: 2% !important;
+      width: 100% !important;
+      height: 1.25vw;
+    }
+
+    select {
+      height: 1.75vw
+    }
+
+    input, select {
+      margin-bottom: 0.5vw;
+    }
   }
 
   button {
-    margin-top: $gutter-std;
     clear: both;
+    margin-top: $gutter-std;
     background: $brand-tertiary;
     padding: 0.25vw 1.25vw;
   }
 
-  // .update-container {
-  //   margin-top: 2vw;
-  //   margin-left: 2vw;
-  // }
+  @media (max-width: 600px) {
+    .edit-container {
+      .item-label {
+        font-size: $font-std + 0.5vw;
+        margin-bottom: 1vw;
+      }
+
+      input, textarea {
+        font-size: $font-std + 0.5vw;
+        padding: 1vw;
+        height: 3.5vw;
+      }
+
+      select {
+        font-size: $font-std + 0.5vw;
+        height: 3.75vw
+      }
+
+      input, select {
+        margin-bottom: 1vw;
+      }
+    }
+
+    button {
+      margin-top: $gutter-std;
+      font-size: $font-std + 0.5vw;
+      padding: 0.5vw 2.8vw;
+    }
+  }
 }

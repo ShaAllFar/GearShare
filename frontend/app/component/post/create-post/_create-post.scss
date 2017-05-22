@@ -1,79 +1,87 @@
 @import "../../../scss/lib/theme/vars";
 
 .user-post {
-  float: left;
-  width: 46%;
+  float: right;
+  width: 49%;
   height: 28vw;
   padding: 1vw;
   background: rgba(38, 34, 98, 0.75);
-  padding-left: 5%;
-  padding-top: 4%;
-  // border: 1px solid black;
-  // background-color: rgba(255, 255, 255, 0.5);
-
-  .placeholder-image {
-    float: left;
-    height: 15vw;
-    width: 15vw;
-    margin-left: $gutter-sm;
-    margin-top: $gutter-sm;
-
-    img {
-      height: 15vw;
-      width: 15vw;
-    }
-  }
+  padding-top: 2.5%;
+  padding-bottom: 0;
+  border: 0.25vw solid $white;
+  margin-bottom: 2vw;
 
   .post-form {
-    float: right;
-    top: 0;
     width: 100%;
     height: 25vw;
     margin-top: $gutter-sm;
     font-size: 1.5vw;
+    text-align: center;
 
-    span {
-      width: 20% !important;
-      display: inline-block !important;
+    select {
+      width: 92.5% !important;
+      height: 1.75vw;
     }
 
     input {
-      padding: 2% !important;
-      width: 65% !important;
+      width: 90% !important;
+      height: 1.75vw;
     }
 
     textarea {
-      @extend input;
+      width: 90% !important;
+      height: 2.5vw;
     }
 
     p {
-      padding-bottom: 1vw;
-      .category {
-        width: 17.5vw;
-        padding: 2vw;
+      padding-bottom: 1.25vw;
 
-      }
-      .price {
-        width: 8vw;
+      .price, .name, .description {
         padding: 0.5vw;
         border: none;
       }
-      .name {
-        width: 19vw;
-        padding: 0.5vw;
-        border: none;
 
-      }
       .description {
-        margin-top: 1vw;
-        min-width: 25.5vw;
+        margin-top: 0.05vw;
       }
     }
+
     button {
       float: right;
-      margin-top: 1vw;
-      margin-right: 5vw;
-      padding-bottom: 0.75vw;
+      margin-right: 1.75vw;
+    }
+  }
+
+  @media (max-width: 600px) {
+    clear: both;
+    float: none;
+    width: 75%;
+    height: 50vw;
+    margin: 0 auto;
+
+    .post-form {
+
+      select, input {
+        height: 3.5vw;
+      }
+
+      textarea {
+        height: 3.75vw;
+      }
+
+      p {
+        padding-bottom: 2vw;
+
+        .category, .price, .name, .description {
+          padding: 1vw;
+          font-size: $font-std + 0.5vw;
+        }
+      }
+
+      button {
+        margin-right: 2.25vw;
+        font-size: $font-std + 0.5vw;
+      }
     }
   }
 }

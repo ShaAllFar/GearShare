@@ -1,19 +1,99 @@
 @import "../../../scss/lib/theme/vars";
 
 .edit-user {
-  // border: 1px solid blue;
-  float: left;
-  width: 25%;
-  height: 28vw;
+
   .edit-user-form {
 
-
     .edit-user-container {
+
       img {
-        width: 20vw;
-        height: auto;
+        float: left;
+        width: 15vw;
+        margin-left: 3vw;
+        margin-right: 4.5vw;
+        height: 15vw;
+        border: solid 0.25vw $white;
       }
 
+      .btn-secondary {
+        margin-top: 7vw;
+        margin-bottom: 8vw;
+      }
+
+      .fieldset-editing {
+        clear: both;
+        width: $box-lg;
+        margin-left: 3vw;
+
+        fieldset {
+          margin-bottom: 0.3vw;
+
+          .item-label {
+            font-size: 1.5vw;
+            vertical-align: middle;
+          }
+
+          .email-label {
+            margin-right: 3.1vw;
+          }
+
+          .location-label {
+            margin-right: 1.35vw;
+          }
+
+          input {
+            padding-left: 0.5vw;
+            width: 60% !important;
+            height: 1.25vw;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+
+    .edit-user-form {
+
+      .edit-user-container {
+
+        img {
+          width: 30vw;
+          height: 30vw;
+        }
+
+        .btn-secondary {
+          margin-top: 12vw;
+          font-size: $font-std + 0.5vw;
+          padding: 0.75vw 8.6vw;
+          margin-bottom: 17.25vw;
+          margin-left: 1vw;
+        }
+
+        .fieldset-editing {
+
+          fieldset {
+            margin-bottom: 1vw;
+
+            .item-label {
+              font-size: $font-std + 1vw;
+            }
+
+            .email-label {
+              margin-right: 6.1vw;
+            }
+
+            .location-label {
+              margin-right: 2.6vw;
+            }
+
+            input {
+              width: 65% !important;
+              height: 2vw;
+            }
+          }
+        }
+      }
     }
   }
 }
