@@ -7,6 +7,16 @@ module.exports = ['$log', '$rootScope', '$location', 'postService',  HomeControl
 function HomeController($log, $rootScope, $location, postService){
   $log.debug('HomeController');
 
+  this.mostRecent = false;
+
+  this.showMostRecentButton = function() {
+    this.mostRecent = true;
+  };
+
+  this.hideMostRecentButton = function() {
+    this.mostRecent = false;
+  };
+
   this.goToProfile = function() {
     $log.debug('homeCtrl.goToProfile()');
     $location.url('/profile');

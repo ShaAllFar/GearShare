@@ -1,4 +1,10 @@
 .home-posts {
+  &:first-child {
+    clear: none;
+  }
+
+  clear: both;
+  position: relative;
   list-style: none;
   color: white;
   border: 0.25vw solid $white;
@@ -33,12 +39,30 @@
     }
   }
 
+  .timestamp {
+    clear: both;
+    font-size: 1.25vw;
+    position: absolute;
+    right: 1.75vw;
+    bottom: 1.5vw;
+  }
+
   @media (max-width: 600px) {
     width: 75%;
     height: 50vw;
 
     .info-wrapper {
       font-size: $font-std + 0.5vw;
+    }
+
+    .post-images-wrapper {
+      height: 50vw;
+    }
+
+    .timestamp {
+      font-size: 2vw;
+      right: 2.25vw;
+      bottom: 2vw;
     }
   }
 }
