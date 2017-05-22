@@ -2,4 +2,8 @@
   width: 50%;
   height: 30vw;
   overflow: auto;
+
+  @media (max-width: 600px) {
+    height: 42.5vw;
+  }
 }
