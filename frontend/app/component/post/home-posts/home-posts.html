@@ -3,16 +3,6 @@
 
     <div class="info-wrapper">
       <div class="whole-label">
-        <span class="item-label">name:</span>
-        <span>{{ homePostCtrl.post.name }}</span>
-      </div>
-
-      <div class="whole-label">
-        <span class="item-label">description:</span>
-        <span>{{ homePostCtrl.post.desc }}</span>
-      </div>
-
-      <div class="whole-label">
         <span class="item-label">category:</span>
         <span>{{ homePostCtrl.post.category}}</span>
       </div>
@@ -20,6 +10,16 @@
       <div class="whole-label">
         <span class="item-label">price:</span>
         <span>{{ homePostCtrl.post.price | currency }}</span>
+      </div>
+
+      <div class="whole-label">
+        <span class="item-label">name:</span>
+        <span>{{ homePostCtrl.post.name }}</span>
+      </div>
+
+      <div class="whole-label">
+        <span class="item-label">description:</span>
+        <span>{{ homePostCtrl.post.desc }}</span>
       </div>
     </div>
 
@@ -29,6 +29,10 @@
           <img src="{{item.imageURI}}" alt="{{item.desc}}"/>
         </li>
       </ul>
+    </div>
+
+    <div class="timestamp">
+      <span>posted: {{ homePostCtrl.post.created | date: 'MMM d, y h:mm a'}}</span>
     </div>
   </div>
 </li>

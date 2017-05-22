@@ -7,7 +7,7 @@
 
     <div>
       <span class="item-label">price: $</span>
-      <span>{{ postItemCtrl.post.price }}</span>
+      <span>{{ postItemCtrl.post.price | currency }}</span>
     </div>
 
     <div class="name-label">
@@ -30,4 +30,8 @@
   <thumbnail-container post="postItemCtrl.post"></thumbnail-container>
 
   <upload-image post="postItemCtrl.post"></upload-image>
+
+  <div class="timestamp">
+    <span>posted: {{ postItemCtrl.post.created | date: 'MMM d, y h:mm a'}}</span>
+  </div>
 </li>

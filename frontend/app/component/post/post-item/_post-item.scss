@@ -1,6 +1,7 @@
 @import "../../../scss/lib/theme/vars";
 
 .post-item {
+  position: relative;
   clear: both;
   float: right;
   color: white;
@@ -9,7 +10,6 @@
   width: 48%;
   margin: 0 auto 2vw;
   padding: 1.5vw;
-
 
   .current-item {
     float: right;
@@ -31,6 +31,14 @@
     .btn-tertiary:first-child {
       padding: 0.25vw 2.35vw;
     }
+  }
+
+  .timestamp {
+    clear: both;
+    font-size: 1.25vw;
+    position: absolute;
+    right: 2.75vw;
+    bottom: 2.5vw;
   }
 
   @media (max-width: 600px) {
@@ -56,6 +64,12 @@
       .btn-tertiary:first-child {
         padding: 0.5vw 4.5vw;
       }
+    }
+
+    .timestamp {
+      font-size: 2vw;
+      right: 3.75vw;
+      bottom: 3.5vw;
     }
   }
 }
