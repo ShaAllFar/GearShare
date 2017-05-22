@@ -4,11 +4,10 @@
     ng-submit="createPostCtrl.createPost()">
 
     <p>
-      <span>category:</span>
       <select class="category"
         form="post-form"
         ng-model="createPostCtrl.post.category" required>
-        <option value="" disabled selected> --select-- </option>
+        <option value="" disabled selected> --category-- </option>
         <option value="ski">ski + bindings</option>
         <option value="ski">ski boots</option>
 
@@ -26,7 +25,6 @@
     </p>
 
     <p>
-      <span>price: $</span>
       <input
         class="price"
         placeholder="price"
@@ -34,7 +32,6 @@
     </p>
 
     <p>
-      <span>name:</span>
       <input
         class="name"
         placeholder="name"
@@ -42,7 +39,6 @@
     </p>
 
     <p>
-      <span>description:</span>
       <textarea
         placeholder="description and contact info"
         type="text"
@@ -52,5 +48,4 @@
     </p>
     <button class="btn-tertiary" type="submit">submit post</button>
   </form>
-
 </section>

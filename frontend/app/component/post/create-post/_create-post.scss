@@ -2,80 +2,86 @@
 
 .user-post {
   float: right;
-  width: 45.2%;
+  width: 49%;
   height: 28vw;
   padding: 1vw;
   background: rgba(38, 34, 98, 0.75);
-  padding-left: 5%;
   padding-top: 2.5%;
   padding-bottom: 0;
   border: 0.25vw solid $white;
   margin-bottom: 2vw;
 
-  .placeholder-image {
-    float: left;
-    height: 15vw;
-    width: 15vw;
-    margin-left: $gutter-sm;
-    margin-top: $gutter-sm;
-
-    img {
-      height: 15vw;
-      width: 15vw;
-    }
-  }
-
   .post-form {
-    float: right;
-    top: 0;
     width: 100%;
     height: 25vw;
     margin-top: $gutter-sm;
     font-size: 1.5vw;
+    text-align: center;
 
-    span {
-      width: 20% !important;
-      display: inline-block !important;
+    select {
+      width: 92.5% !important;
+      height: 1.75vw;
     }
 
-    input, select {
-      padding: 2% !important;
-      width: 65% !important;
+    input {
+      width: 90% !important;
       height: 1.75vw;
     }
 
     textarea {
-      @extend input;
+      width: 90% !important;
+      height: 2.5vw;
     }
 
     p {
-      padding-bottom: 1vw;
+      padding-bottom: 1.25vw;
 
-      .category {
-        width: 17.5vw;
-        padding: 2vw;
-
-      }
-      .price {
-        width: 8vw;
+      .price, .name, .description {
         padding: 0.5vw;
         border: none;
       }
-      .name {
-        width: 19vw;
-        padding: 0.5vw;
-        border: none;
 
-      }
       .description {
         margin-top: 0.05vw;
-        min-width: 25.5vw;
       }
     }
 
     button {
       float: right;
-      margin-right: 4vw;
+      margin-right: 1.75vw;
+    }
+  }
+
+  @media (max-width: 600px) {
+    clear: both;
+    float: none;
+    width: 75%;
+    height: 50vw;
+    margin: 0 auto;
+
+    .post-form {
+
+      select, input {
+        height: 3.5vw;
+      }
+
+      textarea {
+        height: 3.75vw;
+      }
+
+      p {
+        padding-bottom: 2vw;
+
+        .category, .price, .name, .description {
+          padding: 1vw;
+          font-size: $font-std + 0.5vw;
+        }
+      }
+
+      button {
+        margin-right: 2.25vw;
+        font-size: $font-std + 0.5vw;
+      }
     }
   }
 }

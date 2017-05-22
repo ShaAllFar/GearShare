@@ -46,9 +46,10 @@
 
     .post-section {
       h2 {
+        font-size: $font-lg + 1vw;
         display: block;
-        width: 75%;
-        margin: 0 auto;
+        width: 100%;
+        margin: 5vw auto 2vw;
       }
     }
   }
