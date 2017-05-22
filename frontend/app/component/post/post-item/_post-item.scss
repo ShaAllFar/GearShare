@@ -16,7 +16,7 @@
     width: 45%;
 
     div {
-      margin-bottom: 5px;
+      margin-bottom: 1vw;
     }
 
     button {
@@ -25,10 +25,36 @@
   }
 
   .update-container {
-    margin-top: 1vw;
+    margin-top: 1.25vw;
 
     .btn-tertiary:first-child {
       padding: 0.25vw 2.35vw;
+    }
+  }
+
+  @media (max-width: 600px) {
+    float: none;
+    width: 74%;
+    height: 50vw;
+
+    &:first-child {
+      margin-top: 2vw;
+    }
+
+    .current-item {
+      font-size: $font-std + 0.5vw;
+
+      button {
+        padding: 0.5vw 3vw;
+        font-size: $font-std + 0.5vw;
+      }
+    }
+
+    .update-container {
+
+      .btn-tertiary:first-child {
+        padding: 0.5vw 4.5vw;
+      }
     }
   }
 }

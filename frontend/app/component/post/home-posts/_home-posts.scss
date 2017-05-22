@@ -15,7 +15,7 @@
     width: 41%;
 
     .whole-label {
-      margin-bottom: 0.5vw;
+      margin-bottom: 1vw;
     }
   }
 
@@ -23,8 +23,10 @@
     height: 30vw;
     overflow: auto;
     width: 50%;
+
     li{
       margin-bottom: 2%;
+
       img{
         width: 100%;
       }
@@ -33,6 +35,7 @@
 
   @media (max-width: 600px) {
     width: 75%;
+    height: 50vw;
 
     .info-wrapper {
       font-size: $font-std + 0.5vw;
