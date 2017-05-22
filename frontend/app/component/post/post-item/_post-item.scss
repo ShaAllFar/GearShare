@@ -1,6 +1,7 @@
 @import "../../../scss/lib/theme/vars";
 
 .post-item {
+  clear: both;
   float: right;
   color: white;
   border: 0.25vw solid $white;
