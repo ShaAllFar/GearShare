@@ -20,13 +20,17 @@ function HomePostController($log, postService) {
     postService.fetchAllPostsFromDB()
 
     .then( (posts) => {
+
       posts.data.forEach( (posts) => {
+      // console.log(posts);
+
         this.postArray.push(posts);
       });
 
       this.postArray.forEach((images) => {
         this.arrayOfImageIDs.push(images._id);
       });
+
       return this.postArray;
     })
     .catch(err => {
