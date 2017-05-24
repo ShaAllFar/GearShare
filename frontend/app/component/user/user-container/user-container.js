@@ -16,4 +16,9 @@ function UserContainerController($log, $location){
     $log.debug('homeCtrl.goHome()');
     $location.url('/home');
   };
+
+  this.goMessage = () => {
+    $log.debug('messageCtrl.goMessage()');
+    $location.url('/message');
+  };
 }

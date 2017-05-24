@@ -1,0 +1,25 @@
+.chat {
+  width: 80vw;
+  height: 40vw;
+  border: 1px solid red;
+  margin-top: 20vw;
+  margin-left: 10vw;
+  // float: right;
+  .conversations {
+    width: 20vw;
+    border: 1px solid green;
+    float: left;
+    height: 100%;
+  }
+  #chat-form {
+    width: 59vw;
+    border: 1px solid blue;
+    float: right;
+    fieldset {
+      input {
+        // width: 20%;
+      }
+    }
+
+  }
+}

@@ -29,6 +29,13 @@ function routerConfig($stateProvider, $urlRouterProvider){
       template: require('../view/profile/profile.html'),
       controller: 'ProfileController',
       controllerAs: 'profileCtrl'
+    },
+    {
+      name: 'messgae',
+      url: '/message',
+      template: require('../view/message/message.html'),
+      controller: 'MessageController',
+      controllerAs: 'messageCtrl'
     }
   ];
 

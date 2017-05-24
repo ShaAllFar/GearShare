@@ -22,6 +22,7 @@ function ChatController($log) {
     var li = document.createElement('li');
     li.innerHTML =  this.text;
     return li;
+
   };
 
   function renderAllComments() {
