@@ -1,52 +1,60 @@
 'use strict';
 
-const net = require('net');
-const EE = require('events');
-const Chat = require('./model/chat.js');
 const PORT = process.env.PORT || 3000;
-const server = net.createServer();
-const ee = new EE();
+const server = require('http').createServer();
+const io = require('socket.io').listen(server);
+const crypto = require('crypto');
+const users = {}; //TODO create function in message view to retrieve all users and populate this object literal.
+const socks = {};
 
-const allUsers = [];
+// const Chat = require('./model/chat.js');
 
-ee.on('@dm', function(chat, string) {
-  let message = string.split(' ').slice(1).join(' ').trim();
+var avatar_url = 'http://www.gravatar.com/avatar/';
+var avatar_404 = ['mm', 'identicon', 'monsterid', 'wavatar', 'retro'];
 
-});
+function Uid() {
+  this.id = ++Uid.lastid;
+}
 
-ee.on('default', function(chat) {
-  chat.socket.write('not a command');
-});
+Uid.lastid = 0;
 
-server.on('connection', function(socket) {
-  var user = new Chat(socket);
-  allUsers.push(user);
-
-  console.log('connection successful');
-  console.log('chat:', user.id);
-
-  socket.on('data', function(data) {
-    const command = data.toString().split(' ').shift().trim();
-
-    if(command.startsWith('@')) {
-      ee.emit(command, user, data.toString().split(' ').slice(1).join(' '));
+// Handle Users
+io.sockets.on('connection', function(socket) {
+  // Event recieved by new user
+  socket.on('join', function(recv, fn) {
+    if (!recv.user) {
+      socket.emit('custom_error', { message: 'User not found or invalid'});
       return;
     }
 
-    ee.emit('default', user, data.toString());
+    // User already logged on
+    if (users[recv.user]) {
+      socket.emit('custom_error', { message: 'User ' + recv.user + ' is already logged' });
+      return;
+    }
+
+    if (Object.keys(users).length > 0)
+      socket.emit('chat', JSON.stringify( { 'action': 'usrlist', 'user': users }));
+
+    var uid = new Uid();
+    socket.user = recv.user;
+    var my_avatar = get_avatar_url(socket.user);
+
+    users[socket.user] = {'uid': Uid.lastid, 'user': socket.user, 'name': recv.name, 'status': 'online', 'avatar': my_avatar}
+    socks[socket.user] = {'socket': socket}
+
+    socket.broadcast.emit('chat', JSON.stringify( {'action': 'newuser', 'user': users[socket.user]} ));
+
+    if (typeof fn !== 'undefined')
+      fn(JSON.stringify( {'login': 'successful', 'my_settings': users[socket.user]} ));
+
   });
 
-  socket.on('error', function(err) {
-    console.log(err);
-  });
+  socket.on('user_status', function(recv) {
 
-  socket.on('close', function() {
-    allUsers.forEach(function(chat) {
-      client.socket.write(`${user} is no longer connected.`);
-    });
-  });
-});
+  })
 
-server.listen(PORT, function() {
-  console.log(`server live on: ${PORT}`);
-});
+
+
+
+})

@@ -13,8 +13,10 @@ function ChatController($log) {
   var chatForm = document.getElementById('chat-form');
   var allComments = [];
 
-  var Comment = function(text) {
+  var Comment = function(text, socket, user) {
     // this.userName = userName;
+    this.socket = socket;
+    this.post.userID = user;
     this.text = text;
   };
 
