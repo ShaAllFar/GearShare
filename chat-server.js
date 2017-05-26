@@ -1,6 +1,6 @@
 'use strict';
 
-const PORT = process.env.PORT || 3000;
+const PORT = 5000;
 const server = require('http').createServer();
 const io = require('socket.io').listen(server);
 const crypto = require('crypto');
@@ -21,7 +21,7 @@ Uid.lastid = 0;
 // Handle Users
 io.sockets.on('connection', function(socket) {
   // Event recieved by new user
-  socket.on('join', function(recv, fn) {
+  socket.on('join', (recv, fn) => {
     if (!recv.user) {
       socket.emit('custom_error', { message: 'User not found or invalid'});
       return;
@@ -36,7 +36,7 @@ io.sockets.on('connection', function(socket) {
     if (Object.keys(users).length > 0)
       socket.emit('chat', JSON.stringify( { 'action': 'usrlist', 'user': users }));
 
-    var uid = new Uid();
+    uid = new Uid();
     socket.user = recv.user;
     var my_avatar = get_avatar_url(socket.user);
 
@@ -50,11 +50,49 @@ io.sockets.on('connection', function(socket) {
 
   });
 
-  socket.on('user_status', function(recv) {
+  socket.on('user_status', (recv) => {
+    if (users[socket.user]) {
+      users[socket.user].status = recv.status;
+      socket.broadcast.emit('chat', JSON.stringify( {'action': 'user_status', 'user': users[socket.user]} ));
+    }
+  });
 
-  })
+  socket.on('user_typing', (recv) => {
+    var id = socks[recv.user].socket.id;
+    io.sockets.socket(id).emit('chat', JSON.stringify( {'action': 'user_typing', 'data': users[socket.user]} ));
+  });
 
+  socket.on('message', (recv, fn) => {
+    var d = new Date();
+    var id = socks[recv.user].socket.id;
+    var msg = {'msg': recv.msg, 'user': users[socket.user]};
+    if (typeof fn !== 'undefined')
+      fn(JSON.stringify( {'ack': 'true', 'date': d} ));
+    io.sockets.socket(id).emit('chat', JSON.stringify( {'action': 'message', 'data': msg, 'date': d} ));
+  });
 
+  socket.on('disconnect', () => {
+    if (users[socket.user]) {
+      socket.broadcast.emit('chat', JSON.stringify( {'action': 'disconnect', 'user': users[socket.user]} ));
+      delete users[socket.user];
+      delete socks[socket.user];
+    }
+  });
 
+});
 
-})
+server.listen(PORT, () => {
+  var addr = server.address();
+  console.log('chatroom listening on ' + addr.address + addr.PORT);
+});
+
+function get_avatar_url(user) {
+  var mymd5 = crypto.createHash('md5').update(user);
+  var rand = random(0, avatar_404.length);
+  var end = '?d=' + avatar_404[rand];
+  return avatar_url + mymd5.digest('hex') + '/' + end;
+}
+
+function random(low, high) {
+  return Math.floor(Math.random() * (high - low) + low);
+}

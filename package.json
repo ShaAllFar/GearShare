@@ -12,6 +12,7 @@
   "scripts": {
     "test": "DEBUG='gear-share*' mocha",
     "start": "DEBUG='gear-share*' node server.js",
+    "start-chat": "DEBUG='gear-share*' node chat-server.js",
     "snowfall": "DEBUG='gear-share*' ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./test/*",
     "heroku-postbuild": "cd frontend; webpack -p --progress",
     "build": "cd frontend; webpack",
@@ -62,6 +63,7 @@
     "pascalcase": "^0.1.1",
     "resolve-url-loader": "^1.6.1",
     "sass-loader": "^4.1.1",
+    "socket.io": "^2.0.1",
     "style-loader": "^0.13.1",
     "ui-router": "^1.0.0-alpha.3",
     "url-loader": "^0.5.7",
