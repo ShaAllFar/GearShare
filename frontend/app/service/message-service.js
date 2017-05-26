@@ -1,11 +1,10 @@
 'use strict';
 
-module.exports = ['$log', '$http', 'authService', messageService];
+module.exports = ['$log', '$http', messageService];
 
-function messageService($log, $http, authService) {
+function messageService($log, $http) {
 
   let service = {};
-  service.users = {};
 
   service.fetchAllUsers = function() {
     $log.debug('messageService.fetchAllUsers()');
@@ -19,5 +18,8 @@ function messageService($log, $http, authService) {
     };
     return $http.get(url, config);
   };
+
+  return service;
+
 
 }

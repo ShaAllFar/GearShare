@@ -48,6 +48,21 @@ profileRouter.get('/api/profile/:userID', bearerAuth, function(req, res, next){
   .catch(next);
 });
 
+// Route to fetch all users for messaging
+
+profileRouter.get('/api/users', function(req, res, next) {
+  debug('GET: /api/users');
+
+  User.find({})
+  // .populate('users')
+  .then(users => {
+    console.log(users);
+    if(users === null) return next(createError(404, 'no users found'));
+    res.json(users);
+  })
+  .catch(next);
+});
+
 profileRouter.put('/api/profile/:userID', bearerAuth, jsonParser, function(req, res, next){
   debug('PUT: /api/profile/:userID');
 
@@ -101,7 +116,7 @@ profileRouter.post('/api/profile/:userID/image', bearerAuth, upload.single('imag
       objectKey: s3data.Key,
       imageURI: s3data.Location,
       userID: req.user._id
-    }
+    };
     return new Image(imageData).save();
   })
   .then( image => {
@@ -115,4 +130,4 @@ profileRouter.post('/api/profile/:userID/image', bearerAuth, upload.single('imag
     next(createError(404,err.message));
   });
 
-})
+});
