@@ -6,6 +6,7 @@ const io = require('socket.io').listen(server);
 const crypto = require('crypto');
 const users = {}; //TODO create function in message view to retrieve all users and populate this object literal.
 const socks = {};
+// require('./frontend/app/component/chat/chat.js');
 
 // const Chat = require('./model/chat.js');
 
