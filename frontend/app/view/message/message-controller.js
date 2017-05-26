@@ -18,6 +18,7 @@ function MessageController($log, $rootScope, messageService) {
       });
       $log.log('got all users');
       console.log(this.usersArray);
+      // this.user = users;
       return this.usersArray.reverse();
     });
   };
